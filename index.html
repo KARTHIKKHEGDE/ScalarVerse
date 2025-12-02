@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="ScalarVerse.com - Founded by Karthik Hegde. A premium technology platform."
+    />
+    <meta
+      name="keywords"
+      content="ScalarVerse, Karthik Hegde, Technology, Innovation"
+    />
+    <meta name="author" content="Karthik Hegde" />
+    <meta property="og:title" content="ScalarVerse.com" />
+    <meta
+      property="og:description"
+      content="ScalarVerse.com belongs to its founder – Karthik Hegde"
+    />
+    <meta property="og:type" content="website" />
+    <title>ScalarVerse.com - Karthik Hegde</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-glow: #00d4ff;
+        --secondary-glow: #a855f7;
+        --bg-dark: #0a0a0f;
+        --card-bg: rgba(15, 15, 25, 0.8);
+        --text-primary: #ffffff;
+        --text-secondary: #a0a0b0;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: var(--bg-dark);
+        color: var(--text-primary);
+        overflow-x: hidden;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      /* Animated Background */
+      .background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: linear-gradient(
+          135deg,
+          #0a0a0f 0%,
+          #1a0a2e 50%,
+          #0a0a0f 100%
+        );
+        overflow: hidden;
+      }
+
+      .background::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+            circle,
+            rgba(0, 212, 255, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+        animation: rotateBackground 20s linear infinite;
+      }
+
+      @keyframes rotateBackground {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Floating Particles */
+      .particle {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        opacity: 0.3;
+      }
+
+      .particle:nth-child(1) {
+        width: 80px;
+        height: 80px;
+        background: radial-gradient(circle, var(--primary-glow), transparent);
+        top: 20%;
+        left: 10%;
+        animation: float 8s ease-in-out infinite;
+      }
+
+      .particle:nth-child(2) {
+        width: 120px;
+        height: 120px;
+        background: radial-gradient(circle, var(--secondary-glow), transparent);
+        top: 60%;
+        right: 15%;
+        animation: float 10s ease-in-out infinite reverse;
+      }
+
+      .particle:nth-child(3) {
+        width: 60px;
+        height: 60px;
+        background: radial-gradient(circle, var(--primary-glow), transparent);
+        bottom: 15%;
+        left: 30%;
+        animation: float 12s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) translateX(0);
+        }
+        33% {
+          transform: translateY(-30px) translateX(20px);
+        }
+        66% {
+          transform: translateY(-10px) translateX(-20px);
+        }
+      }
+
+      /* Main Container */
+      .container {
+        max-width: 1200px;
+        padding: 2rem;
+        width: 100%;
+        animation: fadeInUp 1s ease-out;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Hero Card */
+      .hero-card {
+        background: var(--card-bg);
+        backdrop-filter: blur(20px);
+        border-radius: 24px;
+        padding: 4rem 3rem;
+        position: relative;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+          0 0 0 1px rgba(255, 255, 255, 0.05);
+        overflow: hidden;
+        text-align: center;
+      }
+
+      .hero-card::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(
+          45deg,
+          var(--primary-glow),
+          var(--secondary-glow),
+          var(--primary-glow)
+        );
+        border-radius: 24px;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        animation: borderRotate 3s linear infinite;
+      }
+
+      .hero-card:hover::before {
+        opacity: 0.5;
+      }
+
+      @keyframes borderRotate {
+        0% {
+          filter: hue-rotate(0deg);
+        }
+        100% {
+          filter: hue-rotate(360deg);
+        }
+      }
+
+      /* Logo/Brand */
+      .brand {
+        font-size: 1.2rem;
+        font-weight: 300;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+        opacity: 0;
+        animation: fadeIn 1s ease-out 0.3s forwards;
+      }
+
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Main Heading */
+      .hero-title {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(
+          135deg,
+          var(--primary-glow),
+          var(--secondary-glow)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        opacity: 0;
+        animation: fadeIn 1s ease-out 0.6s forwards;
+      }
+
+      .hero-subtitle {
+        font-size: clamp(1.2rem, 3vw, 2rem);
+        font-weight: 300;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+        opacity: 0;
+        animation: fadeIn 1s ease-out 0.9s forwards;
+      }
+
+      .founder-name {
+        font-weight: 600;
+        background: linear-gradient(135deg, #ffffff, var(--primary-glow));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Divider */
+      .divider {
+        width: 100px;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--primary-glow),
+          transparent
+        );
+        margin: 2rem auto;
+        opacity: 0;
+        animation: fadeIn 1s ease-out 1.2s forwards;
+      }
+
+      /* Twitter Button */
+      .social-section {
+        margin-top: 3rem;
+        opacity: 0;
+        animation: fadeIn 1s ease-out 1.5s forwards;
+      }
+
+      .twitter-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1rem 2.5rem;
+        background: linear-gradient(
+          135deg,
+          var(--primary-glow),
+          var(--secondary-glow)
+        );
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        font-family: "Inter", sans-serif;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .twitter-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .twitter-btn:hover::before {
+        left: 100%;
+      }
+
+      .twitter-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(0, 212, 255, 0.5);
+      }
+
+      .twitter-btn:active {
+        transform: translateY(-1px);
+      }
+
+      .twitter-icon {
+        width: 24px;
+        height: 24px;
+        fill: currentColor;
+      }
+
+      /* Glow Effects */
+      .glow-orb {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.15;
+        pointer-events: none;
+      }
+
+      .glow-orb.primary {
+        background: var(--primary-glow);
+        top: -150px;
+        right: -150px;
+      }
+
+      .glow-orb.secondary {
+        background: var(--secondary-glow);
+        bottom: -150px;
+        left: -150px;
+      }
+
+      /* Footer */
+      .footer {
+        margin-top: 3rem;
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        opacity: 0;
+        animation: fadeIn 1s ease-out 1.8s forwards;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .hero-card {
+          padding: 3rem 2rem;
+        }
+
+        .brand {
+          font-size: 0.9rem;
+          letter-spacing: 0.2em;
+        }
+
+        .twitter-btn {
+          padding: 0.875rem 2rem;
+          font-size: 1rem;
+        }
+
+        .particle {
+          display: none;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding: 1rem;
+        }
+
+        .hero-card {
+          padding: 2.5rem 1.5rem;
+          border-radius: 20px;
+        }
+
+        .brand {
+          font-size: 0.8rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .divider {
+          width: 60px;
+          margin: 1.5rem auto;
+        }
+
+        .social-section {
+          margin-top: 2rem;
+        }
+
+        .twitter-btn {
+          padding: 0.75rem 1.75rem;
+          font-size: 0.95rem;
+          gap: 0.5rem;
+        }
+
+        .twitter-icon {
+          width: 20px;
+          height: 20px;
+        }
+
+        .footer {
+          margin-top: 2rem;
+          font-size: 0.8rem;
+        }
+      }
+
+      /* Accessibility */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Animated Background -->
+    <div class="background">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="hero-card">
+        <!-- Glow Orbs -->
+        <div class="glow-orb primary"></div>
+        <div class="glow-orb secondary"></div>
+
+        <!-- Brand -->
+        <div class="brand">ScalarVerse</div>
+
+        <!-- Hero Content -->
+        <h1 class="hero-title">ScalarVerse.com</h1>
+        <p class="hero-subtitle">
+          belongs to its founder –
+          <span class="founder-name">Karthik Hegde</span>
+        </p>
+
+        <!-- Divider -->
+        <div class="divider"></div>
+
+        <!-- Social Section -->
+        <div class="social-section">
+          <a
+            href="https://twitter.com/KARTHIKKHEGDE"
+            class="twitter-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg
+              class="twitter-icon"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+              />
+            </svg>
+            <span>Follow on X</span>
+          </a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">&copy; 2025 ScalarVerse. All rights reserved.</div>
+      </div>
+    </div>
+  </body>
+</html>
