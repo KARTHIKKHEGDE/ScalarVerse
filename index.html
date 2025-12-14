@@ -56,7 +56,7 @@
         position: relative;
       }
 
-      /* Animated Background */
+      /* Universe Probability Background */
       .background {
         position: fixed;
         top: 0;
@@ -64,86 +64,36 @@
         width: 100%;
         height: 100%;
         z-index: -1;
-        background: linear-gradient(
-          135deg,
-          #0a0a0f 0%,
-          #1a0a2e 50%,
-          #0a0a0f 100%
-        );
+        background: radial-gradient(circle at center, #0f172a 0%, #000000 100%);
         overflow: hidden;
       }
 
+      /* Mathematical Grid */
       .background::before {
         content: "";
         position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(
-            circle,
-            rgba(0, 212, 255, 0.1) 0%,
-            transparent 50%
-          ),
-          radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
-        animation: rotateBackground 20s linear infinite;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+          linear-gradient(rgba(0, 212, 255, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 212, 255, 0.05) 1px, transparent 1px);
+        background-size: 50px 50px;
+        mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+        -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
       }
 
-      @keyframes rotateBackground {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-
-      /* Floating Particles */
-      .particle {
+      /* Floating Math Symbols */
+      .math-symbol {
         position: absolute;
-        border-radius: 50%;
+        color: var(--primary-glow);
+        font-family: 'Courier New', monospace;
+        font-weight: bold;
         pointer-events: none;
-        opacity: 0.3;
-      }
-
-      .particle:nth-child(1) {
-        width: 80px;
-        height: 80px;
-        background: radial-gradient(circle, var(--primary-glow), transparent);
-        top: 20%;
-        left: 10%;
-        animation: float 8s ease-in-out infinite;
-      }
-
-      .particle:nth-child(2) {
-        width: 120px;
-        height: 120px;
-        background: radial-gradient(circle, var(--secondary-glow), transparent);
-        top: 60%;
-        right: 15%;
-        animation: float 10s ease-in-out infinite reverse;
-      }
-
-      .particle:nth-child(3) {
-        width: 60px;
-        height: 60px;
-        background: radial-gradient(circle, var(--primary-glow), transparent);
-        bottom: 15%;
-        left: 30%;
-        animation: float 12s ease-in-out infinite;
-      }
-
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0) translateX(0);
-        }
-        33% {
-          transform: translateY(-30px) translateX(20px);
-        }
-        66% {
-          transform: translateY(-10px) translateX(-20px);
-        }
+        user-select: none;
+        will-change: transform, opacity;
+        text-shadow: 0 0 10px var(--primary-glow);
       }
 
       /* Main Container */
@@ -565,9 +515,7 @@
   <body>
     <!-- Animated Background -->
     <div class="background">
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
+      <!-- Math symbols will be added by JS -->
     </div>
 
     <!-- Main Content -->
@@ -598,10 +546,7 @@
             probability, not moral justice.
           </blockquote>
           <p>
-            This article explains why cause–effect is not the same as karma, why
-            outcomes are not rewards or punishments, and why the most rational
-            way to live is to increase the probability of success through
-            action.
+            This article argues that reality is governed by probability and cause–effect relationships, not karma or moral justice. It explains how events arise from prior conditions interacting with randomness, rather than from rewards or punishments. Based on this view, the article concludes that rational living means engineering better odds by taking actions that measurably increase the probability of outcomes you want.
           </p>
 
           <h2>Cause–Effect: A Neutral Law</h2>
@@ -798,6 +743,62 @@
         <!-- Footer -->
         <div class="footer">&copy; 2025 ScalarVerse. All rights reserved.</div>
       </div>
+      </div>
     </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const symbols = [
+          'Σ', '∫', 'π', '∞', '≈', '≠', '√', 
+          'P(x)', 'P(A|B)', 'E[X]', 'N(μ,σ)', 
+          'µ', 'σ', 'α', 'β', 'γ', 'θ', 'λ', 'Ω', 'Δ', '∂', '∇', 
+          'dx', 'dy', 'f(x)', 'lim', 'log', 'ln', 'e', 
+          'hi', 'H₀', 'H₁', 'χ²', 'R²' 
+        ];
+        const background = document.querySelector('.background');
+        const symbolCount = 60; // Increased count
+
+        function createSymbol() {
+          const span = document.createElement('span');
+          span.classList.add('math-symbol');
+          span.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+          
+          // Random positioning
+          const left = Math.random() * 100;
+          const top = Math.random() * 100;
+          const fontSize = Math.random() * 20 + 10; // Varied sizes
+          const duration = Math.random() * 30 + 20; // Slower, more majestic float
+          const delay = Math.random() * -30; // Start at random times
+          
+          span.style.left = `${left}%`;
+          span.style.top = `${top}%`;
+          span.style.fontSize = `${fontSize}px`;
+          span.style.opacity = '0'; // Start invisible
+          
+          // Random float direction (gentler movement)
+          const moveX = (Math.random() - 0.5) * 100;
+          const moveY = (Math.random() - 0.5) * 100;
+          
+          span.animate([
+            { transform: 'translate(0, 0) rotate(0deg)', opacity: 0 },
+            { opacity: Math.random() * 0.5 + 0.1, offset: 0.2 }, // Fade in
+            { opacity: Math.random() * 0.5 + 0.1, offset: 0.8 }, // Stay visible
+            { transform: `translate(${moveX}px, ${moveY}px) rotate(${Math.random() * 360}deg)`, opacity: 0 } // Fade out
+          ], {
+            duration: duration * 1000,
+            delay: delay * 1000,
+            iterations: Infinity,
+            easing: 'linear'
+          });
+
+          background.appendChild(span);
+        }
+
+        // Initialize symbols
+        for (let i = 0; i < symbolCount; i++) {
+          createSymbol();
+        }
+      });
+    </script>
   </body>
 </html>
