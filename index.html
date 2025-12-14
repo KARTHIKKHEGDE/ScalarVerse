@@ -448,6 +448,120 @@
           transition-duration: 0.01ms !important;
         }
       }
+      /* Article Styles */
+      .content-article {
+        text-align: left;
+        margin-top: 4rem;
+        color: var(--text-primary);
+        line-height: 1.8;
+        font-size: 1.1rem;
+      }
+
+      .content-article h1 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin-bottom: 2rem;
+        background: linear-gradient(
+          135deg,
+          var(--primary-glow),
+          var(--secondary-glow)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1.2;
+        line-height: 1.2;
+        text-align: center;
+      }
+
+      .article-author {
+        display: block;
+        text-align: center;
+        font-size: 1rem;
+        color: var(--text-secondary);
+        margin-top: -1.5rem;
+        margin-bottom: 3rem;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+      }
+
+      .content-article h2 {
+        font-size: 1.8rem;
+        margin-top: 3.5rem;
+        margin-bottom: 1.5rem;
+        color: var(--primary-glow);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 0.5rem;
+        display: inline-block;
+      }
+
+      .content-article h3 {
+        font-size: 1.4rem;
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--text-secondary);
+      }
+
+      .content-article p {
+        margin-bottom: 1.5rem;
+        color: #d1d5db;
+      }
+
+      .content-article ul {
+        margin-bottom: 2rem;
+        padding-left: 0;
+        list-style-type: none;
+      }
+
+      .content-article ul li {
+        margin-bottom: 0.8rem;
+        position: relative;
+        padding-left: 2rem;
+        color: #e5e7eb;
+      }
+
+      .content-article ul li::before {
+        content: "➜";
+        color: var(--secondary-glow);
+        position: absolute;
+        left: 0;
+        font-size: 1rem;
+      }
+
+      .highlight-quote {
+        border-left: 4px solid var(--primary-glow);
+        margin: 2.5rem 0;
+        font-style: italic;
+        background: rgba(10, 10, 15, 0.6);
+        padding: 2rem;
+        border-radius: 0 16px 16px 0;
+        color: white;
+        font-size: 1.2rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .strong-text {
+        color: white;
+        font-weight: 600;
+        color: var(--primary-glow);
+      }
+
+      /* Adjust existing hero for article mode */
+      .hero-title {
+        display: none; /* Hide original hero title to focus on article */
+      }
+      .hero-subtitle {
+        display: none; /* Hide original subtitle */
+      }
+      
+      @media (max-width: 768px) {
+        .content-article {
+          padding: 0;
+        }
+        .highlight-quote {
+          padding: 1.5rem;
+          font-size: 1.1rem;
+        }
+      }
     </style>
   </head>
   <body>
@@ -469,11 +583,195 @@
         <div class="brand">ScalarVerse</div>
 
         <!-- Hero Content -->
-        <h1 class="hero-title">ScalarVerse.com</h1>
-        <p class="hero-subtitle">
-          belongs to its founder –
-          <span class="founder-name">Karthik Hegde</span>
-        </p>
+        <!-- Article Content -->
+        <div class="content-article">
+          <h1>Probability, Cause–Effect, and a Godless Universe</h1>
+          <span class="article-author">By Karthik Hegde</span>
+
+          <h2>Introduction</h2>
+          <p>
+            Many people explain life using words like God, karma, destiny, or
+            luck. These ideas sound comforting, but they are not necessary to
+            understand how the universe actually works. A simpler and more
+            consistent explanation exists:
+          </p>
+          <blockquote class="highlight-quote">
+            The universe operates through cause–effect relationships and
+            probability, not moral justice.
+          </blockquote>
+          <p>
+            This article explains why cause–effect is not the same as karma, why
+            outcomes are not rewards or punishments, and why the most rational
+            way to live is to increase the probability of success through
+            action.
+          </p>
+
+          <h2>Cause–Effect: A Neutral Law</h2>
+          <p>Cause–effect is a basic principle of reality:</p>
+          <p>
+            <span class="strong-text"
+              >Every event happens because certain conditions existed before
+              it.</span
+            >
+          </p>
+          <p>This principle is neutral. It has:</p>
+          <ul>
+            <li>No morality</li>
+            <li>No intention</li>
+            <li>No judgment</li>
+          </ul>
+
+          <h3>Simple example</h3>
+          <p>
+            My friend came to my room. Because of that, a conversation happened.
+          </p>
+          <p>
+            The universe did not decide this conversation should happen. There
+            was no good or bad involved. The event simply followed from prior
+            conditions.
+          </p>
+          <p>
+            Cause–effect explains why something happened — not whether it should
+            have happened.
+          </p>
+
+          <h2>Karma: A Moral Belief, Not a Law</h2>
+          <p>Karma claims something very different:</p>
+          <ul>
+            <li>
+              If you do good things, good things will happen to you.
+            </li>
+            <li>
+              If you do bad things, bad things will happen to you.
+            </li>
+          </ul>
+          <p>This assumes the universe has:</p>
+          <ul>
+            <li>A moral memory</li>
+            <li>A sense of justice</li>
+            <li>A system of delayed reward and punishment</li>
+          </ul>
+          <p>There is no scientific evidence for such a system.</p>
+
+          <h2>Why Cause–Effect Is Not Karma</h2>
+          <p>The difference is critical:</p>
+          <ul>
+            <li>Cause–effect is descriptive (what happened and why)</li>
+            <li>Karma is prescriptive (what should happen)</li>
+          </ul>
+          <p>Cause–effect allows:</p>
+          <ul>
+            <li>Good things to happen to bad people</li>
+            <li>Bad things to happen to good people</li>
+            <li>Random accidents</li>
+            <li>Unfair outcomes</li>
+          </ul>
+          <p>Karma does not. Reality matches cause–effect, not karma.</p>
+
+          <h2>Probability: The Role of Uncertainty</h2>
+          <p>
+            Not all causes guarantee outcomes. Many only change probability.
+          </p>
+
+          <h3>Example: an interview</h3>
+          <ul>
+            <li>Studying increases the probability of success</li>
+            <li>Not studying decreases it</li>
+            <li>Neither guarantees the result</li>
+          </ul>
+          <p>Effort does not ensure success — it only shifts the odds.</p>
+          <p>This is how:</p>
+          <ul>
+            <li>Exams work</li>
+            <li>Trading works</li>
+            <li>Scientific experiments work</li>
+            <li>Life works</li>
+          </ul>
+
+          <h2>Luck and Randomness</h2>
+          <p>What people call luck is simply:</p>
+          <p>
+            <span class="strong-text"
+              >Outcomes influenced by variables outside our control</span
+            >
+          </p>
+          <p>
+            Randomness does not mean nothing matters. Instead, it means:
+          </p>
+          <ul>
+            <li>You cannot control everything</li>
+            <li>But you can control some causes</li>
+          </ul>
+          <p>Rational action focuses only on controllable variables.</p>
+
+          <h2>A Rational Life Strategy</h2>
+          <p>
+            If the universe is probabilistic and morally neutral, then the most
+            logical way to live is:
+          </p>
+          <blockquote class="highlight-quote">
+            Do actions that increase the probability of the outcome you want.
+          </blockquote>
+          <p>
+            In simple terms, if there is no God controlling outcomes and no
+            karma guaranteeing fairness, then success becomes a numbers game.
+            You do not ask what should happen — you ask what increases my
+            chances.
+          </p>
+          <p>
+            For example, consider an interview happening today. What increases
+            the probability of clearing it?
+          </p>
+          <ul>
+            <li>Reading and revising today increases the probability</li>
+            <li>Not preparing keeps the probability low</li>
+          </ul>
+          <p>
+            Studying does not guarantee success, but it clearly improves the
+            odds. Prayer, hope, or worrying do not change the probability in any
+            measurable way. Rational action means doing the thing that
+            mathematically improves your chances, and ignoring everything else.
+          </p>
+          <p>This means:</p>
+          <ul>
+            <li>Preparation instead of prayer</li>
+            <li>Skill instead of hope</li>
+            <li>Adjustment instead of expectation</li>
+          </ul>
+          <p>You do not wait for fairness. You engineer better odds.</p>
+
+          <h2>Why People Prefer Karma</h2>
+          <p>Humans dislike uncertainty. Karma provides:</p>
+          <ul>
+            <li>Emotional comfort</li>
+            <li>A sense of fairness</li>
+            <li>Meaning in suffering</li>
+          </ul>
+          <p>But comfort is not truth.</p>
+          <p>
+            Cause–effect does not promise justice — it promises consistency.
+          </p>
+
+          <h2>Conclusion</h2>
+          <p>
+            The universe is not good or bad. It is morally neutral and
+            probabilistic.
+          </p>
+          <p>
+            Events are not rewards or punishments. They are consequences of
+            prior conditions interacting with randomness.
+          </p>
+          <p>
+            Understanding this removes false hope — but it gives something
+            stronger:
+          </p>
+          <p><span class="strong-text">Control over your actions.</span></p>
+          <p>
+            You may not control outcomes, but you can definitely influence the
+            odds of those outcomes.
+          </p>
+          <p>And that is enough.</p>
+        </div>
 
         <!-- Divider -->
         <div class="divider"></div>
