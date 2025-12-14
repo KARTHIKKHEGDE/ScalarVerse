@@ -228,23 +228,22 @@
         animation: fadeIn 1s ease-out 1.2s forwards;
       }
 
-      /* Twitter Button */
+      /* Social Buttons */
       .social-section {
         margin-top: 3rem;
         opacity: 0;
         animation: fadeIn 1s ease-out 1.5s forwards;
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
       }
 
-      .twitter-btn {
+      .social-btn {
         display: inline-flex;
         align-items: center;
         gap: 0.75rem;
         padding: 1rem 2.5rem;
-        background: linear-gradient(
-          135deg,
-          var(--primary-glow),
-          var(--secondary-glow)
-        );
         color: white;
         text-decoration: none;
         border-radius: 50px;
@@ -252,12 +251,29 @@
         font-size: 1.1rem;
         font-family: "Inter", sans-serif;
         transition: all 0.3s ease;
-        box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
         position: relative;
         overflow: hidden;
       }
 
-      .twitter-btn::before {
+      .twitter-btn {
+        background: linear-gradient(
+          135deg,
+          var(--primary-glow),
+          var(--secondary-glow)
+        );
+        box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+      }
+
+      .whatsapp-btn {
+        background: linear-gradient(
+          135deg,
+          #25D366,
+          #128C7E
+        );
+        box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+      }
+
+      .social-btn::before {
         content: "";
         position: absolute;
         top: 0;
@@ -273,20 +289,27 @@
         transition: left 0.5s ease;
       }
 
-      .twitter-btn:hover::before {
+      .social-btn:hover::before {
         left: 100%;
       }
 
-      .twitter-btn:hover {
+      .social-btn:hover {
         transform: translateY(-3px);
+      }
+
+      .twitter-btn:hover {
         box-shadow: 0 15px 40px rgba(0, 212, 255, 0.5);
       }
 
-      .twitter-btn:active {
+      .whatsapp-btn:hover {
+        box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
+      }
+
+      .social-btn:active {
         transform: translateY(-1px);
       }
 
-      .twitter-icon {
+      .social-icon {
         width: 24px;
         height: 24px;
         fill: currentColor;
@@ -335,7 +358,7 @@
           letter-spacing: 0.2em;
         }
 
-        .twitter-btn {
+        .social-btn {
           padding: 0.875rem 2rem;
           font-size: 1rem;
         }
@@ -369,13 +392,13 @@
           margin-top: 2rem;
         }
 
-        .twitter-btn {
+        .social-btn {
           padding: 0.75rem 1.75rem;
           font-size: 0.95rem;
           gap: 0.5rem;
         }
 
-        .twitter-icon {
+        .social-icon {
           width: 20px;
           height: 20px;
         }
@@ -750,12 +773,12 @@
         <div class="social-section">
           <a
             href="https://twitter.com/KARTHIKKHEGDE"
-            class="twitter-btn"
+            class="social-btn twitter-btn"
             target="_blank"
             rel="noopener noreferrer"
           >
             <svg
-              class="twitter-icon"
+              class="social-icon"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -764,6 +787,25 @@
               />
             </svg>
             <span>You can contact me on X</span>
+          </a>
+
+          <a
+            href="https://wa.me/919480012608"
+            class="social-btn whatsapp-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg
+              class="social-icon"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+            >
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471.148-.67.396-.197.247-.767.967-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.231-.298.347-.497.116-.198.058-.371-.03-.52-.088-.149-.793-1.912-1.087-2.622-.288-.707-.581-.606-.793-.615-.205-.009-.438-.009-.672-.009-.234 0-.613.089-.933.435-.32.347-1.226 1.199-1.226 2.926 0 1.727 1.257 3.395 1.433 3.633.175.239 2.472 3.774 5.991 5.292 2.339 1.01 2.816.811 3.323.761.507-.05 1.636-.669 1.868-1.314.232-.646.232-1.2.163-1.314-.07-.114-.244-.182-.541-.331zM12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"
+              />
+            </svg>
+            <span>WhatsApp: 9480012608</span>
           </a>
         </div>
 
