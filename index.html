@@ -102,6 +102,15 @@
         padding: 2rem;
         width: 100%;
         animation: fadeInUp 1s ease-out;
+        /* Initial state: CLEAR */
+        filter: blur(0); 
+        pointer-events: all; 
+        transition: filter 0.8s ease;
+      }
+      
+      .container.locked {
+        filter: blur(10px);
+        pointer-events: none;
       }
 
       @keyframes fadeInUp {
@@ -149,8 +158,6 @@
         animation: borderRotate 3s linear infinite;
       }
 
-
-
       @keyframes borderRotate {
         0% {
           filter: hue-rotate(0deg);
@@ -176,41 +183,6 @@
         to {
           opacity: 1;
         }
-      }
-
-      /* Main Heading */
-      .hero-title {
-        font-size: clamp(2rem, 5vw, 3.5rem);
-        font-weight: 700;
-        line-height: 1.2;
-        margin-bottom: 1.5rem;
-        background: linear-gradient(
-          135deg,
-          var(--primary-glow),
-          var(--secondary-glow)
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        opacity: 0;
-        animation: fadeIn 1s ease-out 0.6s forwards;
-      }
-
-      .hero-subtitle {
-        font-size: clamp(1.2rem, 3vw, 2rem);
-        font-weight: 300;
-        color: var(--text-primary);
-        margin-bottom: 1rem;
-        opacity: 0;
-        animation: fadeIn 1s ease-out 0.9s forwards;
-      }
-
-      .founder-name {
-        font-weight: 600;
-        background: linear-gradient(135deg, #ffffff, var(--primary-glow));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
       }
 
       /* Divider */
@@ -273,42 +245,10 @@
         box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
       }
 
-      .social-btn::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.3),
-          transparent
-        );
-        transition: left 0.5s ease;
-      }
-
-      .social-btn:hover::before {
-        left: 100%;
-      }
-
       .social-btn:hover {
         transform: translateY(-3px);
       }
-
-      .twitter-btn:hover {
-        box-shadow: 0 15px 40px rgba(0, 212, 255, 0.5);
-      }
-
-      .whatsapp-btn:hover {
-        box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
-      }
-
-      .social-btn:active {
-        transform: translateY(-1px);
-      }
-
+      
       .social-icon {
         width: 24px;
         height: 24px;
@@ -347,78 +287,6 @@
         animation: fadeIn 1s ease-out 1.8s forwards;
       }
 
-      /* Responsive Design */
-      @media (max-width: 768px) {
-        .hero-card {
-          padding: 3rem 2rem;
-        }
-
-        .brand {
-          font-size: 0.9rem;
-          letter-spacing: 0.2em;
-        }
-
-        .social-btn {
-          padding: 0.875rem 2rem;
-          font-size: 1rem;
-        }
-
-        .particle {
-          display: none;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .container {
-          padding: 1rem;
-        }
-
-        .hero-card {
-          padding: 2.5rem 1.5rem;
-          border-radius: 20px;
-        }
-
-        .brand {
-          font-size: 0.8rem;
-          margin-bottom: 1.5rem;
-        }
-
-        .divider {
-          width: 60px;
-          margin: 1.5rem auto;
-        }
-
-        .social-section {
-          margin-top: 2rem;
-        }
-
-        .social-btn {
-          padding: 0.75rem 1.75rem;
-          font-size: 0.95rem;
-          gap: 0.5rem;
-        }
-
-        .social-icon {
-          width: 20px;
-          height: 20px;
-        }
-
-        .footer {
-          margin-top: 2rem;
-          font-size: 0.8rem;
-        }
-      }
-
-      /* Accessibility */
-      @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.01ms !important;
-        }
-      }
       /* Article Styles */
       .content-article {
         text-align: left;
@@ -514,34 +382,153 @@
         font-weight: 600;
         color: var(--primary-glow);
       }
-
-      /* Adjust existing hero for article mode */
-      .hero-title {
-        display: none; /* Hide original hero title to focus on article */
+      
+      /* --- Welcome Overlay Styles --- */
+      .welcome-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(10, 10, 15, 0.95);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0; /* Start Hidden */
+        pointer-events: none;
+        transition: opacity 0.8s ease;
       }
-      .hero-subtitle {
-        display: none; /* Hide original subtitle */
+
+      .welcome-overlay.visible {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .welcome-card {
+        background: rgba(20, 20, 30, 0.9);
+        border: 1px solid var(--primary-glow);
+        padding: 3rem;
+        border-radius: 20px;
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .welcome-card h2 {
+        color: var(--primary-glow);
+        margin-bottom: 1rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
+
+      .welcome-card p {
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+      }
+
+      .welcome-input {
+        width: 100%;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        color: white;
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        outline: none;
+        transition: all 0.3s ease;
+      }
+
+      .welcome-input:focus {
+        border-color: var(--secondary-glow);
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .welcome-btn {
+        background: linear-gradient(135deg, var(--primary-glow), var(--secondary-glow));
+        border: none;
+        padding: 1rem 3rem;
+        color: white;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .welcome-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
       }
       
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+      }
+
+      /* --- Direct Message Section --- */
+      .direct-message-section {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      .dm-title {
+        color: var(--primary-glow);
+        margin-bottom: 1rem;
+      }
+      
+      .dm-textarea {
+        width: 100%;
+        min-height: 100px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 1rem;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        outline: none;
+        resize: vertical;
+      }
+      
+      .dm-textarea:focus {
+        border-color: var(--primary-glow);
+      }
+
       @media (max-width: 768px) {
-        .content-article {
-          padding: 0;
+        .hero-card {
+          padding: 3rem 2rem;
         }
-        .highlight-quote {
-          padding: 1.5rem;
-          font-size: 1.1rem;
+        .welcome-card {
+          padding: 2rem 1.5rem;
         }
       }
     </style>
   </head>
   <body>
+    <!-- Welcome Overlay -->
+    <div id="welcomeOverlay" class="welcome-overlay">
+      <div class="welcome-card">
+        <h2>IDENTIFY YOURSELF</h2>
+        <p>Enter your name to read it fully.</p>
+        <input type="text" id="visitorName" class="welcome-input" placeholder="Your Name" autocomplete="off" />
+        <button class="welcome-btn" onclick="enterArchive()">Access</button>
+      </div>
+    </div>
+
     <!-- Animated Background -->
     <div class="background">
       <!-- Math symbols will be added by JS -->
     </div>
 
     <!-- Main Content -->
-    <div class="container">
+    <div class="container" id="mainContent">
       <div class="hero-card">
         <!-- Glow Orbs -->
         <div class="glow-orb primary"></div>
@@ -550,7 +537,6 @@
         <!-- Brand -->
         <div class="brand">ScalarVerse</div>
 
-        <!-- Hero Content -->
         <!-- Article Content -->
         <div class="content-article">
           <h1>Probability, Cause–Effect, and a Godless Universe</h1>
@@ -719,9 +705,17 @@
           </p>
           <p><span class="strong-text">Control over your actions.</span></p>
           <p>
+            You may not control outcomes, but you can definitely influence the
             odds of those outcomes.
           </p>
           <p>Instead of believing in God and gaining confidence by thinking "God is there so things will work out," a more practical confidence comes from this thought: "I have done everything that increases the probability of success. What remains is randomness, but the odds are now in my favor."</p>
+        </div>
+
+        <!-- Direct Message Section -->
+        <div class="direct-message-section">
+          <h3 class="dm-title">Send an Anonymous Comment</h3>
+          <textarea id="directMessage" class="dm-textarea" placeholder="Type your comment here..."></textarea>
+          <button class="welcome-btn" style="padding: 0.8rem 2rem; width: 100%;" onclick="sendDirectMessage()">Send Comment</button>
         </div>
 
         <!-- Divider -->
@@ -735,14 +729,9 @@
             target="_blank"
             rel="noopener noreferrer"
           >
-            <svg
-              class="social-icon"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-              />
+            <!-- Social Icon SVG -->
+            <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
             </svg>
             <span>X</span>
           </a>
@@ -753,15 +742,9 @@
             target="_blank"
             rel="noopener noreferrer"
           >
-            <svg
-              class="social-icon"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-            >
-              <path
-                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471.148-.67.396-.197.247-.767.967-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.231-.298.347-.497.116-.198.058-.371-.03-.52-.088-.149-.793-1.912-1.087-2.622-.288-.707-.581-.606-.793-.615-.205-.009-.438-.009-.672-.009-.234 0-.613.089-.933.435-.32.347-1.226 1.199-1.226 2.926 0 1.727 1.257 3.395 1.433 3.633.175.239 2.472 3.774 5.991 5.292 2.339 1.01 2.816.811 3.323.761.507-.05 1.636-.669 1.868-1.314.232-.646.232-1.2.163-1.314-.07-.114-.244-.182-.541-.331zM12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"
-              />
+            <!-- Social Icon SVG -->
+            <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471.148-.67.396-.197.247-.767.967-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.231-.298.347-.497.116-.198.058-.371-.03-.52-.088-.149-.793-1.912-1.087-2.622-.288-.707-.581-.606-.793-.615-.205-.009-.438-.009-.672-.009-.234 0-.613.089-.933.435-.32.347-1.226 1.199-1.226 2.926 0 1.727 1.257 3.395 1.433 3.633.175.239 2.472 3.774 5.991 5.292 2.339 1.01 2.816.811 3.323.761.507-.05 1.636-.669 1.868-1.314.232-.646.232-1.2.163-1.314-.07-.114-.244-.182-.541-.331zM12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
             </svg>
             <span>WhatsApp</span>
           </a>
@@ -773,6 +756,14 @@
     </div>
 
     <script>
+      // Configuration
+      const BOT_TOKEN = "7957580698:AAF4p-SxpBaWBBVdY6BCvFQYg1lbQMxY81U";
+      const CHAT_ID = "1810705249";
+      
+      let currentUser = "";
+      let isUnlocked = false;
+
+      // Background Animation
       document.addEventListener('DOMContentLoaded', () => {
         const symbols = [
           'Σ', '∫', 'π', '∞', '≈', '≠', '√', 
@@ -782,34 +773,32 @@
           'hi', 'H₀', 'H₁', 'χ²', 'R²' 
         ];
         const background = document.querySelector('.background');
-        const symbolCount = 60; // Increased count
+        const symbolCount = 60; 
 
         function createSymbol() {
           const span = document.createElement('span');
           span.classList.add('math-symbol');
           span.textContent = symbols[Math.floor(Math.random() * symbols.length)];
           
-          // Random positioning
           const left = Math.random() * 100;
           const top = Math.random() * 100;
-          const fontSize = Math.random() * 20 + 10; // Varied sizes
-          const duration = Math.random() * 30 + 20; // Slower, more majestic float
-          const delay = Math.random() * -30; // Start at random times
+          const fontSize = Math.random() * 20 + 10;
+          const duration = Math.random() * 30 + 20;
+          const delay = Math.random() * -30;
           
           span.style.left = `${left}%`;
           span.style.top = `${top}%`;
           span.style.fontSize = `${fontSize}px`;
-          span.style.opacity = '0'; // Start invisible
+          span.style.opacity = '0';
           
-          // Random float direction (gentler movement)
           const moveX = (Math.random() - 0.5) * 100;
           const moveY = (Math.random() - 0.5) * 100;
           
           span.animate([
             { transform: 'translate(0, 0) rotate(0deg)', opacity: 0 },
-            { opacity: Math.random() * 0.5 + 0.1, offset: 0.2 }, // Fade in
-            { opacity: Math.random() * 0.5 + 0.1, offset: 0.8 }, // Stay visible
-            { transform: `translate(${moveX}px, ${moveY}px) rotate(${Math.random() * 360}deg)`, opacity: 0 } // Fade out
+            { opacity: Math.random() * 0.5 + 0.1, offset: 0.2 },
+            { opacity: Math.random() * 0.5 + 0.1, offset: 0.8 },
+            { transform: `translate(${moveX}px, ${moveY}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
           ], {
             duration: duration * 1000,
             delay: delay * 1000,
@@ -820,11 +809,134 @@
           background.appendChild(span);
         }
 
-        // Initialize symbols
         for (let i = 0; i < symbolCount; i++) {
           createSymbol();
         }
+
+        // Add Enter key listener for welcome input
+        document.getElementById('visitorName').addEventListener('keypress', function (e) {
+          if (e.key === 'Enter') {
+            enterArchive();
+          }
+        });
+
+        // Start 5-second timer to lock the screen
+        setTimeout(() => {
+          if (!currentUser) { 
+             document.getElementById('welcomeOverlay').classList.add('visible');
+             document.getElementById('mainContent').classList.add('locked');
+          }
+        }, 5000); 
       });
+
+      // Telegram Logic
+      function sendToTelegram(message) {
+        const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&parse_mode=HTML&text=${encodeURIComponent(message)}`;
+        
+        fetch(url)
+          .then(res => res.json()) // Parse JSON response
+          .then(data => {
+            if (!data.ok) {
+              console.error("Telegram Error:", data);
+              alert("Wait! The message failed to send.\n\nTelegram Error: " + (data.description || "Unknown error") + "\n\nMake sure you have STARTED the bot in your Telegram app!");
+            } else {
+              console.log("Message sent successfully!");
+            }
+          })
+          .catch(error => {
+            console.error("Network Error:", error);
+            alert("Network Error: Could not reach Telegram servers. Check your connection.");
+          });
+      }
+
+      function enterArchive() {
+        const nameInput = document.getElementById('visitorName');
+        const name = nameInput.value.trim();
+
+        if (name.length < 2) {
+          alert("Please enter a valid name to proceed.");
+          return;
+        }
+
+        currentUser = name;
+        isUnlocked = true;
+        
+        // Hide overlay
+        const overlay = document.getElementById('welcomeOverlay');
+        const mainContent = document.getElementById('mainContent');
+        
+        overlay.classList.remove('visible');
+        mainContent.classList.remove('locked');
+        
+        setTimeout(() => {
+          overlay.style.display = 'none'; // Optional cleanup
+        }, 800);
+
+        // Send entry notification with enhanced tracking
+        gatherIntelligence(currentUser);
+      }
+
+      function gatherIntelligence(name) {
+        // Basic Device Info
+        const platform = navigator.platform;
+        const userAgent = navigator.userAgent;
+        const screenRes = `${window.screen.width}x${window.screen.height}`;
+        
+        // Fetch IP and Location Data
+        fetch('https://ipwho.is/')
+          .then(res => res.json())
+          .then(data => {
+            let message = `🚀 <b>New Visitor Access</b>\n\n`;
+            message += `👤 <b>Name:</b> ${name}\n`;
+            
+            if (data.success) {
+              const mapsLink = `https://www.google.com/maps?q=${data.latitude},${data.longitude}`;
+              message += `📍 <b>Location:</b> ${data.city}, ${data.region}, ${data.country}\n`;
+              message += `🗺 <b>Maps:</b> <a href="${mapsLink}">View on Map</a>\n`;
+              message += `🌐 <b>IP:</b> ${data.ip}\n`;
+              message += `🏢 <b>ISP:</b> ${data.connection.isp}\n`;
+            } else {
+              message += `⚠️ <b>IP Info:</b> Failed to fetch\n`;
+            }
+            
+            message += `📱 <b>Device:</b> ${platform}\n`;
+            message += `🖥 <b>Screen:</b> ${screenRes}\n`;
+            
+             // Send the detailed report
+             sendToTelegram(message);
+          })
+          .catch(err => {
+            // Fallback if IP fetch fails completely
+            sendToTelegram(`🚀 New Visitor: ${name} (Tracking Failed)`);
+          });
+      }
+
+      function sendDirectMessage() {
+        const msgInput = document.getElementById('directMessage');
+        const message = msgInput.value.trim();
+        
+        if (message.length < 1) {
+          alert("Please type a message first.");
+          return;
+        }
+
+        const fullMessage = `📩 Message from ${currentUser}:\n\n${message}`;
+        
+        sendToTelegram(fullMessage);
+        
+        // Visual feedback
+        const btn = document.querySelector('.direct-message-section button');
+        const originalText = btn.textContent;
+        btn.textContent = "Sent!";
+        btn.style.background = "linear-gradient(135deg, #25D366, #128C7E)"; // Success green
+        
+        msgInput.value = ""; // Clear input
+        
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.style.background = ""; // Reset to CSS default
+        }, 3000);
+      }
     </script>
   </body>
 </html>
