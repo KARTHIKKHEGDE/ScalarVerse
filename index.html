@@ -12,7 +12,10 @@
       content="Probability, Cause-Effect, Karma, Philosophy, Godless Universe, Rational Living"
     />
     <meta name="author" content="Karthik Hegde" />
-    <meta property="og:title" content="Probability, Cause–Effect, and a Godless Universe" />
+    <meta
+      property="og:title"
+      content="Probability, Cause–Effect, and a Godless Universe"
+    />
     <meta
       property="og:description"
       content="Read about why the universe operates through cause–effect and probability, not moral justice."
@@ -76,19 +79,29 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: 
-          linear-gradient(rgba(0, 212, 255, 0.05) 1px, transparent 1px),
+        background-image: linear-gradient(
+            rgba(0, 212, 255, 0.05) 1px,
+            transparent 1px
+          ),
           linear-gradient(90deg, rgba(0, 212, 255, 0.05) 1px, transparent 1px);
         background-size: 50px 50px;
-        mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
-        -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+        mask-image: radial-gradient(
+          circle at center,
+          black 30%,
+          transparent 80%
+        );
+        -webkit-mask-image: radial-gradient(
+          circle at center,
+          black 30%,
+          transparent 80%
+        );
       }
 
       /* Floating Math Symbols */
       .math-symbol {
         position: absolute;
         color: var(--primary-glow);
-        font-family: 'Courier New', monospace;
+        font-family: "Courier New", monospace;
         font-weight: bold;
         pointer-events: none;
         user-select: none;
@@ -103,11 +116,11 @@
         width: 100%;
         animation: fadeInUp 1s ease-out;
         /* Initial state: CLEAR */
-        filter: blur(0); 
-        pointer-events: all; 
+        filter: blur(0);
+        pointer-events: all;
         transition: filter 0.8s ease;
       }
-      
+
       .container.locked {
         filter: blur(10px);
         pointer-events: none;
@@ -237,18 +250,14 @@
       }
 
       .whatsapp-btn {
-        background: linear-gradient(
-          135deg,
-          #25D366,
-          #128C7E
-        );
+        background: linear-gradient(135deg, #25d366, #128c7e);
         box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
       }
 
       .social-btn:hover {
         transform: translateY(-3px);
       }
-      
+
       .social-icon {
         width: 24px;
         height: 24px;
@@ -285,6 +294,66 @@
         color: var(--text-secondary);
         opacity: 0;
         animation: fadeIn 1s ease-out 1.8s forwards;
+      }
+
+      /* Language Switcher */
+      .language-switcher {
+        position: fixed;
+        top: 2rem;
+        right: 2rem;
+        display: flex;
+        gap: 0.5rem;
+        z-index: 1000;
+        background: rgba(20, 20, 30, 0.8);
+        padding: 0.5rem;
+        border-radius: 50px;
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        backdrop-filter: blur(10px);
+        animation: fadeIn 1s ease-out 0.5s forwards;
+        opacity: 0;
+      }
+
+      .lang-btn {
+        padding: 0.7rem 1.5rem;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .lang-btn.inactive {
+        background: transparent;
+        color: var(--text-secondary);
+      }
+
+      .lang-btn.active {
+        background: linear-gradient(
+          135deg,
+          var(--primary-glow),
+          var(--secondary-glow)
+        );
+        color: white;
+        box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
+      }
+
+      .lang-btn:hover {
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 768px) {
+        .language-switcher {
+          top: 1rem;
+          right: 1rem;
+          gap: 0.3rem;
+        }
+
+        .lang-btn {
+          padding: 0.5rem 1rem;
+          font-size: 0.9rem;
+        }
       }
 
       /* Article Styles */
@@ -382,7 +451,7 @@
         font-weight: 600;
         color: var(--primary-glow);
       }
-      
+
       /* --- Welcome Overlay Styles --- */
       .welcome-overlay {
         position: fixed;
@@ -449,7 +518,11 @@
       }
 
       .welcome-btn {
-        background: linear-gradient(135deg, var(--primary-glow), var(--secondary-glow));
+        background: linear-gradient(
+          135deg,
+          var(--primary-glow),
+          var(--secondary-glow)
+        );
         border: none;
         padding: 1rem 3rem;
         color: white;
@@ -464,10 +537,15 @@
         transform: translateY(-2px);
         box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
       }
-      
+
       @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
       }
 
       /* --- Direct Message Section --- */
@@ -476,12 +554,12 @@
         padding-top: 2rem;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
       }
-      
+
       .dm-title {
         color: var(--primary-glow);
         margin-bottom: 1rem;
       }
-      
+
       .dm-textarea {
         width: 100%;
         min-height: 100px;
@@ -490,15 +568,84 @@
         border-radius: 12px;
         padding: 1rem;
         color: white;
-        font-family: 'Poppins', sans-serif;
+        font-family: "Poppins", sans-serif;
         font-size: 1rem;
         margin-bottom: 1rem;
         outline: none;
         resize: vertical;
       }
-      
+
       .dm-textarea:focus {
         border-color: var(--primary-glow);
+      }
+
+      /* Language Switcher */
+      .language-switcher {
+        position: fixed;
+        top: 2rem;
+        right: 2rem;
+        display: flex;
+        gap: 0.5rem;
+        z-index: 1000;
+        background: rgba(20, 20, 30, 0.8);
+        padding: 0.5rem;
+        border-radius: 50px;
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        backdrop-filter: blur(10px);
+        animation: fadeIn 1s ease-out 0.5s forwards;
+        opacity: 0;
+      }
+
+      .lang-btn {
+        padding: 0.7rem 1.5rem;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .lang-btn.inactive {
+        background: transparent;
+        color: var(--text-secondary);
+      }
+
+      .lang-btn.active {
+        background: linear-gradient(
+          135deg,
+          var(--primary-glow),
+          var(--secondary-glow)
+        );
+        color: white;
+        box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
+      }
+
+      .lang-btn:hover {
+        transform: translateY(-2px);
+      }
+
+      /* Hidden content for language switching */
+      .content-english {
+        display: block;
+      }
+
+      .content-kannada {
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+        .language-switcher {
+          top: 1rem;
+          right: 1rem;
+          gap: 0.3rem;
+        }
+
+        .lang-btn {
+          padding: 0.5rem 1rem;
+          font-size: 0.9rem;
+        }
       }
 
       @media (max-width: 768px) {
@@ -512,12 +659,36 @@
     </style>
   </head>
   <body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+      <button
+        class="lang-btn active"
+        id="englishBtn"
+        onclick="switchLanguage('en')"
+      >
+        English
+      </button>
+      <button
+        class="lang-btn inactive"
+        id="kannadaBtn"
+        onclick="switchLanguage('kn')"
+      >
+        ಕನ್ನಡ
+      </button>
+    </div>
+
     <!-- Welcome Overlay -->
     <div id="welcomeOverlay" class="welcome-overlay">
       <div class="welcome-card">
         <h2>IDENTIFY YOURSELF</h2>
         <p>Enter your name to read it fully.</p>
-        <input type="text" id="visitorName" class="welcome-input" placeholder="Your Name" autocomplete="off" />
+        <input
+          type="text"
+          id="visitorName"
+          class="welcome-input"
+          placeholder="Your Name"
+          autocomplete="off"
+        />
         <button class="welcome-btn" onclick="enterArchive()">Access</button>
       </div>
     </div>
@@ -537,8 +708,8 @@
         <!-- Brand -->
         <div class="brand">ScalarVerse</div>
 
-        <!-- Article Content -->
-        <div class="content-article">
+        <!-- Article Content - English -->
+        <div class="content-article content-english" id="contentEnglish">
           <h1>Probability, Cause–Effect, and a Godless Universe</h1>
           <span class="article-author">By Karthik Hegde</span>
 
@@ -554,7 +725,13 @@
             probability, not because of god or moral justice.
           </blockquote>
           <p>
-            This article argues that reality is governed by probability and cause–effect relationships, not karma or moral justice. It explains how events arise from prior conditions interacting with randomness, rather than from rewards or punishments. Based on this view, the article concludes that rational living means engineering better odds by taking actions that measurably increase the probability of outcomes you want.
+            This article argues that reality is governed by probability and
+            cause–effect relationships, not karma or moral justice. It explains
+            how events arise from prior conditions interacting with randomness,
+            rather than from rewards or punishments. Based on this view, the
+            article concludes that rational living means engineering better odds
+            by taking actions that measurably increase the probability of
+            outcomes you want.
           </p>
 
           <h2>Cause–Effect: A Neutral Law</h2>
@@ -584,7 +761,7 @@
           <p>
             Cause–effect explains why something happened — not whether it should
             have happened. So, it opposes the concept of karma.
-          </p>  
+          </p>
 
           <h2>My View on Karma</h2>
           <p>
@@ -649,12 +826,31 @@
 
           <h2>Luck and Randomness</h2>
           <p>
-            Luck can be understood as the occurrence of low-probability events in our lives. When the number of events a person experiences is limited, such outcomes may or may not occur, and this imbalance is what we perceive as good luck or bad luck. Within a finite lifetime—say 50 to 60 years—one person may appear luckier than another simply because favorable low-probability events occur more often in their life compared to someone else. However, if the same situations were repeated an infinite number of times for both individuals, their expected outcomes would be the same.</p>
+            Luck can be understood as the occurrence of low-probability events
+            in our lives. When the number of events a person experiences is
+            limited, such outcomes may or may not occur, and this imbalance is
+            what we perceive as good luck or bad luck. Within a finite
+            lifetime—say 50 to 60 years—one person may appear luckier than
+            another simply because favorable low-probability events occur more
+            often in their life compared to someone else. However, if the same
+            situations were repeated an infinite number of times for both
+            individuals, their expected outcomes would be the same.
+          </p>
 
-            <p>If time were infinite and every task or event could be repeated infinitely many times, then every event with a non-zero probability would certainly occur.</p>
+          <p>
+            If time were infinite and every task or event could be repeated
+            infinitely many times, then every event with a non-zero probability
+            would certainly occur.
+          </p>
 
-            <p>Therefore, luck exists only because some things cannot be done an infinite number of times. In this sense, luck is a consequence of randomness acting over a finite number of opportunities. So, good luck is a positive deviation and bad luck is a negative deviation from the mean.</p>
-    
+          <p>
+            Therefore, luck exists only because some things cannot be done an
+            infinite number of times. In this sense, luck is a consequence of
+            randomness acting over a finite number of opportunities. So, good
+            luck is a positive deviation and bad luck is a negative deviation
+            from the mean.
+          </p>
+
           <h2>A Rational Life Strategy</h2>
           <p>
             If the universe is probabilistic and morally neutral, then the most
@@ -665,9 +861,9 @@
           </blockquote>
           <p>
             In simple terms, if there is no God controlling outcomes and no
-            karma guaranteeing fairness, then every event becomes a numbers game.
-            You do not think what should happen — you think what increases my
-            chances.
+            karma guaranteeing fairness, then every event becomes a numbers
+            game. You do not think what should happen — you think what increases
+            my chances.
           </p>
           <p>
             For example, consider an interview happening today. What increases
@@ -708,14 +904,260 @@
             You may not control outcomes, but you can definitely influence the
             odds of those outcomes.
           </p>
-          <p>Instead of believing in God and gaining confidence by thinking "God is there so things will work out," a more practical confidence comes from this thought: "I have done everything that increases the probability of success. What remains is randomness, but the odds are now in my favor."</p>
+          <p>
+            Instead of believing in God and gaining confidence by thinking "God
+            is there so things will work out," a more practical confidence comes
+            from this thought: "I have done everything that increases the
+            probability of success. What remains is randomness, but the odds are
+            now in my favor."
+          </p>
+        </div>
+
+        <!-- Article Content - Kannada -->
+        <div class="content-article content-kannada" id="contentKannada">
+          <h1>ಸಂಭವನೀಯತೆ, ಕಾರಣ–ಪರಿಣಾಮ ಮತ್ತು ದೇವರಿಲ್ಲದ ಬ್ರಹ್ಮಾಂಡ</h1>
+          <span class="article-author">ಲೇಖಕ: ಕಾರ್ತಿಕ್ ಹೆಗಡೆ</span>
+
+          <h2>ಪರಿಚಯ</h2>
+          <p>
+            ಅನೇಕ ಜನರು ಜೀವನವನ್ನು ದೇವರು, ಕರ್ಮ, ವಿಧಿ ಅಥವಾ ಅದೃಷ್ಟ ಎಂಬ ಪದಗಳಿಂದ
+            ವಿವರಿಸುತ್ತಾರೆ. ಈ ಕಲ್ಪನೆಗಳು ಸಮಾಧಾನಕರವಾಗಿ ಕಾಣಿಸಬಹುದು, ಆದರೆ ಬ್ರಹ್ಮಾಂಡ
+            ಹೇಗೆ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ ಎಂಬುದನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಲು ಅವು ಅಗತ್ಯವಿಲ್ಲ.
+            ಇದಕ್ಕಿಂತ ಸರಳ ಹಾಗೂ ಸಮ್ಮತವಾದ ವಿವರಣೆ ಇದೆ:
+          </p>
+          <blockquote class="highlight-quote">
+            ಬ್ರಹ್ಮಾಂಡವು ದೇವರು ಅಥವಾ ನೈತಿಕ ನ್ಯಾಯದ ಕಾರಣದಿಂದ ಅಲ್ಲ, ಕಾರಣ–ಪರಿಣಾಮ
+            ಸಂಬಂಧಗಳು ಮತ್ತು ಸಂಭವನೀಯತೆಯ ಮೂಲಕ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ.
+          </blockquote>
+          <p>
+            ಈ ಲೇಖನವು ವಾಸ್ತವಿಕತೆ ಕರ್ಮ ಅಥವಾ ನೈತಿಕ ನ್ಯಾಯದಿಂದಲ್ಲ, ಬದಲಾಗಿ ಕಾರಣ–ಪರಿಣಾಮ
+            ಮತ್ತು ಸಂಭವನೀಯತೆಯಿಂದ ನಿಯಂತ್ರಿತವಾಗಿದೆ ಎಂಬುದನ್ನು ವಿವರಿಸುತ್ತದೆ. ಘಟನೆಗಳು
+            ಬಹುಮಾನ ಅಥವಾ ಶಿಕ್ಷೆಗಳಾಗಿ ನಡೆಯುವುದಿಲ್ಲ; ಹಿಂದಿನ ಪರಿಸ್ಥಿತಿಗಳು
+            ಯಾದೃಚ್ಛಿಕತೆಯೊಂದಿಗೆ ಸಂವಹನ ಮಾಡುವುದರಿಂದ ಅವು ಸಂಭವಿಸುತ್ತವೆ. ಈ ದೃಷ್ಟಿಕೋನದ
+            ಆಧಾರದಲ್ಲಿ, ವಿವೇಕಬದ್ಧ ಜೀವನ ಎಂದರೆ ನೀವು ಬಯಸುವ ಫಲಿತಾಂಶಗಳ ಸಾಧ್ಯತೆಯನ್ನು
+            ಗಣಿತೀಯವಾಗಿ ಹೆಚ್ಚಿಸುವ ಕಾರ್ಯಗಳನ್ನು ಮಾಡುವುದು ಎಂಬ ನಿರ್ಣಯಕ್ಕೆ ಲೇಖನ
+            ಬರುತ್ತದೆ.
+          </p>
+
+          <h2>ಕಾರಣ–ಪರಿಣಾಮ: ತಟಸ್ಥ ನಿಯಮ</h2>
+          <p>ಕಾರಣ–ಪರಿಣಾಮವು ವಾಸ್ತವಿಕತೆಯ ಮೂಲಭೂತ ತತ್ವ:</p>
+          <p>
+            <span class="strong-text"
+              >ಪ್ರತಿಯೊಂದು ಘಟನೆ ಹಿಂದಿನ ಕೆಲವು ಪರಿಸ್ಥಿತಿಗಳು ಇದ್ದದ್ದರಿಂದ
+              ಸಂಭವಿಸುತ್ತದೆ.</span
+            >
+          </p>
+          <p>ಈ ತತ್ವ ಸಂಪೂರ್ಣವಾಗಿ ತಟಸ್ಥವಾಗಿದೆ. ಇದರಲ್ಲಿ:</p>
+          <ul>
+            <li>ಯಾವುದೇ ನೈತಿಕತೆ ಇಲ್ಲ</li>
+            <li>ಯಾವುದೇ ಉದ್ದೇಶ ಇಲ್ಲ</li>
+            <li>ಯಾವುದೇ ತೀರ್ಪು ಇಲ್ಲ</li>
+          </ul>
+
+          <h3>ಸರಳ ಉದಾಹರಣೆ</h3>
+          <p>
+            ನನ್ನ ಸ್ನೇಹಿತ ನನ್ನ ಕೊಠಡಿಗೆ ಬಂದನು. ಅದರ ಪರಿಣಾಮವಾಗಿ ಮಾತುಕತೆ ನಡೆಯಿತು.
+          </p>
+          <p>
+            ಈ ಮಾತುಕತೆ ನಡೆಯಬೇಕು ಎಂದು ಬ್ರಹ್ಮಾಂಡ ನಿರ್ಧರಿಸಲಿಲ್ಲ. ಇದರಲ್ಲಿ ಒಳ್ಳೆಯದು
+            ಅಥವಾ ಕೆಟ್ಟದು ಎಂಬುದು ಇರಲಿಲ್ಲ. ಹಿಂದಿನ ಪರಿಸ್ಥಿತಿಗಳಿಂದಲೇ ಈ ಘಟನೆ
+            ಸಂಭವಿಸಿತು.
+          </p>
+          <p>
+            ಕಾರಣ–ಪರಿಣಾಮವು ಏಕೆ ಏನಾಯಿತು ಎಂಬುದನ್ನು ವಿವರಿಸುತ್ತದೆ — ಏನು ಆಗಬೇಕು
+            ಎಂಬುದನ್ನು ಅಲ್ಲ. ಆದ್ದರಿಂದ ಇದು ಕರ್ಮದ ಕಲ್ಪನೆಗೆ ವಿರುದ್ಧವಾಗಿದೆ.
+          </p>
+
+          <h2>ಕರ್ಮದ ಕುರಿತು ನನ್ನ ದೃಷ್ಟಿಕೋನ</h2>
+          <p>
+            ಮಾನವರು ಅನಿಶ್ಚಿತತೆ ಮತ್ತು ಅನ್ಯಾಯವನ್ನು ಇಷ್ಟಪಡುವುದಿಲ್ಲ. ಪ್ರಾಚೀನ
+            ಸಮಾಜಗಳಲ್ಲಿ, ಕರ್ಮದ ಕಲ್ಪನೆ ಒಂದು ಸಾಮಾಜಿಕ ಉದ್ದೇಶವನ್ನು ಹೊಂದಿರಬಹುದಿತ್ತು:
+          </p>
+          <ul>
+            <li>
+              ಒಳ್ಳೆಯ ವರ್ತನೆಗೆ ಭವಿಷ್ಯದ ಬಹುಮಾನಗಳ ಭರವಸೆ ನೀಡುವುದು ಮತ್ತು ಕೆಟ್ಟ
+              ಕೆಲಸಗಳಿಗೆ ಶಿಕ್ಷೆಯ ಭೀತಿ ತೋರಿಸುವುದು.
+            </li>
+          </ul>
+          <p>
+            ಆದರೆ ವಾಸ್ತವಿಕತೆ ಈ ನಂಬಿಕೆಯನ್ನು ಹಲವು ಬಾರಿ ಖಂಡಿಸಿತು. ಕೆಟ್ಟ ಕೆಲಸ ಮಾಡಿದರೂ
+            ಯಶಸ್ವಿಯಾದವರು, ಒಳ್ಳೆಯವರಾಗಿದ್ದರೂ ನೋವು ಅನುಭವಿಸಿದವರು — ಇಂತಹ ಸ್ಪಷ್ಟ
+            ಹೊರತಾಗುವ ಉದಾಹರಣೆಗಳನ್ನು ಜನರು ಗಮನಿಸಿದರು.
+          </p>
+          <p>
+            ಕರ್ಮವನ್ನು ತಳ್ಳಿಹಾಕುವ ಬದಲು, ಹಿಂದಿನ ಜನ್ಮಗಳು ಅಥವಾ ಮರೆಮಾಚಿದ ಕೃತ್ಯಗಳು ಎಂಬ
+            ಹೊಸ ವಿವರಣೆಗಳನ್ನು ಸೇರಿಸಲಾಯಿತು. ಇದರಿಂದ ಕರ್ಮದ ನಂಬಿಕೆಯನ್ನು ಉಳಿಸಿಕೊಳ್ಳಲು
+            ಪ್ರಯತ್ನಿಸಲಾಯಿತು.
+          </p>
+          <p>
+            ಈ ಪ್ರಕ್ರಿಯೆ ಏನು ತೋರಿಸುತ್ತದೆಂದರೆ: ಕರ್ಮವು ವೈಜ್ಞಾನಿಕ ಸಿದ್ಧಾಂತದಂತೆ
+            ಪರೀಕ್ಷಿಸಿ ತಿದ್ದುಪಡಿ ಮಾಡಲಾಗಲಿಲ್ಲ. ಹೊರತಾಗುವ ಘಟನೆಗಳು ಬಂದಾಗಲೆಲ್ಲ ಹೊಸ
+            ಊಹೆಗಳನ್ನು ಸೇರಿಸುವ ಮೂಲಕ ಅದು ಬೆಳೆಯಿತು. ಕಾಲಕ್ರಮೇಣ, ಯಾವುದೇ ಫಲಿತಾಂಶವನ್ನೂ
+            ಸಮರ್ಥಿಸಬಹುದಾದಷ್ಟು ಲವಚಿಕವಾಗಿ ಅದು ಮಾರ್ಪಟ್ಟಿತು. ಇದರಿಂದ ಅದು ಪರೀಕ್ಷಿಸಲಾಗದ
+            ನಂಬಿಕೆಯಾಯಿತು.
+          </p>
+          <p>
+            ಕಾರಣ–ಪರಿಣಾಮಕ್ಕೆ ಇಂತಹ ತಿದ್ದುಪಡಿಗಳು ಬೇಕಾಗುವುದಿಲ್ಲ. ಅದು
+            ಹೊರತಾಗುವಿಕೆಗಳನ್ನು, ಯಾದೃಚ್ಛಿಕತೆಯನ್ನು ಮತ್ತು ಅನ್ಯಾಯದ ಫಲಿತಾಂಶಗಳನ್ನು
+            ಒಪ್ಪಿಕೊಳ್ಳುತ್ತದೆ — ಹೊಸ ಕಥೆಗಳನ್ನು ರಚಿಸುವ ಅಗತ್ಯವಿಲ್ಲ. ಅದು ನ್ಯಾಯವನ್ನು
+            ಭರವಸೆ ನೀಡುವುದಿಲ್ಲ — ಸಮ್ಮತತೆಯನ್ನು ನೀಡುತ್ತದೆ.
+          </p>
+
+          <h2>ಕಾರಣ–ಪರಿಣಾಮ ಕರ್ಮವಲ್ಲ ಏಕೆ</h2>
+          <p>ಈ ವ್ಯತ್ಯಾಸ ಅತ್ಯಂತ ಮಹತ್ವದ್ದು:</p>
+          <ul>
+            <li>ಕಾರಣ–ಪರಿಣಾಮ ವಿವರಣಾತ್ಮಕ (ಏನಾಯಿತು ಮತ್ತು ಏಕೆ)</li>
+            <li>ಕರ್ಮ ನಿಯಮಾತ್ಮಕ (ಏನು ಆಗಬೇಕು)</li>
+          </ul>
+          <p>ಕಾರಣ–ಪರಿಣಾಮದಲ್ಲಿ ಸಾಧ್ಯವಾದವುಗಳು:</p>
+          <ul>
+            <li>ಕೆಟ್ಟ ಜನರಿಗೆ ಒಳ್ಳೆಯ ಘಟನೆಗಳು ಸಂಭವಿಸಬಹುದು</li>
+            <li>ಒಳ್ಳೆಯ ಜನರಿಗೆ ಕೆಟ್ಟ ಘಟನೆಗಳು ಸಂಭವಿಸಬಹುದು</li>
+            <li>ಯಾದೃಚ್ಛಿಕ ಅಪಘಾತಗಳು</li>
+            <li>ಅನ್ಯಾಯದ ಫಲಿತಾಂಶಗಳು</li>
+          </ul>
+          <p>
+            ಕರ್ಮ ಇದನ್ನು ಒಪ್ಪುವುದಿಲ್ಲ. ವಾಸ್ತವಿಕತೆ ಕಾರಣ–ಪರಿಣಾಮಕ್ಕೆ
+            ಹೊಂದಿಕೊಳ್ಳುತ್ತದೆ — ಕರ್ಮಕ್ಕೆ ಅಲ್ಲ.
+          </p>
+
+          <h2>ಸಂಭವನೀಯತೆ: ಅನಿಶ್ಚಿತತೆಯ ಪಾತ್ರ</h2>
+          <p>
+            ಎಲ್ಲಾ ಕಾರಣಗಳೂ ಖಚಿತ ಫಲಿತಾಂಶವನ್ನು ನೀಡುವುದಿಲ್ಲ. ಬಹುತೇಕ ಕಾರಣಗಳು ಕೇವಲ
+            ಸಂಭವನೀಯತೆಯನ್ನು ಬದಲಾಯಿಸುತ್ತವೆ.
+          </p>
+
+          <h3>ಉದಾಹರಣೆ: ಸಂದರ್ಶನ</h3>
+          <ul>
+            <li>ಓದುವುದು ಯಶಸ್ಸಿನ ಸಾಧ್ಯತೆಯನ್ನು ಹೆಚ್ಚಿಸುತ್ತದೆ</li>
+            <li>ಓದದೇ ಇರುವುದು ಅದನ್ನು ಕಡಿಮೆ ಮಾಡುತ್ತದೆ</li>
+            <li>ಯಾವುದೂ ಖಚಿತತೆಯನ್ನು ನೀಡುವುದಿಲ್ಲ</li>
+          </ul>
+          <p>
+            ಪ್ರಯತ್ನ ಯಶಸ್ಸನ್ನು ಖಚಿತಪಡಿಸುವುದಿಲ್ಲ — ಅದು ಕೇವಲ ಸಾಧ್ಯತೆಯನ್ನು
+            ಸರಿಸುತ್ತದೆ.
+          </p>
+          <p>ಇದೇ ರೀತಿ ಕಾರ್ಯನಿರ್ವಹಿಸುವುದು:</p>
+          <ul>
+            <li>ಪರೀಕ್ಷೆಗಳು</li>
+            <li>ಟ್ರೇಡಿಂಗ್</li>
+            <li>ವೈಜ್ಞಾನಿಕ ಪ್ರಯೋಗಗಳು</li>
+            <li>ಜೀವನ</li>
+          </ul>
+
+          <h2>ಅದೃಷ್ಟ ಮತ್ತು ಯಾದೃಚ್ಛಿಕತೆ</h2>
+          <p>
+            ಅದೃಷ್ಟವನ್ನು ನಮ್ಮ ಜೀವನದಲ್ಲಿ ಸಂಭವಿಸುವ ಕಡಿಮೆ-ಸಂಭವನೀಯ ಘಟನೆಗಳಾಗಿ
+            ಅರ್ಥಮಾಡಿಕೊಳ್ಳಬಹುದು. ವ್ಯಕ್ತಿಯ ಜೀವನದಲ್ಲಿ ಸಂಭವಿಸುವ ಘಟನೆಗಳ ಸಂಖ್ಯೆ
+            ಸೀಮಿತವಾಗಿರುವುದರಿಂದ, ಇಂತಹ ಘಟನೆಗಳು ಸಂಭವಿಸಬಹುದು ಅಥವಾ ಸಂಭವಿಸದೇ ಇರಬಹುದು.
+            ಈ ಅಸಮತೋಲನವೇ ನಾವು ಒಳ್ಳೆಯ ಅದೃಷ್ಟ ಅಥವಾ ಕೆಟ್ಟ ಅದೃಷ್ಟ ಎಂದು ಕರೆಯುವುದು.
+          </p>
+          <p>
+            ಒಬ್ಬ ವ್ಯಕ್ತಿ 50–60 ವರ್ಷಗಳ ಸೀಮಿತ ಜೀವನದಲ್ಲಿ ಇನ್ನೊಬ್ಬನಿಗಿಂತ
+            ಅದೃಷ್ಟವಂತನಂತೆ ಕಾಣಬಹುದು, ಏಕೆಂದರೆ ಅನುಕೂಲಕರ ಕಡಿಮೆ-ಸಂಭವನೀಯ ಘಟನೆಗಳು ಅವನ
+            ಜೀವನದಲ್ಲಿ ಹೆಚ್ಚು ಸಂಭವಿಸಿರಬಹುದು. ಆದರೆ ಇಬ್ಬರಿಗೂ ಒಂದೇ ಪರಿಸ್ಥಿತಿಗಳನ್ನು
+            ಅನಂತ ಬಾರಿ ಪುನರಾವರ್ತಿಸಿದರೆ, ಅವರ ನಿರೀಕ್ಷಿತ ಫಲಿತಾಂಶಗಳು ಒಂದೇ ಆಗುತ್ತವೆ.
+          </p>
+          <p>
+            ಸಮಯ ಅನಂತವಾಗಿದ್ದರೆ ಮತ್ತು ಪ್ರತಿಯೊಂದು ಕಾರ್ಯವನ್ನು ಅನಂತ ಬಾರಿ ಮಾಡಬಹುದಾದರೆ,
+            ಶೂನ್ಯವಲ್ಲದ ಸಂಭವನೀಯತೆಯಿರುವ ಪ್ರತಿಯೊಂದು ಘಟನೆ ಖಂಡಿತವಾಗಿಯೂ ಸಂಭವಿಸುತಿತ್ತು.
+            ಆದ್ದರಿಂದ, ಅದೃಷ್ಟವು ಅಸ್ತಿತ್ವದಲ್ಲಿರುವುದು — ಕೆಲವು ಸಂಗತಿಗಳನ್ನು ಅನಂತ ಬಾರಿ
+            ಮಾಡಲಾಗದಿರುವುದರಿಂದ. ಈ ಅರ್ಥದಲ್ಲಿ, ಅದೃಷ್ಟವು ಸೀಮಿತ ಅವಕಾಶಗಳ ಮೇಲೆ
+            ಕಾರ್ಯನಿರ್ವಹಿಸುವ ಯಾದೃಚ್ಛಿಕತೆಯ ಫಲಿತಾಂಶ.
+          </p>
+          <p>ಹೀಗಾಗಿ:</p>
+          <ul>
+            <li>ಒಳ್ಳೆಯ ಅದೃಷ್ಟ = ಸರಾಸರಿಯಿಂದ ಧನಾತ್ಮಕ ವಿಚಲನ</li>
+            <li>ಕೆಟ್ಟ ಅದೃಷ್ಟ = ಸರಾಸರಿಯಿಂದ ಋಣಾತ್ಮಕ ವಿಚಲನ</li>
+          </ul>
+
+          <h2>ವಿವೇಕಬದ್ಧ ಜೀವನ ತಂತ್ರ</h2>
+          <p>
+            ಬ್ರಹ್ಮಾಂಡವು ಸಂಭವನೀಯ ಮತ್ತು ನೈತಿಕವಾಗಿ ತಟಸ್ಥವಾಗಿದ್ದರೆ, ಜೀವನವನ್ನು ನಡೆಸುವ
+            ಅತ್ಯಂತ ತಾರ್ಕಿಕ ವಿಧಾನವೇನೆಂದರೆ:
+          </p>
+          <blockquote class="highlight-quote">
+            ನೀವು ಬಯಸುವ ಫಲಿತಾಂಶದ ಸಂಭವನೀಯತೆಯನ್ನು ಹೆಚ್ಚಿಸುವ ಕಾರ್ಯಗಳನ್ನು ಮಾಡುವುದು.
+          </blockquote>
+          <p>
+            ಸರಳವಾಗಿ ಹೇಳುವುದಾದರೆ, ಫಲಿತಾಂಶಗಳನ್ನು ನಿಯಂತ್ರಿಸುವ ದೇವರೂ ಇಲ್ಲ,
+            ನ್ಯಾಯವನ್ನು ಖಚಿತಪಡಿಸುವ ಕರ್ಮವೂ ಇಲ್ಲ ಎಂದಾದರೆ — ಪ್ರತಿಯೊಂದು ಘಟನೆ ಸಂಖ್ಯೆಗಳ
+            ಆಟವಾಗುತ್ತದೆ. ನೀವು ಏನು ಆಗಬೇಕು ಎಂದು ಯೋಚಿಸುವುದಿಲ್ಲ — ನನ್ನ ಅವಕಾಶಗಳನ್ನು
+            ಏನು ಹೆಚ್ಚಿಸುತ್ತದೆ? ಎಂದು ಯೋಚಿಸುತ್ತೀರಿ.
+          </p>
+          <p>ಉದಾಹರಣೆ: ಇಂದು ನಡೆಯುವ ಸಂದರ್ಶನ</p>
+          <ul>
+            <li>
+              ಓದುವುದು ಮತ್ತು ಪುನರಾವರ್ತನೆ ಮಾಡುವುದು ಸಾಧ್ಯತೆಯನ್ನು ಹೆಚ್ಚಿಸುತ್ತದೆ
+            </li>
+            <li>ತಯಾರಿ ಮಾಡದಿರುವುದು ಸಾಧ್ಯತೆಯನ್ನು ಕಡಿಮೆ ಇಡುತ್ತದೆ</li>
+          </ul>
+          <p>
+            ಓದುವುದು ಯಶಸ್ಸನ್ನು ಖಚಿತಪಡಿಸುವುದಿಲ್ಲ, ಆದರೆ ಅವಕಾಶಗಳನ್ನು ಸ್ಪಷ್ಟವಾಗಿ
+            ಸುಧಾರಿಸುತ್ತದೆ. ಪ್ರಾರ್ಥನೆ, ಆಶೆ ಅಥವಾ ಚಿಂತನೆಗಳು ಯಾವುದೇ ಮಾಪನೀಯ ರೀತಿಯಲ್ಲಿ
+            ಸಂಭವನೀಯತೆಯನ್ನು ಬದಲಾಯಿಸುವುದಿಲ್ಲ.
+          </p>
+          <p>
+            ವಿವೇಕಬದ್ಧ ಕ್ರಿಯೆ ಎಂದರೆ ಗಣಿತೀಯವಾಗಿ ನಿಮ್ಮ ಅವಕಾಶಗಳನ್ನು ಸುಧಾರಿಸುವುದನ್ನು
+            ಮಾಡುವುದು — ಉಳಿದ ಎಲ್ಲವನ್ನೂ ನಿರ್ಲಕ್ಷಿಸುವುದು.
+          </p>
+          <p>ಇದರ ಅರ್ಥ:</p>
+          <ul>
+            <li>ಪ್ರಾರ್ಥನೆಯ ಬದಲು ತಯಾರಿ</li>
+            <li>ಆಶೆಯ ಬದಲು ಕೌಶಲ್ಯ</li>
+            <li>ನಿರೀಕ್ಷೆಯ ಬದಲು ಹೊಂದಾಣಿಕೆ</li>
+          </ul>
+          <p>
+            ನೀವು ನ್ಯಾಯಕ್ಕಾಗಿ ಕಾಯುವುದಿಲ್ಲ. ನೀವು ಉತ್ತಮ ಅವಕಾಶಗಳನ್ನು ನಿರ್ಮಿಸುತ್ತೀರಿ.
+          </p>
+
+          <h2>ಉಪಸಂಹಾರ</h2>
+          <p>
+            ಬ್ರಹ್ಮಾಂಡವು ಒಳ್ಳೆಯದೂ ಅಲ್ಲ, ಕೆಟ್ಟದೂ ಅಲ್ಲ. ಅದು ನೈತಿಕವಾಗಿ ತಟಸ್ಥ ಮತ್ತು
+            ಸಂಭವನೀಯವಾಗಿದೆ.
+          </p>
+          <p>
+            ಘಟನೆಗಳು ಬಹುಮಾನಗಳು ಅಥವಾ ಶಿಕ್ಷೆಗಳು ಅಲ್ಲ. ಅವು ಹಿಂದಿನ ಪರಿಸ್ಥಿತಿಗಳು ಮತ್ತು
+            ಯಾದೃಚ್ಛಿಕತೆಯ ಸಂವಹನದಿಂದ ಉಂಟಾಗುವ ಪರಿಣಾಮಗಳು.
+          </p>
+          <p>
+            ಇದನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳುವುದು ತಪ್ಪು ಆಶೆಯನ್ನು ತೆಗೆದುಹಾಕುತ್ತದೆ — ಆದರೆ
+            ಇನ್ನೂ ಶಕ್ತಿಶಾಲಿಯಾದುದನ್ನು ನೀಡುತ್ತದೆ:
+          </p>
+          <p><span class="strong-text">ನಿಮ್ಮ ಕ್ರಿಯೆಗಳ ಮೇಲಿನ ನಿಯಂತ್ರಣ.</span></p>
+          <p>
+            ನೀವು ಫಲಿತಾಂಶಗಳನ್ನು ನಿಯಂತ್ರಿಸಲಾರಿರಿ, ಆದರೆ ಅವುಗಳ ಸಂಭವನೀಯತೆಯನ್ನು
+            ಖಂಡಿತವಾಗಿ ಪ್ರಭಾವಿತ ಮಾಡಬಹುದು.
+          </p>
+          <p>
+            "ದೇವರು ಇದ್ದಾನೆ, ಎಲ್ಲವೂ ಸರಿಯಾಗುತ್ತದೆ" ಎಂಬ ನಂಬಿಕೆಯಿಂದ ಬರುವ
+            ಆತ್ಮವಿಶ್ವಾಸಕ್ಕಿಂತ ಹೆಚ್ಚು ಪ್ರಾಯೋಗಿಕ ಆತ್ಮವಿಶ್ವಾಸ ಇದು: "ಯಶಸ್ಸಿನ
+            ಸಾಧ್ಯತೆಯನ್ನು ಹೆಚ್ಚಿಸುವ ಎಲ್ಲವನ್ನೂ ನಾನು ಮಾಡಿದ್ದೇನೆ. ಉಳಿದದ್ದು
+            ಯಾದೃಚ್ಛಿಕತೆ — ಆದರೆ ಈಗ ಅವಕಾಶಗಳು ನನ್ನ ಪರವಾಗಿವೆ."
+          </p>
         </div>
 
         <!-- Direct Message Section -->
         <div class="direct-message-section">
-          <h3 class="dm-title">Send an Anonymous Comment</h3>
-          <textarea id="directMessage" class="dm-textarea" placeholder="Type your comment here..."></textarea>
-          <button class="welcome-btn" style="padding: 0.8rem 2rem; width: 100%;" onclick="sendDirectMessage()">Send Comment</button>
+          <h3 class="dm-title dm-title-en">Send an Anonymous Comment</h3>
+          <h3 class="dm-title dm-title-kn" style="display: none">
+            ಅನಾಮಧೇಯ ಅಭಿಪ್ರಾಯ ಕಳುಹಿಸಿ
+          </h3>
+          <textarea
+            id="directMessage"
+            class="dm-textarea"
+            placeholder="Type your comment here..."
+          ></textarea>
+          <button
+            class="welcome-btn"
+            style="padding: 0.8rem 2rem; width: 100%"
+            onclick="sendDirectMessage()"
+          >
+            <span class="btn-text-en">Send Comment</span>
+            <span class="btn-text-kn" style="display: none"
+              >ಕಾಮೆಂಟ್ ಕಳುಹಿಸಿ</span
+            >
+          </button>
         </div>
 
         <!-- Divider -->
@@ -730,8 +1172,14 @@
             rel="noopener noreferrer"
           >
             <!-- Social Icon SVG -->
-            <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            <svg
+              class="social-icon"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+              />
             </svg>
             <span>X</span>
           </a>
@@ -743,15 +1191,28 @@
             rel="noopener noreferrer"
           >
             <!-- Social Icon SVG -->
-            <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471.148-.67.396-.197.247-.767.967-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.231-.298.347-.497.116-.198.058-.371-.03-.52-.088-.149-.793-1.912-1.087-2.622-.288-.707-.581-.606-.793-.615-.205-.009-.438-.009-.672-.009-.234 0-.613.089-.933.435-.32.347-1.226 1.199-1.226 2.926 0 1.727 1.257 3.395 1.433 3.633.175.239 2.472 3.774 5.991 5.292 2.339 1.01 2.816.811 3.323.761.507-.05 1.636-.669 1.868-1.314.232-.646.232-1.2.163-1.314-.07-.114-.244-.182-.541-.331zM12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+            <svg
+              class="social-icon"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+            >
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471.148-.67.396-.197.247-.767.967-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.231-.298.347-.497.116-.198.058-.371-.03-.52-.088-.149-.793-1.912-1.087-2.622-.288-.707-.581-.606-.793-.615-.205-.009-.438-.009-.672-.009-.234 0-.613.089-.933.435-.32.347-1.226 1.199-1.226 2.926 0 1.727 1.257 3.395 1.433 3.633.175.239 2.472 3.774 5.991 5.292 2.339 1.01 2.816.811 3.323.761.507-.05 1.636-.669 1.868-1.314.232-.646.232-1.2.163-1.314-.07-.114-.244-.182-.541-.331zM12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"
+              />
             </svg>
             <span>WhatsApp</span>
           </a>
         </div>
 
         <!-- Footer -->
-        <div class="footer">&copy; 2025 ScalarVerse. All rights reserved.</div>
+        <!-- Footer -->
+        <div class="footer footer-en">
+          &copy; 2025 ScalarVerse. All rights reserved.
+        </div>
+        <div class="footer footer-kn" style="display: none">
+          © 2025 ScalarVerse. ಎಲ್ಲಾ ಹಕ್ಕುಗಳು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.
+        </div>
       </div>
     </div>
 
@@ -759,52 +1220,169 @@
       // Configuration
       const BOT_TOKEN = "7957580698:AAF4p-SxpBaWBBVdY6BCvFQYg1lbQMxY81U";
       const CHAT_ID = "1810705249";
-      
+
       let currentUser = "";
       let isUnlocked = false;
+      let currentLanguage = "en"; // Default language is English
+
+      // Language Switching Function
+      function switchLanguage(lang) {
+        currentLanguage = lang;
+
+        // Update button states
+        const englishBtn = document.getElementById("englishBtn");
+        const kannadaBtn = document.getElementById("kannadaBtn");
+
+        if (lang === "en") {
+          englishBtn.classList.add("active");
+          englishBtn.classList.remove("inactive");
+          kannadaBtn.classList.remove("active");
+          kannadaBtn.classList.add("inactive");
+
+          // Show English content
+          document.getElementById("contentEnglish").style.display = "block";
+          document.getElementById("contentKannada").style.display = "none";
+
+          // Update button texts
+          document
+            .querySelectorAll(".dm-title-en")
+            .forEach((el) => (el.style.display = "block"));
+          document
+            .querySelectorAll(".dm-title-kn")
+            .forEach((el) => (el.style.display = "none"));
+          document
+            .querySelectorAll(".btn-text-en")
+            .forEach((el) => (el.style.display = "inline"));
+          document
+            .querySelectorAll(".btn-text-kn")
+            .forEach((el) => (el.style.display = "none"));
+          document
+            .querySelectorAll(".footer-en")
+            .forEach((el) => (el.style.display = "block"));
+          document
+            .querySelectorAll(".footer-kn")
+            .forEach((el) => (el.style.display = "none"));
+        } else if (lang === "kn") {
+          englishBtn.classList.remove("active");
+          englishBtn.classList.add("inactive");
+          kannadaBtn.classList.add("active");
+          kannadaBtn.classList.remove("inactive");
+
+          // Show Kannada content
+          document.getElementById("contentEnglish").style.display = "none";
+          document.getElementById("contentKannada").style.display = "block";
+
+          // Update button texts
+          document
+            .querySelectorAll(".dm-title-en")
+            .forEach((el) => (el.style.display = "none"));
+          document
+            .querySelectorAll(".dm-title-kn")
+            .forEach((el) => (el.style.display = "block"));
+          document
+            .querySelectorAll(".btn-text-en")
+            .forEach((el) => (el.style.display = "none"));
+          document
+            .querySelectorAll(".btn-text-kn")
+            .forEach((el) => (el.style.display = "inline"));
+          document
+            .querySelectorAll(".footer-en")
+            .forEach((el) => (el.style.display = "none"));
+          document
+            .querySelectorAll(".footer-kn")
+            .forEach((el) => (el.style.display = "block"));
+        }
+
+        // Save preference to localStorage
+        localStorage.setItem("preferredLanguage", lang);
+      }
 
       // Background Animation
-      document.addEventListener('DOMContentLoaded', () => {
+      document.addEventListener("DOMContentLoaded", () => {
+        // Restore language preference from localStorage
+        const savedLanguage = localStorage.getItem("preferredLanguage");
+        if (savedLanguage) {
+          switchLanguage(savedLanguage);
+        }
+
         const symbols = [
-          'Σ', '∫', 'π', '∞', '≈', '≠', '√', 
-          'P(x)', 'P(A|B)', 'E[X]', 'N(μ,σ)', 
-          'µ', 'σ', 'α', 'β', 'γ', 'θ', 'λ', 'Ω', 'Δ', '∂', '∇', 
-          'dx', 'dy', 'f(x)', 'lim', 'log', 'ln', 'e', 
-          'hi', 'H₀', 'H₁', 'χ²', 'R²' 
+          "Σ",
+          "∫",
+          "π",
+          "∞",
+          "≈",
+          "≠",
+          "√",
+          "P(x)",
+          "P(A|B)",
+          "E[X]",
+          "N(μ,σ)",
+          "µ",
+          "σ",
+          "α",
+          "β",
+          "γ",
+          "θ",
+          "λ",
+          "Ω",
+          "Δ",
+          "∂",
+          "∇",
+          "dx",
+          "dy",
+          "f(x)",
+          "lim",
+          "log",
+          "ln",
+          "e",
+          "hi",
+          "H₀",
+          "H₁",
+          "χ²",
+          "R²",
         ];
-        const background = document.querySelector('.background');
-        const symbolCount = 60; 
+        const background = document.querySelector(".background");
+        const symbolCount = 60;
 
         function createSymbol() {
-          const span = document.createElement('span');
-          span.classList.add('math-symbol');
-          span.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-          
+          const span = document.createElement("span");
+          span.classList.add("math-symbol");
+          span.textContent =
+            symbols[Math.floor(Math.random() * symbols.length)];
+
           const left = Math.random() * 100;
           const top = Math.random() * 100;
           const fontSize = Math.random() * 20 + 10;
           const duration = Math.random() * 30 + 20;
           const delay = Math.random() * -30;
-          
+
           span.style.left = `${left}%`;
           span.style.top = `${top}%`;
           span.style.fontSize = `${fontSize}px`;
-          span.style.opacity = '0';
-          
+          span.style.opacity = "0";
+
           const moveX = (Math.random() - 0.5) * 100;
           const moveY = (Math.random() - 0.5) * 100;
-          
-          span.animate([
-            { transform: 'translate(0, 0) rotate(0deg)', opacity: 0 },
-            { opacity: Math.random() * 0.5 + 0.1, offset: 0.2 },
-            { opacity: Math.random() * 0.5 + 0.1, offset: 0.8 },
-            { transform: `translate(${moveX}px, ${moveY}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
-          ], {
-            duration: duration * 1000,
-            delay: delay * 1000,
-            iterations: Infinity,
-            easing: 'linear'
-          });
+
+          span.animate(
+            [
+              { transform: "translate(0, 0) rotate(0deg)", opacity: 0 },
+              { opacity: Math.random() * 0.5 + 0.1, offset: 0.2 },
+              { opacity: Math.random() * 0.5 + 0.1, offset: 0.8 },
+              {
+                transform: `translate(${moveX}px, ${moveY}px) rotate(${
+                  Math.random() * 360
+                }deg)`,
+                opacity: 0,
+              },
+            ],
+            {
+              duration: duration * 1000,
+              delay: delay * 1000,
+              iterations: Infinity,
+              easing: "linear",
+            }
+          );
 
           background.appendChild(span);
         }
@@ -814,43 +1392,53 @@
         }
 
         // Add Enter key listener for welcome input
-        document.getElementById('visitorName').addEventListener('keypress', function (e) {
-          if (e.key === 'Enter') {
-            enterArchive();
-          }
-        });
+        document
+          .getElementById("visitorName")
+          .addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+              enterArchive();
+            }
+          });
 
         // Start 5-second timer to lock the screen
         setTimeout(() => {
-          if (!currentUser) { 
-             document.getElementById('welcomeOverlay').classList.add('visible');
-             document.getElementById('mainContent').classList.add('locked');
+          if (!currentUser) {
+            document.getElementById("welcomeOverlay").classList.add("visible");
+            document.getElementById("mainContent").classList.add("locked");
           }
-        }, 5000); 
+        }, 5000);
       });
 
       // Telegram Logic
       function sendToTelegram(message) {
-        const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&parse_mode=HTML&text=${encodeURIComponent(message)}`;
-        
+        const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&parse_mode=HTML&text=${encodeURIComponent(
+          message
+        )}`;
+
         fetch(url)
-          .then(res => res.json()) // Parse JSON response
-          .then(data => {
+          .then((res) => res.json()) // Parse JSON response
+          .then((data) => {
             if (!data.ok) {
               console.error("Telegram Error:", data);
-              alert("Wait! The message failed to send.\n\nTelegram Error: " + (data.description || "Unknown error") + "\n\nMake sure you have STARTED the bot in your Telegram app!");
+              alert(
+                "Wait! The message failed to send.\n\nTelegram Error: " +
+                  (data.description || "Unknown error") +
+                  "\n\nMake sure you have STARTED the bot in your Telegram app!"
+              );
             } else {
               console.log("Message sent successfully!");
             }
           })
-          .catch(error => {
+          .catch((error) => {
             console.error("Network Error:", error);
-            alert("Network Error: Could not reach Telegram servers. Check your connection.");
+            alert(
+              "Network Error: Could not reach Telegram servers. Check your connection."
+            );
           });
       }
 
       function enterArchive() {
-        const nameInput = document.getElementById('visitorName');
+        const nameInput = document.getElementById("visitorName");
         const name = nameInput.value.trim();
 
         if (name.length < 2) {
@@ -860,16 +1448,16 @@
 
         currentUser = name;
         isUnlocked = true;
-        
+
         // Hide overlay
-        const overlay = document.getElementById('welcomeOverlay');
-        const mainContent = document.getElementById('mainContent');
-        
-        overlay.classList.remove('visible');
-        mainContent.classList.remove('locked');
-        
+        const overlay = document.getElementById("welcomeOverlay");
+        const mainContent = document.getElementById("mainContent");
+
+        overlay.classList.remove("visible");
+        mainContent.classList.remove("locked");
+
         setTimeout(() => {
-          overlay.style.display = 'none'; // Optional cleanup
+          overlay.style.display = "none"; // Optional cleanup
         }, 800);
 
         // Send entry notification with enhanced tracking
@@ -881,14 +1469,14 @@
         const platform = navigator.platform;
         const userAgent = navigator.userAgent;
         const screenRes = `${window.screen.width}x${window.screen.height}`;
-        
+
         // Fetch IP and Location Data
-        fetch('https://ipwho.is/')
-          .then(res => res.json())
-          .then(data => {
+        fetch("https://ipwho.is/")
+          .then((res) => res.json())
+          .then((data) => {
             let message = `🚀 <b>New Visitor Access</b>\n\n`;
             message += `👤 <b>Name:</b> ${name}\n`;
-            
+
             if (data.success) {
               const mapsLink = `https://www.google.com/maps?q=${data.latitude},${data.longitude}`;
               message += `📍 <b>Location:</b> ${data.city}, ${data.region}, ${data.country}\n`;
@@ -898,40 +1486,40 @@
             } else {
               message += `⚠️ <b>IP Info:</b> Failed to fetch\n`;
             }
-            
+
             message += `📱 <b>Device:</b> ${platform}\n`;
             message += `🖥 <b>Screen:</b> ${screenRes}\n`;
-            
-             // Send the detailed report
-             sendToTelegram(message);
+
+            // Send the detailed report
+            sendToTelegram(message);
           })
-          .catch(err => {
+          .catch((err) => {
             // Fallback if IP fetch fails completely
             sendToTelegram(`🚀 New Visitor: ${name} (Tracking Failed)`);
           });
       }
 
       function sendDirectMessage() {
-        const msgInput = document.getElementById('directMessage');
+        const msgInput = document.getElementById("directMessage");
         const message = msgInput.value.trim();
-        
+
         if (message.length < 1) {
           alert("Please type a message first.");
           return;
         }
 
         const fullMessage = `📩 Message from ${currentUser}:\n\n${message}`;
-        
+
         sendToTelegram(fullMessage);
-        
+
         // Visual feedback
-        const btn = document.querySelector('.direct-message-section button');
+        const btn = document.querySelector(".direct-message-section button");
         const originalText = btn.textContent;
         btn.textContent = "Sent!";
         btn.style.background = "linear-gradient(135deg, #25D366, #128C7E)"; // Success green
-        
+
         msgInput.value = ""; // Clear input
-        
+
         setTimeout(() => {
           btn.textContent = originalText;
           btn.style.background = ""; // Reset to CSS default
