@@ -214,10 +214,54 @@
         pre[class*="language-"] {
             margin: 0 !important;
             border-radius: 0 !important;
-            padding: 1.5rem !important;
+            padding: 1.5rem 1.5rem 1.5rem 4rem !important;
             font-family: 'Fira Code', monospace !important;
             font-size: 0.925rem;
             line-height: 1.6;
+            counter-reset: line;
+            position: relative;
+        }
+
+        /* Line numbering gutter */
+        pre[class*="language-"] code {
+            display: block;
+        }
+
+        pre[class*="language-"] code .token-line,
+        pre[class*="language-"] code > span {
+            counter-increment: line;
+            position: relative;
+            display: inline;
+        }
+
+        pre[class*="language-"] code .token-line::before,
+        pre[class*="language-"] code > span::before {
+            content: counter(line);
+            position: absolute;
+            left: -5.5rem;
+            width: 2.5rem;
+            text-align: right;
+            color: rgba(148, 163, 184, 0.4);
+            font-size: 0.875rem;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        /* For plain text without spans, add line numbers to each line */
+        pre[class*="language-"]:not(:has(code > span)) code::before {
+            content: '';
+            position: absolute;
+            left: 1.5rem;
+            top: 1.5rem;
+            width: 2.5rem;
+            height: 100%;
+            text-align: right;
+            color: rgba(148, 163, 184, 0.4);
+            font-size: 0.875rem;
+            user-select: none;
+            pointer-events: none;
+            white-space: pre;
+            counter-reset: line;
         }
 
         footer {
@@ -365,6 +409,10 @@
 
                     // Trigger Syntax Highlight
                     Prism.highlightElement(codeBlock);
+
+                    // Wrap each line in a span for line numbering
+                    const lines = codeBlock.innerHTML.split('\n');
+                    codeBlock.innerHTML = lines.map(line => `<span class="token-line">${line}\n</span>`).join('');
 
                     // Show Display Area
                     displayArea.classList.remove('hidden');
