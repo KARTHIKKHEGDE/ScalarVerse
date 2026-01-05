@@ -1,1530 +1,418 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Probability, Cause–Effect, and a Godless Universe. Exploring how the universe operates through probability and cause-effect rather than karma."
-    />
-    <meta
-      name="keywords"
-      content="Probability, Cause-Effect, Karma, Philosophy, Godless Universe, Rational Living"
-    />
-    <meta name="author" content="Karthik Hegde" />
-    <meta
-      property="og:title"
-      content="Probability, Cause–Effect, and a Godless Universe"
-    />
-    <meta
-      property="og:description"
-      content="Read about why the universe operates through cause–effect and probability, not moral justice."
-    />
-    <meta property="og:type" content="article" />
-    <title>Probability, Cause–Effect, and a Godless Universe</title>
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & ML Lab Programs</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- PrismJS for Syntax Highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      :root {
-        --primary-glow: #00d4ff;
-        --secondary-glow: #a855f7;
-        --bg-dark: #0a0a0f;
-        --card-bg: rgba(15, 15, 25, 0.8);
-        --text-primary: #ffffff;
-        --text-secondary: #a0a0b0;
-      }
-
-      body {
-        font-family: "Poppins", sans-serif;
-        background: var(--bg-dark);
-        color: var(--text-primary);
-        overflow-x: hidden;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-      }
-
-      /* Universe Probability Background */
-      .background {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        background: radial-gradient(circle at center, #0f172a 0%, #000000 100%);
-        overflow: hidden;
-      }
-
-      /* Mathematical Grid */
-      .background::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: linear-gradient(
-            rgba(0, 212, 255, 0.05) 1px,
-            transparent 1px
-          ),
-          linear-gradient(90deg, rgba(0, 212, 255, 0.05) 1px, transparent 1px);
-        background-size: 50px 50px;
-        mask-image: radial-gradient(
-          circle at center,
-          black 30%,
-          transparent 80%
-        );
-        -webkit-mask-image: radial-gradient(
-          circle at center,
-          black 30%,
-          transparent 80%
-        );
-      }
-
-      /* Floating Math Symbols */
-      .math-symbol {
-        position: absolute;
-        color: var(--primary-glow);
-        font-family: "Courier New", monospace;
-        font-weight: bold;
-        pointer-events: none;
-        user-select: none;
-        will-change: transform, opacity;
-        text-shadow: 0 0 10px var(--primary-glow);
-      }
-
-      /* Main Container */
-      .container {
-        max-width: 1200px;
-        padding: 2rem;
-        width: 100%;
-        animation: fadeInUp 1s ease-out;
-        /* Initial state: CLEAR */
-        filter: blur(0);
-        pointer-events: all;
-        transition: filter 0.8s ease;
-      }
-
-      .container.locked {
-        filter: blur(10px);
-        pointer-events: none;
-      }
-
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      /* Hero Card */
-      .hero-card {
-        background: var(--card-bg);
-        backdrop-filter: blur(20px);
-        border-radius: 24px;
-        padding: 4rem 3rem;
-        position: relative;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
-          0 0 0 1px rgba(255, 255, 255, 0.05);
-        overflow: hidden;
-        text-align: center;
-      }
-
-      .hero-card::before {
-        content: "";
-        position: absolute;
-        top: -2px;
-        left: -2px;
-        right: -2px;
-        bottom: -2px;
-        background: linear-gradient(
-          45deg,
-          var(--primary-glow),
-          var(--secondary-glow),
-          var(--primary-glow)
-        );
-        border-radius: 24px;
-        z-index: -1;
-        opacity: 0;
-        transition: opacity 0.5s ease;
-        animation: borderRotate 3s linear infinite;
-      }
-
-      @keyframes borderRotate {
-        0% {
-          filter: hue-rotate(0deg);
-        }
-        100% {
-          filter: hue-rotate(360deg);
-        }
-      }
-
-      /* Logo/Brand */
-      .brand {
-        font-size: 1.2rem;
-        font-weight: 300;
-        letter-spacing: 0.3em;
-        text-transform: uppercase;
-        color: var(--text-secondary);
-        margin-bottom: 2rem;
-        opacity: 0;
-        animation: fadeIn 1s ease-out 0.3s forwards;
-      }
-
-      @keyframes fadeIn {
-        to {
-          opacity: 1;
-        }
-      }
-
-      /* Divider */
-      .divider {
-        width: 100px;
-        height: 2px;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          var(--primary-glow),
-          transparent
-        );
-        margin: 2rem auto;
-        opacity: 0;
-        animation: fadeIn 1s ease-out 1.2s forwards;
-      }
-
-      /* Social Buttons */
-      .social-section {
-        margin-top: 3rem;
-        opacity: 0;
-        animation: fadeIn 1s ease-out 1.5s forwards;
-        display: flex;
-        justify-content: center;
-        gap: 1.5rem;
-        flex-wrap: wrap;
-      }
-
-      .social-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.75rem;
-        padding: 1rem 2.5rem;
-        color: white;
-        text-decoration: none;
-        border-radius: 50px;
-        font-weight: 600;
-        font-size: 1.1rem;
-        font-family: "Inter", sans-serif;
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .twitter-btn {
-        background: linear-gradient(
-          135deg,
-          var(--primary-glow),
-          var(--secondary-glow)
-        );
-        box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
-      }
-
-      .whatsapp-btn {
-        background: linear-gradient(135deg, #25d366, #128c7e);
-        box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
-      }
-
-      .social-btn:hover {
-        transform: translateY(-3px);
-      }
-
-      .social-icon {
-        width: 24px;
-        height: 24px;
-        fill: currentColor;
-      }
-
-      /* Glow Effects */
-      .glow-orb {
-        position: absolute;
-        width: 300px;
-        height: 300px;
-        border-radius: 50%;
-        filter: blur(80px);
-        opacity: 0.15;
-        pointer-events: none;
-      }
-
-      .glow-orb.primary {
-        background: var(--primary-glow);
-        top: -150px;
-        right: -150px;
-      }
-
-      .glow-orb.secondary {
-        background: var(--secondary-glow);
-        bottom: -150px;
-        left: -150px;
-      }
-
-      /* Footer */
-      .footer {
-        margin-top: 3rem;
-        font-size: 0.9rem;
-        color: var(--text-secondary);
-        opacity: 0;
-        animation: fadeIn 1s ease-out 1.8s forwards;
-      }
-
-      /* Language Switcher */
-      .language-switcher {
-        position: fixed;
-        top: 2rem;
-        right: 2rem;
-        display: flex;
-        gap: 0.5rem;
-        z-index: 1000;
-        background: rgba(20, 20, 30, 0.8);
-        padding: 0.5rem;
-        border-radius: 50px;
-        border: 1px solid rgba(0, 212, 255, 0.3);
-        backdrop-filter: blur(10px);
-        animation: fadeIn 1s ease-out 0.5s forwards;
-        opacity: 0;
-      }
-
-      .lang-btn {
-        padding: 0.7rem 1.5rem;
-        border: none;
-        border-radius: 50px;
-        cursor: pointer;
-        font-weight: 600;
-        font-size: 1rem;
-        transition: all 0.3s ease;
-        font-family: "Poppins", sans-serif;
-      }
-
-      .lang-btn.inactive {
-        background: transparent;
-        color: var(--text-secondary);
-      }
-
-      .lang-btn.active {
-        background: linear-gradient(
-          135deg,
-          var(--primary-glow),
-          var(--secondary-glow)
-        );
-        color: white;
-        box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
-      }
-
-      .lang-btn:hover {
-        transform: translateY(-2px);
-      }
-
-      @media (max-width: 768px) {
-        .language-switcher {
-          top: 1rem;
-          right: 1rem;
-          gap: 0.3rem;
+        :root {
+            /* Dark Theme (Permanent) */
+            --primary: #3b82f6;
+            /* Slightly lighter blue for dark mode contrast */
+            --primary-hover: #2563eb;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5);
+            --radius: 12px;
+            --select-bg: #1e293b;
+            --toggle-hover: #334155;
         }
 
-        .lang-btn {
-          padding: 0.5rem 1rem;
-          font-size: 0.9rem;
-        }
-      }
-
-      /* Article Styles */
-      .content-article {
-        text-align: left;
-        margin-top: 4rem;
-        color: var(--text-primary);
-        line-height: 1.8;
-        font-size: 1.1rem;
-      }
-
-      .content-article h1 {
-        font-size: clamp(2rem, 4vw, 3rem);
-        margin-bottom: 2rem;
-        background: linear-gradient(
-          135deg,
-          var(--primary-glow),
-          var(--secondary-glow)
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        line-height: 1.2;
-        text-align: center;
-      }
-
-      .article-author {
-        display: block;
-        text-align: center;
-        font-size: 1rem;
-        color: var(--text-secondary);
-        margin-top: -1.5rem;
-        margin-bottom: 3rem;
-        font-weight: 500;
-        letter-spacing: 0.05em;
-      }
-
-      .content-article h2 {
-        font-size: 1.8rem;
-        margin-top: 3.5rem;
-        margin-bottom: 1.5rem;
-        color: var(--primary-glow);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        padding-bottom: 0.5rem;
-        display: inline-block;
-      }
-
-      .content-article h3 {
-        font-size: 1.4rem;
-        margin-top: 2.5rem;
-        margin-bottom: 1rem;
-        color: var(--text-secondary);
-      }
-
-      .content-article p {
-        margin-bottom: 1.5rem;
-        color: #d1d5db;
-      }
-
-      .content-article ul {
-        margin-bottom: 2rem;
-        padding-left: 0;
-        list-style-type: none;
-      }
-
-      .content-article ul li {
-        margin-bottom: 0.8rem;
-        position: relative;
-        padding-left: 2rem;
-        color: #e5e7eb;
-      }
-
-      .content-article ul li::before {
-        content: "➜";
-        color: var(--secondary-glow);
-        position: absolute;
-        left: 0;
-        font-size: 1rem;
-      }
-
-      .highlight-quote {
-        border-left: 4px solid var(--primary-glow);
-        margin: 2.5rem 0;
-        font-style: italic;
-        background: rgba(10, 10, 15, 0.6);
-        padding: 2rem;
-        border-radius: 0 16px 16px 0;
-        color: white;
-        font-size: 1.2rem;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-      }
-
-      .strong-text {
-        color: white;
-        font-weight: 600;
-        color: var(--primary-glow);
-      }
-
-      /* --- Welcome Overlay Styles --- */
-      .welcome-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(10, 10, 15, 0.95);
-        z-index: 9999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0; /* Start Hidden */
-        pointer-events: none;
-        transition: opacity 0.8s ease;
-      }
-
-      .welcome-overlay.visible {
-        opacity: 1;
-        pointer-events: all;
-      }
-
-      .welcome-card {
-        background: rgba(20, 20, 30, 0.9);
-        border: 1px solid var(--primary-glow);
-        padding: 3rem;
-        border-radius: 20px;
-        text-align: center;
-        max-width: 400px;
-        width: 90%;
-        box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
-        animation: float 6s ease-in-out infinite;
-      }
-
-      .welcome-card h2 {
-        color: var(--primary-glow);
-        margin-bottom: 1rem;
-        font-weight: 600;
-        letter-spacing: 1px;
-      }
-
-      .welcome-card p {
-        color: var(--text-secondary);
-        margin-bottom: 2rem;
-      }
-
-      .welcome-input {
-        width: 100%;
-        padding: 1rem;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
-        color: white;
-        font-size: 1.1rem;
-        margin-bottom: 1.5rem;
-        text-align: center;
-        outline: none;
-        transition: all 0.3s ease;
-      }
-
-      .welcome-input:focus {
-        border-color: var(--secondary-glow);
-        background: rgba(255, 255, 255, 0.1);
-      }
-
-      .welcome-btn {
-        background: linear-gradient(
-          135deg,
-          var(--primary-glow),
-          var(--secondary-glow)
-        );
-        border: none;
-        padding: 1rem 3rem;
-        color: white;
-        border-radius: 50px;
-        font-size: 1.1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-      }
-
-      .welcome-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
-      }
-
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-10px);
-        }
-      }
-
-      /* --- Direct Message Section --- */
-      .direct-message-section {
-        margin-top: 3rem;
-        padding-top: 2rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .dm-title {
-        color: var(--primary-glow);
-        margin-bottom: 1rem;
-      }
-
-      .dm-textarea {
-        width: 100%;
-        min-height: 100px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-        padding: 1rem;
-        color: white;
-        font-family: "Poppins", sans-serif;
-        font-size: 1rem;
-        margin-bottom: 1rem;
-        outline: none;
-        resize: vertical;
-      }
-
-      .dm-textarea:focus {
-        border-color: var(--primary-glow);
-      }
-
-      /* Language Switcher */
-      .language-switcher {
-        position: fixed;
-        top: 2rem;
-        right: 2rem;
-        display: flex;
-        gap: 0.5rem;
-        z-index: 1000;
-        background: rgba(20, 20, 30, 0.8);
-        padding: 0.5rem;
-        border-radius: 50px;
-        border: 1px solid rgba(0, 212, 255, 0.3);
-        backdrop-filter: blur(10px);
-        animation: fadeIn 1s ease-out 0.5s forwards;
-        opacity: 0;
-      }
-
-      .lang-btn {
-        padding: 0.7rem 1.5rem;
-        border: none;
-        border-radius: 50px;
-        cursor: pointer;
-        font-weight: 600;
-        font-size: 1rem;
-        transition: all 0.3s ease;
-        font-family: "Poppins", sans-serif;
-      }
-
-      .lang-btn.inactive {
-        background: transparent;
-        color: var(--text-secondary);
-      }
-
-      .lang-btn.active {
-        background: linear-gradient(
-          135deg,
-          var(--primary-glow),
-          var(--secondary-glow)
-        );
-        color: white;
-        box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
-      }
-
-      .lang-btn:hover {
-        transform: translateY(-2px);
-      }
-
-      /* Hidden content for language switching */
-      .content-english {
-        display: block;
-      }
-
-      .content-kannada {
-        display: none;
-      }
-
-      @media (max-width: 768px) {
-        .language-switcher {
-          top: 1rem;
-          right: 1rem;
-          gap: 0.3rem;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        .lang-btn {
-          padding: 0.5rem 1rem;
-          font-size: 0.9rem;
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-      }
 
-      @media (max-width: 768px) {
-        .hero-card {
-          padding: 3rem 2rem;
+        .container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
         }
-        .welcome-card {
-          padding: 2rem 1.5rem;
+
+        /* Header */
+        header {
+            margin-bottom: 3rem;
         }
-      }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--text-main) 0%, var(--text-muted) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.025em;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.125rem;
+        }
+
+        /* Controls */
+        .controls {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .select-wrapper {
+            position: relative;
+        }
+
+        select {
+            width: 100%;
+            appearance: none;
+            background-color: var(--select-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            font-family: inherit;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        select:hover {
+            border-color: var(--text-muted);
+        }
+
+        select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .select-arrow {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--text-muted);
+        }
+
+        /* Display Area */
+        #display-area {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        #display-area.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #display-area h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .code-container {
+            background: #2d2d2d;
+            /* Match Prism Tomorrow theme bg roughly */
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .lang-tag {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.875rem;
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            padding: 0.5rem 0.875rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .copy-btn:active {
+            transform: scale(0.96);
+        }
+
+        .code-scroll {
+            overflow-x: auto;
+            padding: 0;
+            /* Removed max-height to allow full page scroll */
+        }
+
+        /* Override Prism defaults for better fit */
+        pre[class*="language-"] {
+            margin: 0 !important;
+            border-radius: 0 !important;
+            padding: 1.5rem !important;
+            font-family: 'Fira Code', monospace !important;
+            font-size: 0.925rem;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
     </style>
-  </head>
-  <body>
-    <!-- Language Switcher -->
-    <div class="language-switcher">
-      <button
-        class="lang-btn active"
-        id="englishBtn"
-        onclick="switchLanguage('en')"
-      >
-        English
-      </button>
-      <button
-        class="lang-btn inactive"
-        id="kannadaBtn"
-        onclick="switchLanguage('kn')"
-      >
-        ಕನ್ನಡ
-      </button>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="title-section">
+                    <h1>AI & ML Lab Programs</h1>
+                    <p class="subtitle">Select a program to view the source code</p>
+                </div>
+            </div>
+        </header>
+
+        <section class="controls">
+            <label for="program-select">Select the program to display:</label>
+            <div class="select-wrapper">
+                <select id="program-select">
+                    <option value="" disabled selected>Select a program...</option>
+                    <!-- Options will be populated by JS -->
+                </select>
+                <div class="select-arrow">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </div>
+            </div>
+        </section>
+
+        <main id="display-area" class="hidden">
+            <h2 id="program-title">Program Name</h2>
+            
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="lang-tag">Python</span>
+                    <button id="copy-btn" class="copy-btn">
+                        <span class="icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        </span>
+                        Copy Code
+                    </button>
+                </div>
+                <div class="code-scroll">
+                    <pre><code id="code-block" class="language-python"># Code will appear here</code></pre>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Generated by Antigravity</p>
+        </footer>
     </div>
 
-    <!-- Welcome Overlay -->
-    <div id="welcomeOverlay" class="welcome-overlay">
-      <div class="welcome-card">
-        <h2>IDENTIFY YOURSELF</h2>
-        <p>Enter your name to read it fully.</p>
-        <input
-          type="text"
-          id="visitorName"
-          class="welcome-input"
-          placeholder="Your Name"
-          autocomplete="off"
-        />
-        <button class="welcome-btn" onclick="enterArchive()">Access</button>
-      </div>
-    </div>
-
-    <!-- Animated Background -->
-    <div class="background">
-      <!-- Math symbols will be added by JS -->
-    </div>
-
-    <!-- Main Content -->
-    <div class="container" id="mainContent">
-      <div class="hero-card">
-        <!-- Glow Orbs -->
-        <div class="glow-orb primary"></div>
-        <div class="glow-orb secondary"></div>
-
-        <!-- Brand -->
-        <div class="brand">ScalarVerse</div>
-
-        <!-- Article Content - English -->
-        <div class="content-article content-english" id="contentEnglish">
-          <h1>Probability, Cause–Effect, and a Godless Universe</h1>
-          <span class="article-author">By Karthik Hegde</span>
-
-          <h2>Introduction</h2>
-          <p>
-            Many people explain life using words like God, karma, destiny, or
-            luck. These ideas sound comforting, but they are not necessary to
-            understand how the universe actually works. A simpler and more
-            consistent explanation exists:
-          </p>
-          <blockquote class="highlight-quote">
-            The universe operates through cause–effect relationships and
-            probability, not because of god or moral justice.
-          </blockquote>
-          <p>
-            This article argues that reality is governed by probability and
-            cause–effect relationships, not karma or moral justice. It explains
-            how events arise from prior conditions interacting with randomness,
-            rather than from rewards or punishments. Based on this view, the
-            article concludes that rational living means engineering better odds
-            by taking actions that measurably increase the probability of
-            outcomes you want.
-          </p>
-
-          <h2>Cause–Effect: A Neutral Law</h2>
-          <p>Cause–effect is a basic principle of reality:</p>
-          <p>
-            <span class="strong-text"
-              >Every event happens because certain conditions existed before
-              it.</span
-            >
-          </p>
-          <p>This principle is neutral. It has:</p>
-          <ul>
-            <li>No morality</li>
-            <li>No intention</li>
-            <li>No judgment</li>
-          </ul>
-
-          <h3>Simple Example</h3>
-          <p>
-            My friend came to my room. Because of that, a conversation happened.
-          </p>
-          <p>
-            The universe did not decide this conversation should happen. There
-            was no good or bad involved. The event simply followed from prior
-            conditions.
-          </p>
-          <p>
-            Cause–effect explains why something happened — not whether it should
-            have happened. So, it opposes the concept of karma.
-          </p>
-
-          <h2>My View on Karma</h2>
-          <p>
-            Humans dislike uncertainty and unfairness. In early societies, the
-            idea of karma likely served a social purpose: encouraging people to
-            behave well by promising future rewards and discouraging wrongdoing
-            by threatening punishment.
-          </p>
-          <p>
-            However, reality often contradicted this belief. People observed
-            clear exceptions — individuals who did bad things but still
-            succeeded, and good people who suffered. Instead of rejecting karma,
-            new explanations were introduced, such as past lives or hidden
-            deeds, to protect the belief.
-          </p>
-          <p>
-            This pattern shows that karma evolved by adding assumptions whenever
-            exceptions appeared, rather than being tested and revised like a
-            scientific idea. Over time, these explanations became flexible
-            enough to justify any outcome, making karma unfalsifiable.
-          </p>
-          <p>
-            Cause–effect does not require such adjustments. It accepts
-            exceptions, randomness, and unfair outcomes without inventing new
-            stories. It does not promise justice — it promises consistency.
-          </p>
-
-          <h2>Why Cause–Effect Is Not Karma</h2>
-          <p>The difference is critical:</p>
-          <ul>
-            <li>Cause–effect is descriptive (what happened and why)</li>
-            <li>Karma is prescriptive (what should happen)</li>
-          </ul>
-          <p>Cause–effect allows:</p>
-          <ul>
-            <li>Good things to happen to bad people</li>
-            <li>Bad things to happen to good people</li>
-            <li>Random accidents</li>
-            <li>Unfair outcomes</li>
-          </ul>
-          <p>Karma does not. Reality matches cause–effect, not karma.</p>
-
-          <h2>Probability: The Role of Uncertainty</h2>
-          <p>
-            Not all causes guarantee outcomes. Many only change probability.
-          </p>
-
-          <h3>Example: An Interview</h3>
-          <ul>
-            <li>Studying increases the probability of success</li>
-            <li>Not studying decreases it</li>
-            <li>Neither guarantees the result</li>
-          </ul>
-          <p>Effort does not ensure success — it only shifts the odds.</p>
-          <p>This is how:</p>
-          <ul>
-            <li>Exams work</li>
-            <li>Trading works</li>
-            <li>Scientific experiments work</li>
-            <li>Life works</li>
-          </ul>
-
-          <h2>Luck and Randomness</h2>
-          <p>
-            Luck can be understood as the occurrence of low-probability events
-            in our lives. When the number of events a person experiences is
-            limited, such outcomes may or may not occur, and this imbalance is
-            what we perceive as good luck or bad luck. Within a finite
-            lifetime—say 50 to 60 years—one person may appear luckier than
-            another simply because favorable low-probability events occur more
-            often in their life compared to someone else. However, if the same
-            situations were repeated an infinite number of times for both
-            individuals, their expected outcomes would be the same.
-          </p>
-
-          <p>
-            If time were infinite and every task or event could be repeated
-            infinitely many times, then every event with a non-zero probability
-            would certainly occur.
-          </p>
-
-          <p>
-            Therefore, luck exists only because some things cannot be done an
-            infinite number of times. In this sense, luck is a consequence of
-            randomness acting over a finite number of opportunities. So, good
-            luck is a positive deviation and bad luck is a negative deviation
-            from the mean.
-          </p>
-
-          <h2>A Rational Life Strategy</h2>
-          <p>
-            If the universe is probabilistic and morally neutral, then the most
-            logical way to live is:
-          </p>
-          <blockquote class="highlight-quote">
-            Do actions that increase the probability of the outcome you want.
-          </blockquote>
-          <p>
-            In simple terms, if there is no God controlling outcomes and no
-            karma guaranteeing fairness, then every event becomes a numbers
-            game. You do not think what should happen — you think what increases
-            my chances.
-          </p>
-          <p>
-            For example, consider an interview happening today. What increases
-            the probability of clearing it?
-          </p>
-          <ul>
-            <li>Reading and revising today increases the probability</li>
-            <li>Not preparing keeps the probability low</li>
-          </ul>
-          <p>
-            Studying does not guarantee success, but it clearly improves the
-            odds. Prayer, hope, or worrying do not change the probability in any
-            measurable way. Rational action means doing the thing that
-            mathematically improves your chances, and ignoring everything else.
-          </p>
-          <p>This means:</p>
-          <ul>
-            <li>Preparation instead of prayer</li>
-            <li>Skill instead of hope</li>
-            <li>Adjustment instead of expectation</li>
-          </ul>
-          <p>You do not wait for fairness. You engineer better odds.</p>
-          <h2>Conclusion</h2>
-          <p>
-            The universe is not good or bad. It is morally neutral and
-            probabilistic.
-          </p>
-          <p>
-            Events are not rewards or punishments. They are consequences of
-            prior conditions interacting with randomness.
-          </p>
-          <p>
-            Understanding this removes false hope — but it gives something
-            stronger:
-          </p>
-          <p><span class="strong-text">Control over your actions.</span></p>
-          <p>
-            You may not control outcomes, but you can definitely influence the
-            odds of those outcomes.
-          </p>
-          <p>
-            Instead of believing in God and gaining confidence by thinking "God
-            is there so things will work out," a more practical confidence comes
-            from this thought: "I have done everything that increases the
-            probability of success. What remains is randomness, but the odds are
-            now in my favor."
-          </p>
-        </div>
-
-        <!-- Article Content - Kannada -->
-        <div class="content-article content-kannada" id="contentKannada">
-          <h1>ಸಂಭವನೀಯತೆ, ಕಾರಣ–ಪರಿಣಾಮ ಮತ್ತು ದೇವರಿಲ್ಲದ ಬ್ರಹ್ಮಾಂಡ</h1>
-          <span class="article-author">ಲೇಖಕ: ಕಾರ್ತಿಕ್ ಹೆಗಡೆ</span>
-
-          <h2>ಪರಿಚಯ</h2>
-          <p>
-            ಅನೇಕ ಜನರು ಜೀವನವನ್ನು ದೇವರು, ಕರ್ಮ, ವಿಧಿ ಅಥವಾ ಅದೃಷ್ಟ ಎಂಬ ಪದಗಳಿಂದ
-            ವಿವರಿಸುತ್ತಾರೆ. ಈ ಕಲ್ಪನೆಗಳು ಸಮಾಧಾನಕರವಾಗಿ ಕಾಣಿಸಬಹುದು, ಆದರೆ ಬ್ರಹ್ಮಾಂಡ
-            ಹೇಗೆ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ ಎಂಬುದನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳಲು ಅವು ಅಗತ್ಯವಿಲ್ಲ.
-            ಇದಕ್ಕಿಂತ ಸರಳ ಹಾಗೂ ಸಮ್ಮತವಾದ ವಿವರಣೆ ಇದೆ:
-          </p>
-          <blockquote class="highlight-quote">
-            ಬ್ರಹ್ಮಾಂಡವು ದೇವರು ಅಥವಾ ನೈತಿಕ ನ್ಯಾಯದ ಕಾರಣದಿಂದ ಅಲ್ಲ, ಕಾರಣ–ಪರಿಣಾಮ
-            ಸಂಬಂಧಗಳು ಮತ್ತು ಸಂಭವನೀಯತೆಯ ಮೂಲಕ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ.
-          </blockquote>
-          <p>
-            ಈ ಲೇಖನವು ವಾಸ್ತವಿಕತೆ ಕರ್ಮ ಅಥವಾ ನೈತಿಕ ನ್ಯಾಯದಿಂದಲ್ಲ, ಬದಲಾಗಿ ಕಾರಣ–ಪರಿಣಾಮ
-            ಮತ್ತು ಸಂಭವನೀಯತೆಯಿಂದ ನಿಯಂತ್ರಿತವಾಗಿದೆ ಎಂಬುದನ್ನು ವಿವರಿಸುತ್ತದೆ. ಘಟನೆಗಳು
-            ಬಹುಮಾನ ಅಥವಾ ಶಿಕ್ಷೆಗಳಾಗಿ ನಡೆಯುವುದಿಲ್ಲ; ಹಿಂದಿನ ಪರಿಸ್ಥಿತಿಗಳು
-            ಯಾದೃಚ್ಛಿಕತೆಯೊಂದಿಗೆ ಸಂವಹನ ಮಾಡುವುದರಿಂದ ಅವು ಸಂಭವಿಸುತ್ತವೆ. ಈ ದೃಷ್ಟಿಕೋನದ
-            ಆಧಾರದಲ್ಲಿ, ವಿವೇಕಬದ್ಧ ಜೀವನ ಎಂದರೆ ನೀವು ಬಯಸುವ ಫಲಿತಾಂಶಗಳ ಸಾಧ್ಯತೆಯನ್ನು
-            ಗಣಿತೀಯವಾಗಿ ಹೆಚ್ಚಿಸುವ ಕಾರ್ಯಗಳನ್ನು ಮಾಡುವುದು ಎಂಬ ನಿರ್ಣಯಕ್ಕೆ ಲೇಖನ
-            ಬರುತ್ತದೆ.
-          </p>
-
-          <h2>ಕಾರಣ–ಪರಿಣಾಮ: ತಟಸ್ಥ ನಿಯಮ</h2>
-          <p>ಕಾರಣ–ಪರಿಣಾಮವು ವಾಸ್ತವಿಕತೆಯ ಮೂಲಭೂತ ತತ್ವ:</p>
-          <p>
-            <span class="strong-text"
-              >ಪ್ರತಿಯೊಂದು ಘಟನೆ ಹಿಂದಿನ ಕೆಲವು ಪರಿಸ್ಥಿತಿಗಳು ಇದ್ದದ್ದರಿಂದ
-              ಸಂಭವಿಸುತ್ತದೆ.</span
-            >
-          </p>
-          <p>ಈ ತತ್ವ ಸಂಪೂರ್ಣವಾಗಿ ತಟಸ್ಥವಾಗಿದೆ. ಇದರಲ್ಲಿ:</p>
-          <ul>
-            <li>ಯಾವುದೇ ನೈತಿಕತೆ ಇಲ್ಲ</li>
-            <li>ಯಾವುದೇ ಉದ್ದೇಶ ಇಲ್ಲ</li>
-            <li>ಯಾವುದೇ ತೀರ್ಪು ಇಲ್ಲ</li>
-          </ul>
-
-          <h3>ಸರಳ ಉದಾಹರಣೆ</h3>
-          <p>
-            ನನ್ನ ಸ್ನೇಹಿತ ನನ್ನ ಕೊಠಡಿಗೆ ಬಂದನು. ಅದರ ಪರಿಣಾಮವಾಗಿ ಮಾತುಕತೆ ನಡೆಯಿತು.
-          </p>
-          <p>
-            ಈ ಮಾತುಕತೆ ನಡೆಯಬೇಕು ಎಂದು ಬ್ರಹ್ಮಾಂಡ ನಿರ್ಧರಿಸಲಿಲ್ಲ. ಇದರಲ್ಲಿ ಒಳ್ಳೆಯದು
-            ಅಥವಾ ಕೆಟ್ಟದು ಎಂಬುದು ಇರಲಿಲ್ಲ. ಹಿಂದಿನ ಪರಿಸ್ಥಿತಿಗಳಿಂದಲೇ ಈ ಘಟನೆ
-            ಸಂಭವಿಸಿತು.
-          </p>
-          <p>
-            ಕಾರಣ–ಪರಿಣಾಮವು ಏಕೆ ಏನಾಯಿತು ಎಂಬುದನ್ನು ವಿವರಿಸುತ್ತದೆ — ಏನು ಆಗಬೇಕು
-            ಎಂಬುದನ್ನು ಅಲ್ಲ. ಆದ್ದರಿಂದ ಇದು ಕರ್ಮದ ಕಲ್ಪನೆಗೆ ವಿರುದ್ಧವಾಗಿದೆ.
-          </p>
-
-          <h2>ಕರ್ಮದ ಕುರಿತು ನನ್ನ ದೃಷ್ಟಿಕೋನ</h2>
-          <p>
-            ಮಾನವರು ಅನಿಶ್ಚಿತತೆ ಮತ್ತು ಅನ್ಯಾಯವನ್ನು ಇಷ್ಟಪಡುವುದಿಲ್ಲ. ಪ್ರಾಚೀನ
-            ಸಮಾಜಗಳಲ್ಲಿ, ಕರ್ಮದ ಕಲ್ಪನೆ ಒಂದು ಸಾಮಾಜಿಕ ಉದ್ದೇಶವನ್ನು ಹೊಂದಿರಬಹುದಿತ್ತು:
-          </p>
-          <ul>
-            <li>
-              ಒಳ್ಳೆಯ ವರ್ತನೆಗೆ ಭವಿಷ್ಯದ ಬಹುಮಾನಗಳ ಭರವಸೆ ನೀಡುವುದು ಮತ್ತು ಕೆಟ್ಟ
-              ಕೆಲಸಗಳಿಗೆ ಶಿಕ್ಷೆಯ ಭೀತಿ ತೋರಿಸುವುದು.
-            </li>
-          </ul>
-          <p>
-            ಆದರೆ ವಾಸ್ತವಿಕತೆ ಈ ನಂಬಿಕೆಯನ್ನು ಹಲವು ಬಾರಿ ಖಂಡಿಸಿತು. ಕೆಟ್ಟ ಕೆಲಸ ಮಾಡಿದರೂ
-            ಯಶಸ್ವಿಯಾದವರು, ಒಳ್ಳೆಯವರಾಗಿದ್ದರೂ ನೋವು ಅನುಭವಿಸಿದವರು — ಇಂತಹ ಸ್ಪಷ್ಟ
-            ಹೊರತಾಗುವ ಉದಾಹರಣೆಗಳನ್ನು ಜನರು ಗಮನಿಸಿದರು.
-          </p>
-          <p>
-            ಕರ್ಮವನ್ನು ತಳ್ಳಿಹಾಕುವ ಬದಲು, ಹಿಂದಿನ ಜನ್ಮಗಳು ಅಥವಾ ಮರೆಮಾಚಿದ ಕೃತ್ಯಗಳು ಎಂಬ
-            ಹೊಸ ವಿವರಣೆಗಳನ್ನು ಸೇರಿಸಲಾಯಿತು. ಇದರಿಂದ ಕರ್ಮದ ನಂಬಿಕೆಯನ್ನು ಉಳಿಸಿಕೊಳ್ಳಲು
-            ಪ್ರಯತ್ನಿಸಲಾಯಿತು.
-          </p>
-          <p>
-            ಈ ಪ್ರಕ್ರಿಯೆ ಏನು ತೋರಿಸುತ್ತದೆಂದರೆ: ಕರ್ಮವು ವೈಜ್ಞಾನಿಕ ಸಿದ್ಧಾಂತದಂತೆ
-            ಪರೀಕ್ಷಿಸಿ ತಿದ್ದುಪಡಿ ಮಾಡಲಾಗಲಿಲ್ಲ. ಹೊರತಾಗುವ ಘಟನೆಗಳು ಬಂದಾಗಲೆಲ್ಲ ಹೊಸ
-            ಊಹೆಗಳನ್ನು ಸೇರಿಸುವ ಮೂಲಕ ಅದು ಬೆಳೆಯಿತು. ಕಾಲಕ್ರಮೇಣ, ಯಾವುದೇ ಫಲಿತಾಂಶವನ್ನೂ
-            ಸಮರ್ಥಿಸಬಹುದಾದಷ್ಟು ಲವಚಿಕವಾಗಿ ಅದು ಮಾರ್ಪಟ್ಟಿತು. ಇದರಿಂದ ಅದು ಪರೀಕ್ಷಿಸಲಾಗದ
-            ನಂಬಿಕೆಯಾಯಿತು.
-          </p>
-          <p>
-            ಕಾರಣ–ಪರಿಣಾಮಕ್ಕೆ ಇಂತಹ ತಿದ್ದುಪಡಿಗಳು ಬೇಕಾಗುವುದಿಲ್ಲ. ಅದು
-            ಹೊರತಾಗುವಿಕೆಗಳನ್ನು, ಯಾದೃಚ್ಛಿಕತೆಯನ್ನು ಮತ್ತು ಅನ್ಯಾಯದ ಫಲಿತಾಂಶಗಳನ್ನು
-            ಒಪ್ಪಿಕೊಳ್ಳುತ್ತದೆ — ಹೊಸ ಕಥೆಗಳನ್ನು ರಚಿಸುವ ಅಗತ್ಯವಿಲ್ಲ. ಅದು ನ್ಯಾಯವನ್ನು
-            ಭರವಸೆ ನೀಡುವುದಿಲ್ಲ — ಸಮ್ಮತತೆಯನ್ನು ನೀಡುತ್ತದೆ.
-          </p>
-
-          <h2>ಕಾರಣ–ಪರಿಣಾಮ ಕರ್ಮವಲ್ಲ ಏಕೆ</h2>
-          <p>ಈ ವ್ಯತ್ಯಾಸ ಅತ್ಯಂತ ಮಹತ್ವದ್ದು:</p>
-          <ul>
-            <li>ಕಾರಣ–ಪರಿಣಾಮ ವಿವರಣಾತ್ಮಕ (ಏನಾಯಿತು ಮತ್ತು ಏಕೆ)</li>
-            <li>ಕರ್ಮ ನಿಯಮಾತ್ಮಕ (ಏನು ಆಗಬೇಕು)</li>
-          </ul>
-          <p>ಕಾರಣ–ಪರಿಣಾಮದಲ್ಲಿ ಸಾಧ್ಯವಾದವುಗಳು:</p>
-          <ul>
-            <li>ಕೆಟ್ಟ ಜನರಿಗೆ ಒಳ್ಳೆಯ ಘಟನೆಗಳು ಸಂಭವಿಸಬಹುದು</li>
-            <li>ಒಳ್ಳೆಯ ಜನರಿಗೆ ಕೆಟ್ಟ ಘಟನೆಗಳು ಸಂಭವಿಸಬಹುದು</li>
-            <li>ಯಾದೃಚ್ಛಿಕ ಅಪಘಾತಗಳು</li>
-            <li>ಅನ್ಯಾಯದ ಫಲಿತಾಂಶಗಳು</li>
-          </ul>
-          <p>
-            ಕರ್ಮ ಇದನ್ನು ಒಪ್ಪುವುದಿಲ್ಲ. ವಾಸ್ತವಿಕತೆ ಕಾರಣ–ಪರಿಣಾಮಕ್ಕೆ
-            ಹೊಂದಿಕೊಳ್ಳುತ್ತದೆ — ಕರ್ಮಕ್ಕೆ ಅಲ್ಲ.
-          </p>
-
-          <h2>ಸಂಭವನೀಯತೆ: ಅನಿಶ್ಚಿತತೆಯ ಪಾತ್ರ</h2>
-          <p>
-            ಎಲ್ಲಾ ಕಾರಣಗಳೂ ಖಚಿತ ಫಲಿತಾಂಶವನ್ನು ನೀಡುವುದಿಲ್ಲ. ಬಹುತೇಕ ಕಾರಣಗಳು ಕೇವಲ
-            ಸಂಭವನೀಯತೆಯನ್ನು ಬದಲಾಯಿಸುತ್ತವೆ.
-          </p>
-
-          <h3>ಉದಾಹರಣೆ: ಸಂದರ್ಶನ</h3>
-          <ul>
-            <li>ಓದುವುದು ಯಶಸ್ಸಿನ ಸಾಧ್ಯತೆಯನ್ನು ಹೆಚ್ಚಿಸುತ್ತದೆ</li>
-            <li>ಓದದೇ ಇರುವುದು ಅದನ್ನು ಕಡಿಮೆ ಮಾಡುತ್ತದೆ</li>
-            <li>ಯಾವುದೂ ಖಚಿತತೆಯನ್ನು ನೀಡುವುದಿಲ್ಲ</li>
-          </ul>
-          <p>
-            ಪ್ರಯತ್ನ ಯಶಸ್ಸನ್ನು ಖಚಿತಪಡಿಸುವುದಿಲ್ಲ — ಅದು ಕೇವಲ ಸಾಧ್ಯತೆಯನ್ನು
-            ಸರಿಸುತ್ತದೆ.
-          </p>
-          <p>ಇದೇ ರೀತಿ ಕಾರ್ಯನಿರ್ವಹಿಸುವುದು:</p>
-          <ul>
-            <li>ಪರೀಕ್ಷೆಗಳು</li>
-            <li>ಟ್ರೇಡಿಂಗ್</li>
-            <li>ವೈಜ್ಞಾನಿಕ ಪ್ರಯೋಗಗಳು</li>
-            <li>ಜೀವನ</li>
-          </ul>
-
-          <h2>ಅದೃಷ್ಟ ಮತ್ತು ಯಾದೃಚ್ಛಿಕತೆ</h2>
-          <p>
-            ಅದೃಷ್ಟವನ್ನು ನಮ್ಮ ಜೀವನದಲ್ಲಿ ಸಂಭವಿಸುವ ಕಡಿಮೆ-ಸಂಭವನೀಯ ಘಟನೆಗಳಾಗಿ
-            ಅರ್ಥಮಾಡಿಕೊಳ್ಳಬಹುದು. ವ್ಯಕ್ತಿಯ ಜೀವನದಲ್ಲಿ ಸಂಭವಿಸುವ ಘಟನೆಗಳ ಸಂಖ್ಯೆ
-            ಸೀಮಿತವಾಗಿರುವುದರಿಂದ, ಇಂತಹ ಘಟನೆಗಳು ಸಂಭವಿಸಬಹುದು ಅಥವಾ ಸಂಭವಿಸದೇ ಇರಬಹುದು.
-            ಈ ಅಸಮತೋಲನವೇ ನಾವು ಒಳ್ಳೆಯ ಅದೃಷ್ಟ ಅಥವಾ ಕೆಟ್ಟ ಅದೃಷ್ಟ ಎಂದು ಕರೆಯುವುದು.
-          </p>
-          <p>
-            ಒಬ್ಬ ವ್ಯಕ್ತಿ 50–60 ವರ್ಷಗಳ ಸೀಮಿತ ಜೀವನದಲ್ಲಿ ಇನ್ನೊಬ್ಬನಿಗಿಂತ
-            ಅದೃಷ್ಟವಂತನಂತೆ ಕಾಣಬಹುದು, ಏಕೆಂದರೆ ಅನುಕೂಲಕರ ಕಡಿಮೆ-ಸಂಭವನೀಯ ಘಟನೆಗಳು ಅವನ
-            ಜೀವನದಲ್ಲಿ ಹೆಚ್ಚು ಸಂಭವಿಸಿರಬಹುದು. ಆದರೆ ಇಬ್ಬರಿಗೂ ಒಂದೇ ಪರಿಸ್ಥಿತಿಗಳನ್ನು
-            ಅನಂತ ಬಾರಿ ಪುನರಾವರ್ತಿಸಿದರೆ, ಅವರ ನಿರೀಕ್ಷಿತ ಫಲಿತಾಂಶಗಳು ಒಂದೇ ಆಗುತ್ತವೆ.
-          </p>
-          <p>
-            ಸಮಯ ಅನಂತವಾಗಿದ್ದರೆ ಮತ್ತು ಪ್ರತಿಯೊಂದು ಕಾರ್ಯವನ್ನು ಅನಂತ ಬಾರಿ ಮಾಡಬಹುದಾದರೆ,
-            ಶೂನ್ಯವಲ್ಲದ ಸಂಭವನೀಯತೆಯಿರುವ ಪ್ರತಿಯೊಂದು ಘಟನೆ ಖಂಡಿತವಾಗಿಯೂ ಸಂಭವಿಸುತಿತ್ತು.
-            ಆದ್ದರಿಂದ, ಅದೃಷ್ಟವು ಅಸ್ತಿತ್ವದಲ್ಲಿರುವುದು — ಕೆಲವು ಸಂಗತಿಗಳನ್ನು ಅನಂತ ಬಾರಿ
-            ಮಾಡಲಾಗದಿರುವುದರಿಂದ. ಈ ಅರ್ಥದಲ್ಲಿ, ಅದೃಷ್ಟವು ಸೀಮಿತ ಅವಕಾಶಗಳ ಮೇಲೆ
-            ಕಾರ್ಯನಿರ್ವಹಿಸುವ ಯಾದೃಚ್ಛಿಕತೆಯ ಫಲಿತಾಂಶ.
-          </p>
-          <p>ಹೀಗಾಗಿ:</p>
-          <ul>
-            <li>ಒಳ್ಳೆಯ ಅದೃಷ್ಟ = ಸರಾಸರಿಯಿಂದ ಧನಾತ್ಮಕ ವಿಚಲನ</li>
-            <li>ಕೆಟ್ಟ ಅದೃಷ್ಟ = ಸರಾಸರಿಯಿಂದ ಋಣಾತ್ಮಕ ವಿಚಲನ</li>
-          </ul>
-
-          <h2>ವಿವೇಕಬದ್ಧ ಜೀವನ ತಂತ್ರ</h2>
-          <p>
-            ಬ್ರಹ್ಮಾಂಡವು ಸಂಭವನೀಯ ಮತ್ತು ನೈತಿಕವಾಗಿ ತಟಸ್ಥವಾಗಿದ್ದರೆ, ಜೀವನವನ್ನು ನಡೆಸುವ
-            ಅತ್ಯಂತ ತಾರ್ಕಿಕ ವಿಧಾನವೇನೆಂದರೆ:
-          </p>
-          <blockquote class="highlight-quote">
-            ನೀವು ಬಯಸುವ ಫಲಿತಾಂಶದ ಸಂಭವನೀಯತೆಯನ್ನು ಹೆಚ್ಚಿಸುವ ಕಾರ್ಯಗಳನ್ನು ಮಾಡುವುದು.
-          </blockquote>
-          <p>
-            ಸರಳವಾಗಿ ಹೇಳುವುದಾದರೆ, ಫಲಿತಾಂಶಗಳನ್ನು ನಿಯಂತ್ರಿಸುವ ದೇವರೂ ಇಲ್ಲ,
-            ನ್ಯಾಯವನ್ನು ಖಚಿತಪಡಿಸುವ ಕರ್ಮವೂ ಇಲ್ಲ ಎಂದಾದರೆ — ಪ್ರತಿಯೊಂದು ಘಟನೆ ಸಂಖ್ಯೆಗಳ
-            ಆಟವಾಗುತ್ತದೆ. ನೀವು ಏನು ಆಗಬೇಕು ಎಂದು ಯೋಚಿಸುವುದಿಲ್ಲ — ನನ್ನ ಅವಕಾಶಗಳನ್ನು
-            ಏನು ಹೆಚ್ಚಿಸುತ್ತದೆ? ಎಂದು ಯೋಚಿಸುತ್ತೀರಿ.
-          </p>
-          <p>ಉದಾಹರಣೆ: ಇಂದು ನಡೆಯುವ ಸಂದರ್ಶನ</p>
-          <ul>
-            <li>
-              ಓದುವುದು ಮತ್ತು ಪುನರಾವರ್ತನೆ ಮಾಡುವುದು ಸಾಧ್ಯತೆಯನ್ನು ಹೆಚ್ಚಿಸುತ್ತದೆ
-            </li>
-            <li>ತಯಾರಿ ಮಾಡದಿರುವುದು ಸಾಧ್ಯತೆಯನ್ನು ಕಡಿಮೆ ಇಡುತ್ತದೆ</li>
-          </ul>
-          <p>
-            ಓದುವುದು ಯಶಸ್ಸನ್ನು ಖಚಿತಪಡಿಸುವುದಿಲ್ಲ, ಆದರೆ ಅವಕಾಶಗಳನ್ನು ಸ್ಪಷ್ಟವಾಗಿ
-            ಸುಧಾರಿಸುತ್ತದೆ. ಪ್ರಾರ್ಥನೆ, ಆಶೆ ಅಥವಾ ಚಿಂತನೆಗಳು ಯಾವುದೇ ಮಾಪನೀಯ ರೀತಿಯಲ್ಲಿ
-            ಸಂಭವನೀಯತೆಯನ್ನು ಬದಲಾಯಿಸುವುದಿಲ್ಲ.
-          </p>
-          <p>
-            ವಿವೇಕಬದ್ಧ ಕ್ರಿಯೆ ಎಂದರೆ ಗಣಿತೀಯವಾಗಿ ನಿಮ್ಮ ಅವಕಾಶಗಳನ್ನು ಸುಧಾರಿಸುವುದನ್ನು
-            ಮಾಡುವುದು — ಉಳಿದ ಎಲ್ಲವನ್ನೂ ನಿರ್ಲಕ್ಷಿಸುವುದು.
-          </p>
-          <p>ಇದರ ಅರ್ಥ:</p>
-          <ul>
-            <li>ಪ್ರಾರ್ಥನೆಯ ಬದಲು ತಯಾರಿ</li>
-            <li>ಆಶೆಯ ಬದಲು ಕೌಶಲ್ಯ</li>
-            <li>ನಿರೀಕ್ಷೆಯ ಬದಲು ಹೊಂದಾಣಿಕೆ</li>
-          </ul>
-          <p>
-            ನೀವು ನ್ಯಾಯಕ್ಕಾಗಿ ಕಾಯುವುದಿಲ್ಲ. ನೀವು ಉತ್ತಮ ಅವಕಾಶಗಳನ್ನು ನಿರ್ಮಿಸುತ್ತೀರಿ.
-          </p>
-
-          <h2>ಉಪಸಂಹಾರ</h2>
-          <p>
-            ಬ್ರಹ್ಮಾಂಡವು ಒಳ್ಳೆಯದೂ ಅಲ್ಲ, ಕೆಟ್ಟದೂ ಅಲ್ಲ. ಅದು ನೈತಿಕವಾಗಿ ತಟಸ್ಥ ಮತ್ತು
-            ಸಂಭವನೀಯವಾಗಿದೆ.
-          </p>
-          <p>
-            ಘಟನೆಗಳು ಬಹುಮಾನಗಳು ಅಥವಾ ಶಿಕ್ಷೆಗಳು ಅಲ್ಲ. ಅವು ಹಿಂದಿನ ಪರಿಸ್ಥಿತಿಗಳು ಮತ್ತು
-            ಯಾದೃಚ್ಛಿಕತೆಯ ಸಂವಹನದಿಂದ ಉಂಟಾಗುವ ಪರಿಣಾಮಗಳು.
-          </p>
-          <p>
-            ಇದನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳುವುದು ತಪ್ಪು ಆಶೆಯನ್ನು ತೆಗೆದುಹಾಕುತ್ತದೆ — ಆದರೆ
-            ಇನ್ನೂ ಶಕ್ತಿಶಾಲಿಯಾದುದನ್ನು ನೀಡುತ್ತದೆ:
-          </p>
-          <p><span class="strong-text">ನಿಮ್ಮ ಕ್ರಿಯೆಗಳ ಮೇಲಿನ ನಿಯಂತ್ರಣ.</span></p>
-          <p>
-            ನೀವು ಫಲಿತಾಂಶಗಳನ್ನು ನಿಯಂತ್ರಿಸಲಾರಿರಿ, ಆದರೆ ಅವುಗಳ ಸಂಭವನೀಯತೆಯನ್ನು
-            ಖಂಡಿತವಾಗಿ ಪ್ರಭಾವಿತ ಮಾಡಬಹುದು.
-          </p>
-          <p>
-            "ದೇವರು ಇದ್ದಾನೆ, ಎಲ್ಲವೂ ಸರಿಯಾಗುತ್ತದೆ" ಎಂಬ ನಂಬಿಕೆಯಿಂದ ಬರುವ
-            ಆತ್ಮವಿಶ್ವಾಸಕ್ಕಿಂತ ಹೆಚ್ಚು ಪ್ರಾಯೋಗಿಕ ಆತ್ಮವಿಶ್ವಾಸ ಇದು: "ಯಶಸ್ಸಿನ
-            ಸಾಧ್ಯತೆಯನ್ನು ಹೆಚ್ಚಿಸುವ ಎಲ್ಲವನ್ನೂ ನಾನು ಮಾಡಿದ್ದೇನೆ. ಉಳಿದದ್ದು
-            ಯಾದೃಚ್ಛಿಕತೆ — ಆದರೆ ಈಗ ಅವಕಾಶಗಳು ನನ್ನ ಪರವಾಗಿವೆ."
-          </p>
-        </div>
-
-        <!-- Direct Message Section -->
-        <div class="direct-message-section">
-          <h3 class="dm-title dm-title-en">Send an Anonymous Comment</h3>
-          <h3 class="dm-title dm-title-kn" style="display: none">
-            ಅನಾಮಧೇಯ ಅಭಿಪ್ರಾಯ ಕಳುಹಿಸಿ
-          </h3>
-          <textarea
-            id="directMessage"
-            class="dm-textarea"
-            placeholder="Type your comment here..."
-          ></textarea>
-          <button
-            class="welcome-btn"
-            style="padding: 0.8rem 2rem; width: 100%"
-            onclick="sendDirectMessage()"
-          >
-            <span class="btn-text-en">Send Comment</span>
-            <span class="btn-text-kn" style="display: none"
-              >ಕಾಮೆಂಟ್ ಕಳುಹಿಸಿ</span
-            >
-          </button>
-        </div>
-
-        <!-- Divider -->
-        <div class="divider"></div>
-
-        <!-- Social Section -->
-        <div class="social-section">
-          <a
-            href="https://twitter.com/KARTHIKKHEGDE"
-            class="social-btn twitter-btn"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <!-- Social Icon SVG -->
-            <svg
-              class="social-icon"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-              />
-            </svg>
-            <span>X</span>
-          </a>
-
-          <a
-            href="https://wa.me/919480012608"
-            class="social-btn whatsapp-btn"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <!-- Social Icon SVG -->
-            <svg
-              class="social-icon"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-            >
-              <path
-                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471.148-.67.396-.197.247-.767.967-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.231-.298.347-.497.116-.198.058-.371-.03-.52-.088-.149-.793-1.912-1.087-2.622-.288-.707-.581-.606-.793-.615-.205-.009-.438-.009-.672-.009-.234 0-.613.089-.933.435-.32.347-1.226 1.199-1.226 2.926 0 1.727 1.257 3.395 1.433 3.633.175.239 2.472 3.774 5.991 5.292 2.339 1.01 2.816.811 3.323.761.507-.05 1.636-.669 1.868-1.314.232-.646.232-1.2.163-1.314-.07-.114-.244-.182-.541-.331zM12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"
-              />
-            </svg>
-            <span>WhatsApp</span>
-          </a>
-        </div>
-
-        <!-- Footer -->
-        <!-- Footer -->
-        <div class="footer footer-en">
-          &copy; 2025 ScalarVerse. All rights reserved.
-        </div>
-        <div class="footer footer-kn" style="display: none">
-          © 2025 ScalarVerse. ಎಲ್ಲಾ ಹಕ್ಕುಗಳು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.
-        </div>
-      </div>
-    </div>
-
+    <!-- PrismJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    
+    <!-- Embedded Program Data -->
     <script>
-      // Configuration
-      const BOT_TOKEN = "7957580698:AAF4p-SxpBaWBBVdY6BCvFQYg1lbQMxY81U";
-      const CHAT_ID = "1810705249";
-
-      let currentUser = "";
-      let isUnlocked = false;
-      let currentLanguage = "en"; // Default language is English
-
-      // Language Switching Function
-      function switchLanguage(lang) {
-        currentLanguage = lang;
-
-        // Update button states
-        const englishBtn = document.getElementById("englishBtn");
-        const kannadaBtn = document.getElementById("kannadaBtn");
-
-        if (lang === "en") {
-          englishBtn.classList.add("active");
-          englishBtn.classList.remove("inactive");
-          kannadaBtn.classList.remove("active");
-          kannadaBtn.classList.add("inactive");
-
-          // Show English content
-          document.getElementById("contentEnglish").style.display = "block";
-          document.getElementById("contentKannada").style.display = "none";
-
-          // Update button texts
-          document
-            .querySelectorAll(".dm-title-en")
-            .forEach((el) => (el.style.display = "block"));
-          document
-            .querySelectorAll(".dm-title-kn")
-            .forEach((el) => (el.style.display = "none"));
-          document
-            .querySelectorAll(".btn-text-en")
-            .forEach((el) => (el.style.display = "inline"));
-          document
-            .querySelectorAll(".btn-text-kn")
-            .forEach((el) => (el.style.display = "none"));
-          document
-            .querySelectorAll(".footer-en")
-            .forEach((el) => (el.style.display = "block"));
-          document
-            .querySelectorAll(".footer-kn")
-            .forEach((el) => (el.style.display = "none"));
-        } else if (lang === "kn") {
-          englishBtn.classList.remove("active");
-          englishBtn.classList.add("inactive");
-          kannadaBtn.classList.add("active");
-          kannadaBtn.classList.remove("inactive");
-
-          // Show Kannada content
-          document.getElementById("contentEnglish").style.display = "none";
-          document.getElementById("contentKannada").style.display = "block";
-
-          // Update button texts
-          document
-            .querySelectorAll(".dm-title-en")
-            .forEach((el) => (el.style.display = "none"));
-          document
-            .querySelectorAll(".dm-title-kn")
-            .forEach((el) => (el.style.display = "block"));
-          document
-            .querySelectorAll(".btn-text-en")
-            .forEach((el) => (el.style.display = "none"));
-          document
-            .querySelectorAll(".btn-text-kn")
-            .forEach((el) => (el.style.display = "inline"));
-          document
-            .querySelectorAll(".footer-en")
-            .forEach((el) => (el.style.display = "none"));
-          document
-            .querySelectorAll(".footer-kn")
-            .forEach((el) => (el.style.display = "block"));
-        }
-
-        // Save preference to localStorage
-        localStorage.setItem("preferredLanguage", lang);
-      }
-
-      // Background Animation
-      document.addEventListener("DOMContentLoaded", () => {
-        // Restore language preference from localStorage
-        const savedLanguage = localStorage.getItem("preferredLanguage");
-        if (savedLanguage) {
-          switchLanguage(savedLanguage);
-        }
-
-        const symbols = [
-          "Σ",
-          "∫",
-          "π",
-          "∞",
-          "≈",
-          "≠",
-          "√",
-          "P(x)",
-          "P(A|B)",
-          "E[X]",
-          "N(μ,σ)",
-          "µ",
-          "σ",
-          "α",
-          "β",
-          "γ",
-          "θ",
-          "λ",
-          "Ω",
-          "Δ",
-          "∂",
-          "∇",
-          "dx",
-          "dy",
-          "f(x)",
-          "lim",
-          "log",
-          "ln",
-          "e",
-          "hi",
-          "H₀",
-          "H₁",
-          "χ²",
-          "R²",
-        ];
-        const background = document.querySelector(".background");
-        const symbolCount = 60;
-
-        function createSymbol() {
-          const span = document.createElement("span");
-          span.classList.add("math-symbol");
-          span.textContent =
-            symbols[Math.floor(Math.random() * symbols.length)];
-
-          const left = Math.random() * 100;
-          const top = Math.random() * 100;
-          const fontSize = Math.random() * 20 + 10;
-          const duration = Math.random() * 30 + 20;
-          const delay = Math.random() * -30;
-
-          span.style.left = `${left}%`;
-          span.style.top = `${top}%`;
-          span.style.fontSize = `${fontSize}px`;
-          span.style.opacity = "0";
-
-          const moveX = (Math.random() - 0.5) * 100;
-          const moveY = (Math.random() - 0.5) * 100;
-
-          span.animate(
-            [
-              { transform: "translate(0, 0) rotate(0deg)", opacity: 0 },
-              { opacity: Math.random() * 0.5 + 0.1, offset: 0.2 },
-              { opacity: Math.random() * 0.5 + 0.1, offset: 0.8 },
-              {
-                transform: `translate(${moveX}px, ${moveY}px) rotate(${
-                  Math.random() * 360
-                }deg)`,
-                opacity: 0,
-              },
-            ],
-            {
-              duration: duration * 1000,
-              delay: delay * 1000,
-              iterations: Infinity,
-              easing: "linear",
-            }
-          );
-
-          background.appendChild(span);
-        }
-
-        for (let i = 0; i < symbolCount; i++) {
-          createSymbol();
-        }
-
-        // Add Enter key listener for welcome input
-        document
-          .getElementById("visitorName")
-          .addEventListener("keypress", function (e) {
-            if (e.key === "Enter") {
-              enterArchive();
-            }
-          });
-
-        // Start 5-second timer to lock the screen
-        setTimeout(() => {
-          if (!currentUser) {
-            document.getElementById("welcomeOverlay").classList.add("visible");
-            document.getElementById("mainContent").classList.add("locked");
-          }
-        }, 5000);
-      });
-
-      // Telegram Logic
-      function sendToTelegram(message) {
-        const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&parse_mode=HTML&text=${encodeURIComponent(
-          message
-        )}`;
-
-        fetch(url)
-          .then((res) => res.json()) // Parse JSON response
-          .then((data) => {
-            if (!data.ok) {
-              console.error("Telegram Error:", data);
-              alert(
-                "Wait! The message failed to send.\n\nTelegram Error: " +
-                  (data.description || "Unknown error") +
-                  "\n\nMake sure you have STARTED the bot in your Telegram app!"
-              );
-            } else {
-              console.log("Message sent successfully!");
-            }
-          })
-          .catch((error) => {
-            console.error("Network Error:", error);
-            alert(
-              "Network Error: Could not reach Telegram servers. Check your connection."
-            );
-          });
-      }
-
-      function enterArchive() {
-        const nameInput = document.getElementById("visitorName");
-        const name = nameInput.value.trim();
-
-        if (name.length < 2) {
-          alert("Please enter a valid name to proceed.");
-          return;
-        }
-
-        currentUser = name;
-        isUnlocked = true;
-
-        // Hide overlay
-        const overlay = document.getElementById("welcomeOverlay");
-        const mainContent = document.getElementById("mainContent");
-
-        overlay.classList.remove("visible");
-        mainContent.classList.remove("locked");
-
-        setTimeout(() => {
-          overlay.style.display = "none"; // Optional cleanup
-        }, 800);
-
-        // Send entry notification with enhanced tracking
-        gatherIntelligence(currentUser);
-      }
-
-      function gatherIntelligence(name) {
-        // Basic Device Info
-        const platform = navigator.platform;
-        const userAgent = navigator.userAgent;
-        const screenRes = `${window.screen.width}x${window.screen.height}`;
-
-        // Fetch IP and Location Data
-        fetch("https://ipwho.is/")
-          .then((res) => res.json())
-          .then((data) => {
-            let message = `🚀 <b>New Visitor Access</b>\n\n`;
-            message += `👤 <b>Name:</b> ${name}\n`;
-
-            if (data.success) {
-              const mapsLink = `https://www.google.com/maps?q=${data.latitude},${data.longitude}`;
-              message += `📍 <b>Location:</b> ${data.city}, ${data.region}, ${data.country}\n`;
-              message += `🗺 <b>Maps:</b> <a href="${mapsLink}">View on Map</a>\n`;
-              message += `🌐 <b>IP:</b> ${data.ip}\n`;
-              message += `🏢 <b>ISP:</b> ${data.connection.isp}\n`;
-            } else {
-              message += `⚠️ <b>IP Info:</b> Failed to fetch\n`;
-            }
-
-            message += `📱 <b>Device:</b> ${platform}\n`;
-            message += `🖥 <b>Screen:</b> ${screenRes}\n`;
-
-            // Send the detailed report
-            sendToTelegram(message);
-          })
-          .catch((err) => {
-            // Fallback if IP fetch fails completely
-            sendToTelegram(`🚀 New Visitor: ${name} (Tracking Failed)`);
-          });
-      }
-
-      function sendDirectMessage() {
-        const msgInput = document.getElementById("directMessage");
-        const message = msgInput.value.trim();
-
-        if (message.length < 1) {
-          alert("Please type a message first.");
-          return;
-        }
-
-        const fullMessage = `📩 Message from ${currentUser}:\n\n${message}`;
-
-        sendToTelegram(fullMessage);
-
-        // Visual feedback
-        const btn = document.querySelector(".direct-message-section button");
-        const originalText = btn.textContent;
-        btn.textContent = "Sent!";
-        btn.style.background = "linear-gradient(135deg, #25D366, #128C7E)"; // Success green
-
-        msgInput.value = ""; // Clear input
-
-        setTimeout(() => {
-          btn.textContent = originalText;
-          btn.style.background = ""; // Reset to CSS default
-        }, 3000);
-      }
+        const programs = {"ASTARALGORITHM.py": "import heapq\n\n# Possible moves: up, down, left, right\nMOVES = [(-1,0), (1,0), (0,-1), (0,1)]\n\n\ndef print_state(state):\n    for row in state:\n        print(\" \".join(map(str, row)))\n    print()\n\n\ndef heuristic(state, goal):\n    # Misplaced tiles heuristic (ignore blank = 0)\n    return sum(\n        1 for i in range(3) for j in range(3)\n        if state[i][j] != 0 and state[i][j] != goal[i][j]\n    )\n\n\ndef find_blank(state):\n    for i in range(3):\n        for j in range(3):\n            if state[i][j] == 0:\n                return i, j\n\n\ndef get_neighbors(state):\n    x, y = find_blank(state)\n    neighbors = []\n\n    for dx, dy in MOVES:\n        nx, ny = x + dx, y + dy\n        if 0 <= nx < 3 and 0 <= ny < 3:\n            new_state = [list(row) for row in state]\n            new_state[x][y], new_state[nx][ny] = new_state[nx][ny], new_state[x][y]\n            neighbors.append(tuple(tuple(row) for row in new_state))\n\n    return neighbors\n\n\ndef a_star(start, goal):\n    start = tuple(tuple(row) for row in start)\n    goal = tuple(tuple(row) for row in goal)\n\n    open_list = []\n    heapq.heappush(open_list, (heuristic(start, goal), 0, start))\n    closed = set()\n\n    parent = {start: None}\n\n    while open_list:\n        f, g, current = heapq.heappop(open_list)\n\n        if current == goal:\n            # Reconstruct path\n            path = []\n            while current:\n                path.append(current)\n                current = parent[current]\n            path.reverse()\n\n            print(\"Solution path:\\n\")\n            for step in path:\n                print_state(step)\n\n            print(\"Total moves:\", len(path) - 1)\n            return\n\n        closed.add(current)\n\n        for neighbor in get_neighbors(current):\n            if neighbor in closed:\n                continue\n\n            if neighbor not in parent:\n                parent[neighbor] = current\n                g_new = g + 1\n                f_new = g_new + heuristic(neighbor, goal)\n                heapq.heappush(open_list, (f_new, g_new, neighbor))\n\n    print(\"No solution found\")\n\n\ninitial_state = [\n    [1, 2, 3],\n    [8, 0, 4],\n    [7, 6, 5]\n]\n\ngoal_state = [\n    [2, 8, 1],\n    [0, 4, 3],\n    [7, 6, 5]\n]\n\na_star(initial_state, goal_state)\n", "HillClimb.py": "def hill_climbing(func, start, step=0.01, max_iter=1000):\n    x = start\n\n    for _ in range(max_iter):\n        f_x = func(x)\n        f_right = func(x + step)\n        f_left = func(x - step)\n\n        if f_right > f_x and f_right >= f_left:\n            x += step\n        elif f_left > f_x:\n            x -= step\n        else:\n            break\n\n    return x, func(x)\n\n\n# ---- User input ----\nwhile True:\n    try:\n        func_str = input(\"\\nEnter a function of x: \")\n        func = lambda x: eval(func_str)\n        func(0)   # test\n        break\n    except:\n        print(\"Invalid function. Try again.\")\n\nwhile True:\n    try:\n        start = float(input(\"\\nEnter starting value: \"))\n        break\n    except:\n        print(\"Enter a valid number.\")\n\nmaxima, max_value = hill_climbing(func, start)\n\nprint(\"The maxima is at x =\", maxima)\nprint(\"The maximum value obtained is\", max_value)\n", "Kmeans.py": "import numpy as np\nimport matplotlib.pyplot as plt\nfrom sklearn.datasets import load_iris\n\niris = load_iris()\nX = iris.data\n\ndef kmeans(X, k):\n    centroids = X[np.random.choice(X.shape[0], k, replace=False)]\n\n    for _ in range(100):\n        distances = np.linalg.norm(X[:, None] - centroids, axis=2)\n        labels = np.argmin(distances, axis=1)\n        centroids = np.array([X[labels == i].mean(axis=0) for i in range(k)])\n\n    return centroids, labels\n\nk = 3\ncentroids, labels = kmeans(X, k)\n\ncolors = ['r', 'g', 'b']\n\nfor i in range(k):\n    plt.scatter(X[labels == i, 0], X[labels == i, 1], c=colors[i], label=f'Cluster {i+1}')\n\nplt.scatter(centroids[:, 0], centroids[:, 1], marker='x', c='black', label='Centroids')\n\nplt.title('K-Means Clustering on Iris Dataset')\nplt.xlabel('Sepal Length')\nplt.ylabel('Sepal Width')\nplt.legend()\nplt.show()\n", "KNN.py": "import numpy as np\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import confusion_matrix, classification_report\nfrom collections import Counter\n\niris = load_iris()\nX, y = iris.data, iris.target\nclass_names = iris.target_names\n\nXtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.3, random_state=1)\n\ndef knn_predict(Xtr, ytr, Xte, k=3):\n    preds = []\n    for x in Xte:\n        dists = np.linalg.norm(Xtr - x, axis=1)\n        k_labels = ytr[np.argsort(dists)[:k]]\n        preds.append(Counter(k_labels).most_common(1)[0][0])\n    return np.array(preds)\n\ny_pred = knn_predict(Xtr, ytr, Xte, k=3)\n\nprint(\"Accuracy: %.4f\" % np.mean(y_pred == yte))\nprint(\"Predictions:\", class_names[y_pred])\nprint(\"\\nConfusion Matrix:\")\nprint(confusion_matrix(yte, y_pred))\nprint(\"\\nClassification Report:\")\nprint(classification_report(yte, y_pred))\n", "LogisticRegression.py": "import numpy as np\nimport matplotlib.pyplot as plt\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\n\n\n# Sigmoid\ndef sigmoid(z):\n    return 1 / (1 + np.exp(-z))\n\n\n# Logistic Regression\ndef train(X, y, lr=0.001, iters=200):\n    w = np.zeros(X.shape[1])\n    for _ in range(iters):\n        w -= lr * (X.T @ (sigmoid(X @ w) - y)) / len(y)\n    return w\n\n\n# Load data\niris = load_iris()\nX = iris.data[:, :2]    \ny = (iris.target != 0).astype(int)\n\n# Split & scale\nXtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.4, random_state=9)\nsc = StandardScaler()\nXtr = sc.fit_transform(Xtr)\nXte = sc.transform(Xte)\n\n# Train\nw = train(Xtr, ytr)\n\n# Accuracy\npred = sigmoid(Xte @ w) > 0.5\nprint(\"Accuracy:\", np.mean(pred == yte))\n\n# Plot decision boundary\nxx, yy = np.meshgrid(\n    np.arange(Xtr[:,0].min()-1, Xtr[:,0].max()+1, 0.1),\n    np.arange(Xtr[:,1].min()-1, Xtr[:,1].max()+1, 0.1)\n)\n\nZ = sigmoid(np.c_[xx.ravel(), yy.ravel()] @ w) > 0.5\nplt.contourf(xx, yy, Z.reshape(xx.shape), alpha=0.4)\nplt.scatter(Xtr[:,0], Xtr[:,1], c=ytr)\nplt.xlabel(\"Sepal length\")\nplt.ylabel(\"Sepal width\")\nplt.title(\"Logistic Regression\")\nplt.show()\n", "MINMAX.py": "INF = 1000\n\ndef minimax(depth, index, is_max, values, alpha, beta):\n    # Leaf node\n    if depth == 3:\n        return values[index]\n\n    # MAX player's turn\n    if is_max:\n        best = -INF\n        for child in range(2):\n            value = minimax(depth + 1, index * 2 + child,\n                            False, values, alpha, beta)\n            best = max(best, value)\n            alpha = max(alpha, best)\n\n            if beta <= alpha:   # pruning\n                break\n        return best\n\n    # MIN player's turn\n    else:\n        best = INF\n        for child in range(2):\n            value = minimax(depth + 1, index * 2 + child,\n                            True, values, alpha, beta)\n            best = min(best, value)\n            beta = min(beta, best)\n\n            if beta <= alpha:   # pruning\n                break\n        return best\n\n\nvalues = [3, 5, 6, 9, 1, 2, 0, -1]\nprint(\"Optimal value:\", minimax(0, 0, True, values, -INF, INF))\n", "NaiveBayes.py": "import numpy as np\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import confusion_matrix, classification_report\n\niris = load_iris()\nX, y = iris.data, iris.target\n\nclass NaiveBayes:\n    def fit(self, X, y):\n        self.classes = np.unique(y)\n        self.mean = np.array([X[y == c].mean(0) for c in self.classes])\n        self.var = np.array([X[y == c].var(0) for c in self.classes])\n        self.priors = np.array([np.mean(y == c) for c in self.classes])\n\n    def predict(self, X):\n        return np.array([self._predict(x) for x in X])\n\n    def _predict(self, x):\n        probs = []\n        for i in range(len(self.classes)):\n            likelihood = -0.5 * np.sum(np.log(2 * np.pi * self.var[i]))\n            likelihood -= np.sum((x - self.mean[i]) ** 2 / (2 * self.var[i]))\n            probs.append(np.log(self.priors[i]) + likelihood)\n        return self.classes[np.argmax(probs)]\n\nXtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.3, random_state=1)\n\nnb = NaiveBayes()\nnb.fit(Xtr, ytr)\n\ny_pred = nb.predict(Xte)\n\nprint(\"Accuracy: %.4f\" % np.mean(y_pred == yte))\nprint(\"Predictions:\", iris.target_names[y_pred])\nprint(\"\\nConfusion Matrix:\")\nprint(confusion_matrix(yte, y_pred))\nprint(\"\\nClassification Report:\")\nprint(classification_report(yte, y_pred, target_names=iris.target_names))\n    ", "TicTacToe.py": "class TicTacToe: \n    def __init__(self): \n        self.board = [[' ']*3 for _ in range(3)] \n        self.player = 'X' \n \n    def print_board(self): \n        for row in self.board: \n            print(' | '.join(row)) \n        print('-' * 5) \n \n    def is_winner(self, player): \n        for row in self.board: \n            if row.count(player) == 3: \n                return True \n        for col in zip(*self.board): \n            if list(col).count(player) == 3: \n                return True \n        if all(self.board[i][i] == player for i in range(3)) or all(self.board[i][2-i] == player for i in \nrange(3)): \n            return True \n        return False \n \n    def is_draw(self): \n        return all(cell != ' ' for row in self.board for cell in row) \n \n    def dfs(self, player): \n        winner = 'X' if self.is_winner('X') else ('O' if self.is_winner('O') else None) \n        if winner: \n            return {'score': 1 if winner == 'X' else -1} \n        if self.is_draw(): \n            return {'score': 0} \n \n        best = {'score': -float('inf')} if player == 'X' else {'score': float('inf')} \n        for i in range(3): \n            for j in range(3): \n                if self.board[i][j] == ' ': \n                    self.board[i][j] = player \n                    score = self.dfs('O' if player == 'X' else 'X') \n                    self.board[i][j] = ' ' \n                    score['row'], score['col'] = i, j \n \n                    if player == 'X' and score['score'] > best['score']: \n                        best = score \n                    elif player == 'O' and score['score'] < best['score']: \n                        best = score \n        return best \n \n    def play(self): \n        while True: \n            self.print_board() \n            if self.is_winner('X'): \n                print(\"Player X wins!\") \n                break \n            if self.is_winner('O'): \n                print(\"Player O wins!\") \n                break \n            if self.is_draw(): \n                print(\"It's a draw!\") \n                break \n            if self.player == 'X': \n                best_move = self.dfs('X') \n                self.board[best_move['row']][best_move['col']] = 'X' \n            else: \n                while True: \n                    try: \n                        i, j = map(int, input(\"Enter row and column (0-2): \").split()) \n                        if self.board[i][j] == ' ': \n                            self.board[i][j] = 'O' \n                            break \n                        else: \n                            print(\"Invalid move. Try again.\") \n                    except (ValueError, IndexError): \n                        print(\"Enter valid numbers between 0 and 2.\") \n            self.player = 'O' if self.player == 'X' else 'X' \n \ngame = TicTacToe() \ngame.play()"};
     </script>
-  </body>
+    
+    <!-- App Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const programSelect = document.getElementById('program-select');
+            const displayArea = document.getElementById('display-area');
+            const programTitle = document.getElementById('program-title');
+            const codeBlock = document.getElementById('code-block');
+            const copyBtn = document.getElementById('copy-btn');
+            const copyBtnText = copyBtn.innerText;
+
+            // 1. Populate Dropdown
+            // Ensure 'programs' is defined (loaded from programs.js)
+            if (typeof programs === 'undefined') {
+                console.error('Programs data not loaded!');
+                programSelect.innerHTML = '<option disabled>Error: Programs data missing</option>';
+                return;
+            }
+
+            // Define the desired order and display names
+            const programConfig = [
+                { file: 'TicTacToe.py', name: '1. Tic Tac Toe' },
+                { file: 'MINMAX.py', name: '2. Alpha Beta Pruning' },
+                { file: 'ASTARALGORITHM.py', name: '3. 8 Puzzle (A* Algorithm)' },
+                { file: 'HillClimb.py', name: '4. Hill Climbing' },
+                { file: 'LogisticRegression.py', name: '5. Logistic Regression' },
+                { file: 'NaiveBayes.py', name: '6. Naive Bayes' },
+                { file: 'KNN.py', name: '7. K-Nearest Neighbors' },
+                { file: 'Kmeans.py', name: '8. K-Means Clustering' }
+            ];
+
+            // Get available files from programs.js
+            const availableFiles = Object.keys(programs);
+
+            // Filter to get only files that exist in our config and in the available files
+            // This allows us to strictly follow the user's order
+            const orderedFiles = programConfig.filter(item => availableFiles.includes(item.file));
+
+            // Also find any files that are available but NOT in our config, just in case
+            const otherFiles = availableFiles
+                .filter(file => !programConfig.find(item => item.file === file))
+                .sort()
+                .map(file => ({ file: file, name: file.replace('.py', '') }));
+
+            // Merge them
+            const allItems = [...orderedFiles, ...otherFiles];
+
+            allItems.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item.file;
+                option.textContent = item.name;
+                programSelect.appendChild(option);
+            });
+
+            // 2. Handle Selection Change
+            programSelect.addEventListener('change', (e) => {
+                const filename = e.target.value;
+                const code = programs[filename];
+
+                if (code) {
+                    // Update Title
+                    programTitle.textContent = filename.replace('.py', '');
+
+                    // Update Code
+                    // Escape HTML entities just in case, though Prism usually handles raw text in <code> well 
+                    // but setting textContent is safer than innerHTML
+                    codeBlock.textContent = code;
+
+                    // Trigger Syntax Highlight
+                    Prism.highlightElement(codeBlock);
+
+                    // Show Display Area
+                    displayArea.classList.remove('hidden');
+                    // Small timeout to allow removing hidden to apply first if using display:none (css uses opacity)
+                    // If using pure CSS class for opacity:
+                    requestAnimationFrame(() => {
+                        displayArea.classList.add('visible');
+                    });
+                }
+            });
+
+            // 3. Copy Functionality
+            copyBtn.addEventListener('click', async () => {
+                const codeText = codeBlock.textContent;
+
+                try {
+                    await navigator.clipboard.writeText(codeText);
+
+                    // Visual Feedback
+                    copyBtn.innerHTML = `
+                        <span class="icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </span>
+                        Copied!
+                    `;
+                    copyBtn.style.background = 'rgba(16, 185, 129, 0.2)'; // Green tint
+                    copyBtn.style.color = '#34d399';
+
+                    setTimeout(() => {
+                        // Revert
+                        copyBtn.innerText = 'Copy Code';
+                        // Note: InnerText removes the icon HTML, so we need to put it back or just reset HTML
+                        copyBtn.innerHTML = `
+                            <span class="icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            </span>
+                            Copy Code
+                        `;
+                        copyBtn.style.background = '';
+                        copyBtn.style.color = '';
+                    }, 2000);
+
+                } catch (err) {
+                    console.error('Failed to copy!', err);
+                    alert('Failed to copy to clipboard');
+                }
+            });
+        });
+    </script>
+</body>
 </html>
