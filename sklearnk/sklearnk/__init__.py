@@ -10,7 +10,30 @@ def _load_program_source(filename):
     if not os.path.exists(path):
         return f"# Error: {filename} not found"
     with open(path, 'r', encoding='utf-8') as f:
-        return f.read()
+        content = f.read()
+        # Remove the if __name__ == '__main__': guard for execution
+        # but keep it in the returned source code
+        return content
+
+def _get_executable_code(source):
+    """Convert source code to executable form by removing __name__ guard"""
+    lines = source.split('\n')
+    result = []
+    skip_next = False
+    
+    for i, line in enumerate(lines):
+        # Skip the if __name__ == '__main__': line and unindent its contents
+        if "if __name__ == '__main__':" in line or 'if __name__ == "__main__":' in line:
+            skip_next = True
+            continue
+        
+        if skip_next and line.strip():
+            # Unindent the code that was inside the if block
+            result.append(line[4:] if line.startswith('    ') else line)
+        elif not skip_next:
+            result.append(line)
+    
+    return '\n'.join(result)
 
 # Store all programs as string constants
 PROGRAM1_SOURCE = _load_program_source('program1.py')
@@ -33,7 +56,7 @@ def program1():
 
 def program1_run():
     """Executes Program 1 (Tic Tac Toe)"""
-    exec(PROGRAM1_SOURCE, {})
+    exec(_get_executable_code(PROGRAM1_SOURCE), {})
 
 # Program 2: Alpha Beta Pruning
 def program2():
@@ -42,7 +65,7 @@ def program2():
 
 def program2_run():
     """Executes Program 2 (Alpha Beta Pruning)"""
-    exec(PROGRAM2_SOURCE, {})
+    exec(_get_executable_code(PROGRAM2_SOURCE), {})
 
 # Program 3: 8 Puzzle (A* Algorithm)
 def program3():
@@ -51,7 +74,7 @@ def program3():
 
 def program3_run():
     """Executes Program 3 (8 Puzzle A*)"""
-    exec(PROGRAM3_SOURCE, {})
+    exec(_get_executable_code(PROGRAM3_SOURCE), {})
 
 # Program 4: Hill Climbing
 def program4():
@@ -60,7 +83,7 @@ def program4():
 
 def program4_run():
     """Executes Program 4 (Hill Climbing)"""
-    exec(PROGRAM4_SOURCE, {})
+    exec(_get_executable_code(PROGRAM4_SOURCE), {})
 
 # Program 5: Logistic Regression
 def program5():
@@ -69,7 +92,7 @@ def program5():
 
 def program5_run():
     """Executes Program 5 (Logistic Regression)"""
-    exec(PROGRAM5_SOURCE, {})
+    exec(_get_executable_code(PROGRAM5_SOURCE), {})
 
 # Program 6: Naive Bayes
 def program6():
@@ -78,7 +101,7 @@ def program6():
 
 def program6_run():
     """Executes Program 6 (Naive Bayes)"""
-    exec(PROGRAM6_SOURCE, {})
+    exec(_get_executable_code(PROGRAM6_SOURCE), {})
 
 # Program 7: K-Nearest Neighbors
 def program7():
@@ -87,7 +110,7 @@ def program7():
 
 def program7_run():
     """Executes Program 7 (KNN)"""
-    exec(PROGRAM7_SOURCE, {})
+    exec(_get_executable_code(PROGRAM7_SOURCE), {})
 
 # Program 8: K-Means Clustering
 def program8():
@@ -96,7 +119,7 @@ def program8():
 
 def program8_run():
     """Executes Program 8 (K-Means)"""
-    exec(PROGRAM8_SOURCE, {})
+    exec(_get_executable_code(PROGRAM8_SOURCE), {})
 
 # Program 9: Logistic Regression (sklearn)
 def program9():
@@ -105,7 +128,7 @@ def program9():
 
 def program9_run():
     """Executes Program 9 (Logistic Regression Sklearn)"""
-    exec(PROGRAM9_SOURCE, {})
+    exec(_get_executable_code(PROGRAM9_SOURCE), {})
 
 # Program 10: Naive Bayes (sklearn)
 def program10():
@@ -114,7 +137,7 @@ def program10():
 
 def program10_run():
     """Executes Program 10 (Naive Bayes Sklearn)"""
-    exec(PROGRAM10_SOURCE, {})
+    exec(_get_executable_code(PROGRAM10_SOURCE), {})
 
 # Program 11: KNN (sklearn)
 def program11():
@@ -123,7 +146,7 @@ def program11():
 
 def program11_run():
     """Executes Program 11 (KNN Sklearn)"""
-    exec(PROGRAM11_SOURCE, {})
+    exec(_get_executable_code(PROGRAM11_SOURCE), {})
 
 # Program 12: K-Means (sklearn)
 def program12():
@@ -132,4 +155,4 @@ def program12():
 
 def program12_run():
     """Executes Program 12 (K-Means Sklearn)"""
-    exec(PROGRAM12_SOURCE, {})
+    exec(_get_executable_code(PROGRAM12_SOURCE), {})
