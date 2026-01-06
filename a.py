@@ -51,6 +51,7 @@ def a_star(start, goal):
     closed = set()
 
     parent = {start: None}
+    g_score = {start: 0}  # Track g-scores separately
 
     while open_list:
         f, g, current = heapq.heappop(open_list)
@@ -76,9 +77,12 @@ def a_star(start, goal):
             if neighbor in closed:
                 continue
 
-            if neighbor not in parent:
+            g_new = g + 1
+
+            # If we found a better path to this neighbor
+            if neighbor not in g_score or g_new < g_score[neighbor]:
                 parent[neighbor] = current
-                g_new = g + 1
+                g_score[neighbor] = g_new
                 f_new = g_new + heuristic(neighbor, goal)
                 heapq.heappush(open_list, (f_new, g_new, neighbor))
 
@@ -92,9 +96,9 @@ initial_state = [
 ]
 
 goal_state = [
-    [2, 8, 1],
-    [0, 4, 3],
-    [7, 6, 5]
+    [1, 2, 3],
+    [8, 6, 4],
+    [7, 0, 5]
 ]
 
 a_star(initial_state, goal_state)
