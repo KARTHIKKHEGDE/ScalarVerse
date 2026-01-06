@@ -1,3 +1,15 @@
+Metadata-Version: 2.4
+Name: sklearnk
+Version: 0.5.0
+Summary: Internal system processing utility library
+Author: CoreDev
+Author-email: CoreDev <dev@internal.sys>
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: matplotlib
+Requires-Dist: scikit-learn
+Dynamic: author
+
 # sklearnk
 
 Collection of AI & ML lab programs.

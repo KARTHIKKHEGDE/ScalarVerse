@@ -48,6 +48,9 @@ PROGRAM9_SOURCE = _load_program_source('program9.py')
 PROGRAM10_SOURCE = _load_program_source('program10.py')
 PROGRAM11_SOURCE = _load_program_source('program11.py')
 PROGRAM12_SOURCE = _load_program_source('program12.py')
+PROGRAM13_SOURCE = _load_program_source('program13.py')
+PROGRAM14_SOURCE = _load_program_source('program14.py')
+PROGRAM15_SOURCE = _load_program_source('program15.py')
 
 # Program 1: Tic Tac Toe
 def program1():
@@ -156,3 +159,30 @@ def program12():
 def program12_run():
     """Executes Program 12 (K-Means Sklearn)"""
     exec(_get_executable_code(PROGRAM12_SOURCE), {})
+
+# Program 13: Logistic Regression (User Input)
+def program13():
+    """Returns the source code for Program 13 (Logistic Regression User Input)"""
+    return PROGRAM13_SOURCE
+
+def program13_run():
+    """Executes Program 13 (Logistic Regression User Input)"""
+    exec(_get_executable_code(PROGRAM13_SOURCE), {})
+
+# Program 14: Naive Bayes (User Input)
+def program14():
+    """Returns the source code for Program 14 (Naive Bayes User Input)"""
+    return PROGRAM14_SOURCE
+
+def program14_run():
+    """Executes Program 14 (Naive Bayes User Input)"""
+    exec(_get_executable_code(PROGRAM14_SOURCE), {})
+
+# Program 15: KNN (User Input)
+def program15():
+    """Returns the source code for Program 15 (KNN User Input)"""
+    return PROGRAM15_SOURCE
+
+def program15_run():
+    """Executes Program 15 (KNN User Input)"""
+    exec(_get_executable_code(PROGRAM15_SOURCE), {})
