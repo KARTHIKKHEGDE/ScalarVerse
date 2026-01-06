@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sklearnk"
+version = "0.3.3"
+description = "Internal system processing utility library"
+readme = "README.md"
+dependencies = [
+    "numpy",
+    "matplotlib",
+    "scikit-learn"
+]
+authors = [
+    { name = "CoreDev", email = "dev@internal.sys" }
+]
+
+[tool.setuptools]
+packages = ["sklearnk"]
