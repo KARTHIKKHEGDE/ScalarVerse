@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="sklearnk",
-    version="0.3.3",
+    version="0.4.0",
     packages=["sklearnk"],
     install_requires=[
         "numpy",
