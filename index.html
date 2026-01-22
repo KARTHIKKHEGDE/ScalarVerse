@@ -1,475 +1,419 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI & ML Lab Programs</title>
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    
-    <!-- PrismJS for Syntax Highlighting -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      ScalarVerse - Professional Esports Tournament Management Platform
+    </title>
     <style>
-        :root {
-            /* Dark Theme (Permanent) */
-            --primary: #3b82f6;
-            /* Slightly lighter blue for dark mode contrast */
-            --primary-hover: #2563eb;
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f1f5f9;
-            --text-muted: #94a3b8;
-            --border-color: #334155;
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5);
-            --radius: 12px;
-            --select-bg: #1e293b;
-            --toggle-hover: #334155;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f9f9f9;
+      }
+
+      header {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        color: #fff;
+        padding: 40px 20px;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      header h1 {
+        font-size: 3.5em;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      header p {
+        font-size: 1.3em;
+        color: #bbb;
+        margin-bottom: 10px;
+      }
+
+      .tagline {
+        font-size: 1.1em;
+        color: #e94560;
+        font-weight: bold;
+      }
+
+      nav {
+        background-color: #16213e;
+        padding: 15px 0;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      nav a {
+        color: #fff;
+        text-decoration: none;
+        padding: 12px 25px;
+        margin: 0 15px;
+        display: inline-block;
+        transition: all 0.3s;
+        border-radius: 4px;
+      }
+
+      nav a:hover {
+        background-color: #e94560;
+        transform: translateY(-2px);
+      }
+
+      .development-banner {
+        background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        font-size: 1.2em;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        animation: pulse 2s infinite;
+      }
+
+      .development-banner span {
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 5px 15px;
+        border-radius: 20px;
+        display: inline-block;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.8;
+        }
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 60px 20px;
+      }
+
+      .hero {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .hero h2 {
+        font-size: 2.5em;
+        color: #1a1a2e;
+        margin-bottom: 20px;
+      }
+
+      .hero p {
+        font-size: 1.2em;
+        color: #666;
+        margin-bottom: 40px;
+        line-height: 1.8;
+      }
+
+      .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin-bottom: 60px;
+      }
+
+      .feature-card {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: all 0.3s;
+        border-top: 4px solid #e94560;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .feature-card h3 {
+        color: #1a1a2e;
+        margin-bottom: 15px;
+        font-size: 1.5em;
+      }
+
+      .feature-card p {
+        color: #666;
+        line-height: 1.7;
+      }
+
+      .cta-section {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        color: #fff;
+        padding: 60px 40px;
+        border-radius: 8px;
+        text-align: center;
+        margin-bottom: 60px;
+        box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+      }
+
+      .cta-section h2 {
+        font-size: 2.2em;
+        margin-bottom: 30px;
+        color: #fff;
+      }
+
+      .button-group {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-bottom: 40px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 16px 32px;
+        font-size: 1.1em;
+        text-decoration: none;
+        border-radius: 6px;
+        transition: all 0.3s;
+        border: 2px solid transparent;
+        cursor: pointer;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      .btn-primary {
+        background-color: #e94560;
+        color: #fff;
+        border-color: #e94560;
+      }
+
+      .btn-primary:hover {
+        background-color: #d63a50;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(233, 69, 96, 0.4);
+      }
+
+      .btn-secondary {
+        background-color: transparent;
+        color: #fff;
+        border-color: #fff;
+      }
+
+      .btn-secondary:hover {
+        background-color: #fff;
+        color: #1a1a2e;
+        transform: translateY(-3px);
+      }
+
+      .compliance-notice {
+        background-color: #d4edda;
+        border: 2px solid #28a745;
+        color: #155724;
+        padding: 25px;
+        border-radius: 8px;
+        margin: 40px 0;
+        text-align: center;
+      }
+
+      .compliance-notice h3 {
+        color: #155724;
+        margin-bottom: 10px;
+      }
+
+      .compliance-notice p {
+        margin: 10px 0;
+        line-height: 1.7;
+      }
+
+      .pages-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        margin: 40px 0;
+      }
+
+      .page-link {
+        background-color: #fff;
+        padding: 30px 25px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-decoration: none;
+        color: #333;
+        border-left: 5px solid #e94560;
+        transition: all 0.3s;
+        text-align: center;
+      }
+
+      .page-link:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(233, 69, 96, 0.3);
+        background-color: #f9f9f9;
+      }
+
+      .page-link h4 {
+        color: #1a1a2e;
+        font-size: 1.4em;
+        margin-bottom: 10px;
+      }
+
+      .page-link p {
+        color: #666;
+        font-size: 0.95em;
+        line-height: 1.6;
+      }
+
+      footer {
+        background-color: #1a1a2e;
+        color: #fff;
+        text-align: center;
+        padding: 30px 20px;
+        margin-top: 60px;
+        border-top: 3px solid #e94560;
+      }
+
+      footer p {
+        margin: 8px 0;
+      }
+
+      .footer-links {
+        margin: 15px 0;
+      }
+
+      .footer-links a {
+        color: #e94560;
+        text-decoration: none;
+        margin: 0 15px;
+        transition: color 0.3s;
+      }
+
+      .footer-links a:hover {
+        color: #fff;
+        text-decoration: underline;
+      }
+
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 2.5em;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        .hero h2 {
+          font-size: 1.8em;
         }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.5;
-            padding: 2rem;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            transition: background-color 0.3s ease, color 0.3s ease;
+        .cta-section h2 {
+          font-size: 1.8em;
         }
 
-        .container {
-            width: 100%;
-            max-width: 1000px;
-            margin: 0 auto;
+        .btn {
+          width: 100%;
         }
-
-        /* Header */
-        header {
-            margin-bottom: 3rem;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, var(--text-main) 0%, var(--text-muted) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -0.025em;
-        }
-
-        .subtitle {
-            color: var(--text-muted);
-            font-size: 1.125rem;
-        }
-
-        /* Controls */
-        .controls {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-sm);
-            margin-bottom: 2rem;
-            border: 1px solid var(--border-color);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.75rem;
-            font-weight: 600;
-            color: var(--text-main);
-        }
-
-        .select-wrapper {
-            position: relative;
-        }
-
-        select {
-            width: 100%;
-            appearance: none;
-            background-color: var(--select-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 0.75rem 1rem;
-            font-size: 1rem;
-            font-family: inherit;
-            color: var(--text-main);
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: var(--shadow-sm);
-        }
-
-        select:hover {
-            border-color: var(--text-muted);
-        }
-
-        select:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-
-        .select-arrow {
-            position: absolute;
-            right: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            pointer-events: none;
-            color: var(--text-muted);
-        }
-
-        /* Display Area */
-        #display-area {
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
-        }
-
-        #display-area.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        #display-area h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .code-container {
-            background: #2d2d2d;
-            /* Match Prism Tomorrow theme bg roughly */
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            position: relative;
-        }
-
-        .code-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .lang-tag {
-            font-family: 'Fira Code', monospace;
-            font-size: 0.875rem;
-            color: #94a3b8;
-            font-weight: 500;
-        }
-
-        .copy-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: #fff;
-            padding: 0.5rem 0.875rem;
-            border-radius: 6px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.2s;
-            font-family: inherit;
-        }
-
-        .copy-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .copy-btn:active {
-            transform: scale(0.96);
-        }
-
-        .code-scroll {
-            overflow-x: auto;
-            padding: 0;
-            /* Removed max-height to allow full page scroll */
-        }
-
-        /* Override Prism defaults for better fit */
-        pre[class*="language-"] {
-            margin: 0 !important;
-            border-radius: 0 !important;
-            padding: 1.5rem 1.5rem 1.5rem 6rem !important;
-            font-family: 'Fira Code', monospace !important;
-            font-size: 0.925rem;
-            line-height: 1.6;
-            counter-reset: line;
-            position: relative;
-        }
-
-        /* Line numbering gutter */
-        pre[class*="language-"] code {
-            display: block;
-        }
-
-        pre[class*="language-"] code .token-line,
-        pre[class*="language-"] code > span {
-            counter-increment: line;
-            position: relative;
-            display: inline;
-        }
-
-        pre[class*="language-"] code .token-line::before,
-        pre[class*="language-"] code > span::before {
-            content: counter(line);
-            position: absolute;
-            left: -7.0rem;
-            width: 2.5rem;
-            text-align: right;
-            color: rgba(148, 163, 184, 0.4);
-            font-size: 0.875rem;
-            user-select: none;
-            pointer-events: none;
-        }
-
-        /* For plain text without spans, add line numbers to each line */
-        pre[class*="language-"]:not(:has(code > span)) code::before {
-            content: '';
-            position: absolute;
-            left: 1.5rem;
-            top: 1.5rem;
-            width: 2.5rem;
-            height: 100%;
-            text-align: right;
-            color: rgba(148, 163, 184, 0.4);
-            font-size: 0.875rem;
-            user-select: none;
-            pointer-events: none;
-            white-space: pre;
-            counter-reset: line;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 4rem;
-            color: var(--text-muted);
-            font-size: 0.875rem;
-        }
-
-        @media (max-width: 640px) {
-            body {
-                padding: 1rem;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <header>
+      <h1>ScalarVerse</h1>
+      <p>Professional Esports Tournament Management Platform</p>
+      <p class="tagline">Organize • Compete • Win</p>
+    </header>
 
-    <div class="container">
-        <header>
-            <div class="header-content">
-                <div class="title-section">
-                    <h1>AI & ML Lab Programs</h1>
-                    <p class="subtitle">Select a program to view the source code</p>
-                </div>
-            </div>
-        </header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about-us.html">About Us</a>
+      <a href="contact-us.html">Contact</a>
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms-conditions.html">Terms</a>
+      <a href="refund-cancellation.html">Refunds</a>
+    </nav>
 
-        <section class="controls">
-            <label for="program-select">Select the program to display:</label>
-            <div class="select-wrapper">
-                <select id="program-select">
-                    <option value="" disabled selected>Select a program...</option>
-                    <!-- Options will be populated by JS -->
-                </select>
-                <div class="select-arrow">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                </div>
-            </div>
-        </section>
-
-        <main id="display-area" class="hidden">
-            <h2 id="program-title">Program Name</h2>
-            
-            <div class="code-container">
-                <div class="code-header">
-                    <span class="lang-tag">Python</span>
-                    <button id="copy-btn" class="copy-btn">
-                        <span class="icon">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                        </span>
-                        Copy Code
-                    </button>
-                </div>
-                <div class="code-scroll">
-                    <pre><code id="code-block" class="language-python"># Code will appear here</code></pre>
-                </div>
-            </div>
-        </main>
-        
-        <footer>
-            <p>Generated by Antigravity</p>
-        </footer>
+    <div class="development-banner">
+      <span>🚀 STILL UNDER DEVELOPMENT 🚀</span>
+      <br />
+      <p style="margin-top: 10px; font-size: 1.1em;">
+        Navigate to other pages using the menu above to explore our policies and documentation.
+      </p>
     </div>
 
-    <!-- PrismJS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
-    
-    <!-- Embedded Program Data -->
-    <script>
-        const programs = {"ASTARALGORITHM.py": "import heapq\n\n# Possible moves: up, down, left, right\nMOVES = [(-1,0), (1,0), (0,-1), (0,1)]\n\n\ndef print_state(state):\n    for row in state:\n        print(\" \".join(map(str, row)))\n    print()\n\n\ndef heuristic(state, goal):\n    # Misplaced tiles heuristic (ignore blank = 0)\n    count = 0\n    for i in range(3):\n        for j in range(3):\n            if state[i][j] != 0:\n                if state[i][j] != goal[i][j]:\n                    count += 1\n    return count\n\n\ndef find_blank(state):\n    for i in range(3):\n        for j in range(3):\n            if state[i][j] == 0:\n                return i, j\n\n\ndef get_neighbors(state):\n    x, y = find_blank(state)\n    neighbors = []\n\n    for dx, dy in MOVES:\n        nx, ny = x + dx, y + dy\n        if 0 <= nx < 3 and 0 <= ny < 3:\n            new_state = [list(row) for row in state]\n            new_state[x][y], new_state[nx][ny] = new_state[nx][ny], new_state[x][y]\n            neighbors.append(tuple(tuple(row) for row in new_state))\n\n    return neighbors\n\n\ndef a_star(start, goal):\n    start = tuple(tuple(row) for row in start)\n    goal = tuple(tuple(row) for row in goal)\n\n    open_list = []\n    heapq.heappush(open_list, (heuristic(start, goal), 0, start))\n    closed = set()\n\n    parent = {start: None}\n    g_score = {start: 0}  # Track g-scores separately\n\n    while open_list:\n        f, g, current = heapq.heappop(open_list)\n\n        if current == goal:\n            # Reconstruct path\n            path = []\n            while current:\n                path.append(current)\n                current = parent[current]\n            path.reverse()\n\n            print(\"Solution path:\\n\")\n            for step in path:\n                print_state(step)\n\n            print(\"Total moves:\", len(path) - 1)\n            return\n\n        closed.add(current)\n\n        for neighbor in get_neighbors(current):\n            if neighbor in closed:\n                continue\n\n            g_new = g + 1\n\n            # If we found a better path to this neighbor\n            if neighbor not in g_score or g_new < g_score[neighbor]:\n                parent[neighbor] = current\n                g_score[neighbor] = g_new\n                f_new = g_new + heuristic(neighbor, goal)\n                heapq.heappush(open_list, (f_new, g_new, neighbor))\n\n    print(\"No solution found\")\n\n\ninitial_state = [\n    [1, 2, 3],\n    [8, 0, 4],\n    [7, 6, 5]\n]\n\ngoal_state = [\n    [2, 8, 1],\n    [0, 4, 3],\n    [7, 6, 5]\n]\n\na_star(initial_state, goal_state)\n", "HillClimb.py": "def hill_climbing(func, start, step=0.01, max_iter=1000):\n    x = start\n\n    for _ in range(max_iter):\n        f_x = func(x)\n        f_right = func(x + step)\n        f_left = func(x - step)\n\n        if f_right > f_x and f_right >= f_left:\n            x += step\n        elif f_left > f_x:\n            x -= step\n        else:\n            break\n\n    return x, func(x)\n\n\n# ---- User input ----\nwhile True:\n    try:\n        func_str = input(\"\\nEnter a function of x: \")\n        func = lambda x: eval(func_str)\n        func(0)   # test\n        break\n    except:\n        print(\"Invalid function. Try again.\")\n\nwhile True:\n    try:\n        start = float(input(\"\\nEnter starting value: \"))\n        break\n    except:\n        print(\"Enter a valid number.\")\n\nmaxima, max_value = hill_climbing(func, start)\n\nprint(\"The maxima is at x =\", maxima)\nprint(\"The maximum value obtained is\", max_value)\n", "Kmeans.py": "import numpy as np\nimport matplotlib.pyplot as plt\nfrom sklearn.datasets import load_iris\n\niris = load_iris()\nX = iris.data\n\ndef kmeans(X, k):\n    centroids = X[np.random.choice(X.shape[0], k, replace=False)]\n\n    for _ in range(100):\n        distances = np.linalg.norm(X[:, None] - centroids, axis=2)\n        labels = np.argmin(distances, axis=1)\n        centroids = np.array([X[labels == i].mean(axis=0) for i in range(k)])\n\n    return centroids, labels\n\nk = 3\ncentroids, labels = kmeans(X, k)\n\ncolors = ['r', 'g', 'b']\n\nfor i in range(k):\n    plt.scatter(X[labels == i, 0], X[labels == i, 1], c=colors[i], label=f'Cluster {i+1}')\n\nplt.scatter(centroids[:, 0], centroids[:, 1], marker='x', c='black', label='Centroids')\n\nplt.title('K-Means Clustering on Iris Dataset')\nplt.xlabel('Sepal Length')\nplt.ylabel('Sepal Width')\nplt.legend()\nplt.show()\n", "KNN.py": "import numpy as np\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import confusion_matrix, classification_report\nfrom collections import Counter\n\niris = load_iris()\nX, y = iris.data, iris.target\nclass_names = iris.target_names\n\nXtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.3, random_state=1)\n\ndef knn_predict(Xtr, ytr, Xte, k=3):\n    preds = []\n    for x in Xte:\n        dists = np.linalg.norm(Xtr - x, axis=1)\n        k_labels = ytr[np.argsort(dists)[:k]]\n        preds.append(Counter(k_labels).most_common(1)[0][0])\n    return np.array(preds)\n\ny_pred = knn_predict(Xtr, ytr, Xte, k=3)\n\nprint(\"Accuracy: %.4f\" % np.mean(y_pred == yte))\nprint(\"Predictions:\", class_names[y_pred])\nprint(\"\\nConfusion Matrix:\")\nprint(confusion_matrix(yte, y_pred))\nprint(\"\\nClassification Report:\")\nprint(classification_report(yte, y_pred))\n", "LogisticRegression.py": "import numpy as np\nimport matplotlib.pyplot as plt\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\n\n\n# Sigmoid\ndef sigmoid(z):\n    return 1 / (1 + np.exp(-z))\n\n\n# Logistic Regression\ndef train(X, y, lr=0.001, iters=200):\n    w = np.zeros(X.shape[1])\n    for _ in range(iters):\n        w -= lr * (X.T @ (sigmoid(X @ w) - y)) / len(y)\n    return w\n\n\n# Load data\niris = load_iris()\nX = iris.data[:, :2]    \ny = (iris.target != 0).astype(int)\n\n# Split & scale\nXtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.4, random_state=9)\nsc = StandardScaler()\nXtr = sc.fit_transform(Xtr)\nXte = sc.transform(Xte)\n\n# Train\nw = train(Xtr, ytr)\n\n# Accuracy\npred = sigmoid(Xte @ w) > 0.5\nprint(\"Accuracy:\", np.mean(pred == yte))\n\n# Plot decision boundary\nxx, yy = np.meshgrid(\n    np.arange(Xtr[:,0].min()-1, Xtr[:,0].max()+1, 0.1),\n    np.arange(Xtr[:,1].min()-1, Xtr[:,1].max()+1, 0.1)\n)\n\nZ = sigmoid(np.c_[xx.ravel(), yy.ravel()] @ w) > 0.5\nplt.contourf(xx, yy, Z.reshape(xx.shape), alpha=0.4)\nplt.scatter(Xtr[:,0], Xtr[:,1], c=ytr)\nplt.xlabel(\"Sepal length\")\nplt.ylabel(\"Sepal width\")\nplt.title(\"Logistic Regression\")\nplt.show()\n", "MINMAX.py": "INF = 1000\n\ndef minimax(depth, index, is_max, values, alpha, beta):\n    # Leaf node\n    if depth == 3:\n        return values[index]\n\n    # MAX player's turn\n    if is_max:\n        best = -INF\n        for child in range(2):\n            value = minimax(depth + 1, index * 2 + child,\n                            False, values, alpha, beta)\n            best = max(best, value)\n            alpha = max(alpha, best)\n\n            if beta <= alpha:   # pruning\n                break\n        return best\n\n    # MIN player's turn\n    else:\n        best = INF\n        for child in range(2):\n            value = minimax(depth + 1, index * 2 + child,\n                            True, values, alpha, beta)\n            best = min(best, value)\n            beta = min(beta, best)\n\n            if beta <= alpha:   # pruning\n                break\n        return best\n\n\nvalues = [3, 5, 6, 9, 1, 2, 0, -1]\nprint(\"Optimal value:\", minimax(0, 0, True, values, -INF, INF))\n", "NaiveBayes.py": "import numpy as np\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import confusion_matrix, classification_report\n\niris = load_iris()\nX, y = iris.data, iris.target\n\nclass NaiveBayes:\n    def fit(self, X, y):\n        self.classes = np.unique(y)\n        self.mean = np.array([X[y == c].mean(0) for c in self.classes])\n        self.var = np.array([X[y == c].var(0) for c in self.classes])\n        self.priors = np.array([np.mean(y == c) for c in self.classes])\n\n    def predict(self, X):\n        return np.array([self._predict(x) for x in X])\n\n    def _predict(self, x):\n        probs = []\n        for i in range(len(self.classes)):\n            likelihood = -0.5 * np.sum(np.log(2 * np.pi * self.var[i]))\n            likelihood -= np.sum((x - self.mean[i]) ** 2 / (2 * self.var[i]))\n            probs.append(np.log(self.priors[i]) + likelihood)\n        return self.classes[np.argmax(probs)]\n\nXtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.3, random_state=1)\n\nnb = NaiveBayes()\nnb.fit(Xtr, ytr)\n\ny_pred = nb.predict(Xte)\n\nprint(\"Accuracy: %.4f\" % np.mean(y_pred == yte))\nprint(\"Predictions:\", iris.target_names[y_pred])\nprint(\"\\nConfusion Matrix:\")\nprint(confusion_matrix(yte, y_pred))\nprint(\"\\nClassification Report:\")\nprint(classification_report(yte, y_pred, target_names=iris.target_names))\n    ", "TicTacToe.py": "class TicTacToe: \n    def __init__(self): \n        self.board = [[' ']*3 for _ in range(3)] \n        self.player = 'X' \n \n    def print_board(self): \n        for row in self.board: \n            print(' | '.join(row)) \n        print('-' * 5) \n \n    def is_winner(self, player): \n        for row in self.board: \n            if row.count(player) == 3: \n                return True \n        for col in zip(*self.board): \n            if list(col).count(player) == 3: \n                return True \n        if all(self.board[i][i] == player for i in range(3)) or all(self.board[i][2-i] == player for i in \nrange(3)): \n            return True \n        return False \n \n    def is_draw(self): \n        return all(cell != ' ' for row in self.board for cell in row) \n \n    def dfs(self, player): \n        winner = 'X' if self.is_winner('X') else ('O' if self.is_winner('O') else None) \n        if winner: \n            return {'score': 1 if winner == 'X' else -1} \n        if self.is_draw(): \n            return {'score': 0} \n \n        best = {'score': -float('inf')} if player == 'X' else {'score': float('inf')} \n        for i in range(3): \n            for j in range(3): \n                if self.board[i][j] == ' ': \n                    self.board[i][j] = player \n                    score = self.dfs('O' if player == 'X' else 'X') \n                    self.board[i][j] = ' ' \n                    score['row'], score['col'] = i, j \n \n                    if player == 'X' and score['score'] > best['score']: \n                        best = score \n                    elif player == 'O' and score['score'] < best['score']: \n                        best = score \n        return best \n \n    def play(self): \n        while True: \n            self.print_board() \n            if self.is_winner('X'): \n                print(\"Player X wins!\") \n                break \n            if self.is_winner('O'): \n                print(\"Player O wins!\") \n                break \n            if self.is_draw(): \n                print(\"It's a draw!\") \n                break \n            if self.player == 'X': \n                best_move = self.dfs('X') \n                self.board[best_move['row']][best_move['col']] = 'X' \n            else: \n                while True: \n                    try: \n                        i, j = map(int, input(\"Enter row and column (0-2): \").split()) \n                        if self.board[i][j] == ' ': \n                            self.board[i][j] = 'O' \n                            break \n                        else: \n                            print(\"Invalid move. Try again.\") \n                    except (ValueError, IndexError): \n                        print(\"Enter valid numbers between 0 and 2.\") \n            self.player = 'O' if self.player == 'X' else 'X' \n \ngame = TicTacToe() \ngame.play()", "LogisticRegressionSklearn.py": "import numpy as np\nimport matplotlib.pyplot as plt\n\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.inspection import DecisionBoundaryDisplay\n\n\n# Load data\niris = load_iris()\nX = iris.data[:, :2]\ny = (iris.target != 0).astype(int)\n\n# Split\nXtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.4, random_state=9)\n\n# Scale\nsc = StandardScaler()\nXtr = sc.fit_transform(Xtr)\nXte = sc.transform(Xte)\n\n# Train\nlr = LogisticRegression()\nlr.fit(Xtr, ytr)\n\n# Accuracy\nprint(\"Accuracy:\", np.mean(lr.predict(Xte) == yte))\n\n# Plot decision boundary\nDecisionBoundaryDisplay.from_estimator(lr, Xtr, response_method=\"predict\", alpha=0.3)\nplt.scatter(Xtr[:,0], Xtr[:,1], c=ytr, edgecolor=\"k\")\nplt.xlabel(\"Sepal Length (scaled)\")\nplt.ylabel(\"Sepal Width (scaled)\")\nplt.title(\"Logistic Regression Decision Boundary\")\nplt.show()", "NaiveBayesSklearn.py": "import numpy as np\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.naive_bayes import GaussianNB\nfrom sklearn.metrics import accuracy_score, confusion_matrix, classification_report\n\niris = load_iris()\nX, y = iris.data, iris.target\n\nXtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.3, random_state=1)\n\nnb = GaussianNB()\nnb.fit(Xtr, ytr)\n\ny_pred = nb.predict(Xte)\n\nprint(\"Accuracy: %.4f\" % accuracy_score(yte, y_pred))\nprint(\"Predictions:\", iris.target_names[y_pred])\nprint(\"\\nConfusion Matrix:\\n\", confusion_matrix(yte, y_pred))\nprint(\"\\nClassification Report:\\n\", classification_report(yte, y_pred, target_names=iris.target_names))\n", "KNNSklearn.py": "import numpy as np\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.neighbors import KNeighborsClassifier\nfrom sklearn.metrics import accuracy_score, confusion_matrix, classification_report\n\niris = load_iris()\nX, y = iris.data, iris.target\nclass_names = iris.target_names\n\nXtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.3, random_state=1)\n\nknn = KNeighborsClassifier(n_neighbors=3)\nknn.fit(Xtr, ytr)\n\ny_pred = knn.predict(Xte)\n\nprint(\"Accuracy: %.4f\" % accuracy_score(yte, y_pred))\nprint(\"Predictions:\", class_names[y_pred])\nprint(\"\\nConfusion Matrix:\\n\", confusion_matrix(yte, y_pred))\nprint(\"\\nClassification Report:\\n\", classification_report(yte, y_pred, target_names=class_names))\n", "KmeansSklearn.py": "import matplotlib.pyplot as plt\nfrom sklearn.datasets import load_iris\nfrom sklearn.cluster import KMeans\n\n# Load Iris dataset\niris = load_iris()\nX = iris.data\n\n# Apply K-Means\nkmeans = KMeans(n_clusters=3, random_state=42)\nlabels = kmeans.fit_predict(X)\ncentroids = kmeans.cluster_centers_\n\n# Plot clusters one by one to add labels\nplt.scatter(X[labels == 0, 0], X[labels == 0, 1], label=\"Cluster 1\")\nplt.scatter(X[labels == 1, 0], X[labels == 1, 1], label=\"Cluster 2\")\nplt.scatter(X[labels == 2, 0], X[labels == 2, 1], label=\"Cluster 3\")\n\n# Plot centroids\nplt.scatter(\n    centroids[:, 0], centroids[:, 1],\n    c='black', marker='X', s=100,\n    label=\"Centroids\"\n)\n\n# Labels and title\nplt.xlabel(\"Sepal Length\")\nplt.ylabel(\"Sepal Width\")\nplt.title(\"K-Means Clustering on Iris Dataset\")\n\n# Show legend\nplt.legend()\n\nplt.show()\n", "LogisticRegressionUserInput.py": "from sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import accuracy_score\n\n# Load Iris dataset\niris = load_iris()\n\n# Use ALL features\nX = iris.data   # sepal length, sepal width, petal length, petal width\ny_original = iris.target\n\n# Binary classification: Setosa vs Others\ny = (y_original != 0).astype(int)\n\n# Split dataset\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.4, random_state=9\n)\n\n# Train Logistic Regression model\nmodel = LogisticRegression()\nmodel.fit(X_train, y_train)\n\n# ---------------- USER INPUT ----------------\nprint(\"\\nEnter flower details for prediction:\")\n\nsepal_length = float(input(\"Sepal Length (in cm): \"))\nsepal_width  = float(input(\"Sepal Width (in cm): \"))\npetal_length = float(input(\"Petal Length (in cm): \"))\npetal_width  = float(input(\"Petal Width (in cm): \"))\n\n# User input using all features\nuser_input = [[sepal_length, sepal_width, petal_length, petal_width]]\n\n# Prediction\nprediction = model.predict(user_input)\n\n# Output\nif prediction[0] == 0:\n    print(\"\\nPredicted Class: Setosa\")\nelse:\n    print(\"\\nPredicted Class: Not Setosa (Versicolor / Virginica)\")\n\n# ---------------- MODEL ACCURACY ----------------\ny_pred = model.predict(X_test)\naccuracy = accuracy_score(y_test, y_pred)\nprint(\"\\nModel Accuracy:\", accuracy)\n", "NaiveBayesUserInput.py": "from sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.naive_bayes import GaussianNB\nfrom sklearn.metrics import accuracy_score\n\n# Load Iris dataset\niris = load_iris()\n\n# Use all features\nX = iris.data\ny_original = iris.target\n\n# Binary classification: Setosa vs Others\ny = (y_original != 0).astype(int)\n\n# Split dataset\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.4, random_state=9\n)\n\n# Create Naive Bayes model\nmodel = GaussianNB()\n\n# Train the model\nmodel.fit(X_train, y_train)\n\n# ---------------- USER INPUT ----------------\nprint(\"\\nEnter flower details for prediction:\")\n\nsepal_length = float(input(\"Sepal Length (in cm): \"))\nsepal_width  = float(input(\"Sepal Width (in cm): \"))\npetal_length = float(input(\"Petal Length (in cm): \"))\npetal_width  = float(input(\"Petal Width (in cm): \"))\n\nuser_input = [[sepal_length, sepal_width, petal_length, petal_width]]\n\n# Prediction\nprediction = model.predict(user_input)\n\n# Output class name\nif prediction[0] == 0:\n    print(\"\\nPredicted Class: Setosa\")\nelse:\n    print(\"\\nPredicted Class: Not Setosa (Versicolor / Virginica)\")\n\n# ---------------- MODEL ACCURACY ----------------\ny_pred = model.predict(X_test)\naccuracy = accuracy_score(y_test, y_pred)\nprint(\"\\nModel Accuracy:\", accuracy)\n", "KNNUserInput.py": "from sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.neighbors import KNeighborsClassifier\nfrom sklearn.metrics import accuracy_score\n\n# Load Iris dataset\niris = load_iris()\n\n# Use all features\nX = iris.data\ny_original = iris.target\n\n# Binary classification: Setosa vs Others\ny = (y_original != 0).astype(int)\n\n# Split dataset\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.4, random_state=9\n)\n\n# ---------------- USER INPUT ----------------\nk = int(input(\"Enter the value of K (number of neighbors): \"))\n\n# Create KNN model\nmodel = KNeighborsClassifier(n_neighbors=k)\n\n# Train the model\nmodel.fit(X_train, y_train)\n\nprint(\"\\nEnter flower details for prediction:\")\n\nsepal_length = float(input(\"Sepal Length (in cm): \"))\nsepal_width  = float(input(\"Sepal Width (in cm): \"))\npetal_length = float(input(\"Petal Length (in cm): \"))\npetal_width  = float(input(\"Petal Width (in cm): \"))\n\nuser_input = [[sepal_length, sepal_width, petal_length, petal_width]]\n\n# Prediction\nprediction = model.predict(user_input)\nif prediction[0] == 0:\n    print(\"\\nPredicted Class: Setosa\")\nelse:\n    print(\"\\nPredicted Class: Not Setosa (Versicolor / Virginica)\")\n\n# ---------------- MODEL ACCURACY ----------------\ny_pred = model.predict(X_test)\naccuracy = accuracy_score(y_test, y_pred)\nprint(\"Model Accuracy:\", accuracy)\n"};
+    <div class="container">
+      <div
+        style="
+          text-align: center;
+          padding: 80px 20px;
+          background-color: #fff;
+          border-radius: 8px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          margin: 40px 0;
+        "
+      >
+        <h2 style="color: #1a1a2e; font-size: 2.5em; margin-bottom: 20px;">
+          Welcome to ScalarVerse
+        </h2>
+        <p
+          style="
+            color: #666;
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+          "
+        >
+          Professional Esports Tournament Management Platform
+        </p>
+        <div
+          style="
+            background-color: #fff3cd;
+            border: 2px solid #ff9800;
+            color: #e65100;
+            padding: 30px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            margin: 30px 0;
+          "
+        >
+          <strong>⚠️ STILL UNDER DEVELOPMENT ⚠️</strong>
+          <p style="margin-top: 15px; line-height: 1.8;">
+            This website is still under active development. The platform features
+            and content are being refined.
+          </p>
+          <p style="margin-top: 15px; color: #999;">
+            Please explore our policies and documentation using the navigation menu
+            above.
+          </p>
+        </div>
+      </div>
+    </div>
+            compliance with Indian privacy laws.
+          </p>
+        </a>
 
-    </script>
-    
-    <!-- App Logic -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const programSelect = document.getElementById('program-select');
-            const displayArea = document.getElementById('display-area');
-            const programTitle = document.getElementById('program-title');
-            const codeBlock = document.getElementById('code-block');
-            const copyBtn = document.getElementById('copy-btn');
-            const copyBtnText = copyBtn.innerText;
+        <a href="terms-conditions.html" class="page-link">
+          <h4>Terms & Conditions</h4>
+          <p>
+            Review our terms governing platform usage, tournament participation,
+            eligibility requirements, and user responsibilities.
+          </p>
+        </a>
 
-            // 1. Populate Dropdown
-            // Ensure 'programs' is defined (loaded from programs.js)
-            if (typeof programs === 'undefined') {
-                console.error('Programs data not loaded!');
-                programSelect.innerHTML = '<option disabled>Error: Programs data missing</option>';
-                return;
-            }
+        <a href="refund-cancellation.html" class="page-link">
+          <h4>Refund & Cancellation</h4>
+          <p>
+    <footer>
+      <p><strong>&copy; 2026 ScalarVerse. All Rights Reserved.</strong></p>
+      <p>
+        Professional Esports Tournament Management Platform | Compliant with
+        Indian Law
+      </p>
 
-            // Define the desired order and display names
-            const programConfig = [
-                { file: 'TicTacToe.py', name: '1. Tic Tac Toe' },
-                { file: 'MINMAX.py', name: '2. Alpha Beta Pruning' },
-                { file: 'ASTARALGORITHM.py', name: '3. 8 Puzzle (A* Algorithm)' },
-                { file: 'HillClimb.py', name: '4. Hill Climbing' },
-                { file: 'LogisticRegression.py', name: '5. Logistic Regression' },
-                { file: 'NaiveBayes.py', name: '6. Naive Bayes' },
-                { file: 'KNN.py', name: '7. K-Nearest Neighbors' },
-                { file: 'Kmeans.py', name: '8. K-Means Clustering' },
-                { file: 'LogisticRegressionSklearn.py', name: '9. Logistic Regression (sklearn)' },
-                { file: 'NaiveBayesSklearn.py', name: '10. Naive Bayes (sklearn)' },
-                { file: 'KNNSklearn.py', name: '11. KNN (sklearn)' },
-                { file: 'KmeansSklearn.py', name: '12. K-Means (sklearn)' },
-                { file: 'LogisticRegressionUserInput.py', name: '13. Logistic Regression (User Input)' },
-                { file: 'NaiveBayesUserInput.py', name: '14. Naive Bayes (User Input)' },
-                { file: 'KNNUserInput.py', name: '15. KNN (User Input)' }
-            ];
-
-            // Get available files from programs.js
-            const availableFiles = Object.keys(programs);
-
-            // Filter to get only files that exist in our config and in the available files
-            // This allows us to strictly follow the user's order
-            const orderedFiles = programConfig.filter(item => availableFiles.includes(item.file));
-
-            // Also find any files that are available but NOT in our config, just in case
-            const otherFiles = availableFiles
-                .filter(file => !programConfig.find(item => item.file === file))
-                .sort()
-                .map(file => ({ file: file, name: file.replace('.py', '') }));
-
-            // Merge them
-            const allItems = [...orderedFiles, ...otherFiles];
-
-            allItems.forEach(item => {
-                const option = document.createElement('option');
-                option.value = item.file;
-                option.textContent = item.name;
-                programSelect.appendChild(option);
-            });
-
-            // 2. Handle Selection Change
-            programSelect.addEventListener('change', (e) => {
-                const filename = e.target.value;
-                const code = programs[filename];
-
-                if (code) {
-                    // Update Title
-                    programTitle.textContent = filename.replace('.py', '');
-
-                    // Update Code
-                    // Escape HTML entities just in case, though Prism usually handles raw text in <code> well 
-                    // but setting textContent is safer than innerHTML
-                    codeBlock.textContent = code;
-
-                    // Trigger Syntax Highlight
-                    Prism.highlightElement(codeBlock);
-
-                    // Wrap each line in a span for line numbering
-                    const lines = codeBlock.innerHTML.split('\n');
-                    codeBlock.innerHTML = lines.map(line => `<span class="token-line">${line}\n</span>`).join('');
-
-                    // Show Display Area
-                    displayArea.classList.remove('hidden');
-                    // Small timeout to allow removing hidden to apply first if using display:none (css uses opacity)
-                    // If using pure CSS class for opacity:
-                    requestAnimationFrame(() => {
-                        displayArea.classList.add('visible');
-                    });
-                }
-            });
-
-            // 3. Copy Functionality
-            copyBtn.addEventListener('click', async () => {
-                const codeText = codeBlock.textContent;
-
-                try {
-                    await navigator.clipboard.writeText(codeText);
-
-                    // Visual Feedback
-                    copyBtn.innerHTML = `
-                        <span class="icon">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        </span>
-                        Copied!
-                    `;
-                    copyBtn.style.background = 'rgba(16, 185, 129, 0.2)'; // Green tint
-                    copyBtn.style.color = '#34d399';
-
-                    setTimeout(() => {
-                        // Revert
-                        copyBtn.innerText = 'Copy Code';
-                        // Note: InnerText removes the icon HTML, so we need to put it back or just reset HTML
-                        copyBtn.innerHTML = `
-                            <span class="icon">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                            </span>
-                            Copy Code
-                        `;
-                        copyBtn.style.background = '';
-                        copyBtn.style.color = '';
-                    }, 2000);
-
-                } catch (err) {
-                    console.error('Failed to copy!', err);
-                    alert('Failed to copy to clipboard');
-                }
-            });
-        });
-    </script>
-</body>
+      <p style="margin-top: 15px; color: #999; font-size: 0.9em">
+        Still Under Development - Explore our policies using the menu above
+      </p>
+    </footer>
+  </body>
 </html>
