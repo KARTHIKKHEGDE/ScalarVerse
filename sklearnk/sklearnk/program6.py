@@ -1,39 +1,64 @@
-import numpy as np
-from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import confusion_matrix, classification_report
+#include <iostream>
+using namespace std;
 
-class NaiveBayes:
-    def fit(self, X, y):
-        self.classes = np.unique(y)
-        self.mean = np.array([X[y == c].mean(0) for c in self.classes])
-        self.var = np.array([X[y == c].var(0) for c in self.classes])
-        self.priors = np.array([np.mean(y == c) for c in self.classes])
+using ll = long long;
 
-    def predict(self, X):
-        return np.array([self._predict(x) for x in X])
+// Modular exponentiation
+ll mod_pow(ll base, ll exp, ll mod)
+{
+    ll result = 1;
+    base %= mod;
 
-    def _predict(self, x):
-        probs = []
-        for i in range(len(self.classes)):
-            likelihood = -0.5 * np.sum(np.log(2 * np.pi * self.var[i]))
-            likelihood -= np.sum((x - self.mean[i]) ** 2 / (2 * self.var[i]))
-            probs.append(np.log(self.priors[i]) + likelihood)
-        return self.classes[np.argmax(probs)]
+    while (exp > 0)
+    {
+        if (exp & 1)
+        {
+            result = result * base % mod;
+        }
 
-if __name__ == '__main__':
-    iris = load_iris()
-    X, y = iris.data, iris.target
-    Xtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.3, random_state=1)
+        base = base * base % mod;
+        exp >>= 1;
+    }
 
-    nb = NaiveBayes()
-    nb.fit(Xtr, ytr)
+    return result;
+}
 
-    y_pred = nb.predict(Xte)
+int main()
+{
+    ll p, g, a, b;
 
-    print("Accuracy: %.4f" % np.mean(y_pred == yte))
-    print("Predictions:", iris.target_names[y_pred])
-    print("\nConfusion Matrix:")
-    print(confusion_matrix(yte, y_pred))
-    print("\nClassification Report:")
-    print(classification_report(yte, y_pred, target_names=iris.target_names))
+    cout << "Enter prime (p): ";
+    cin >> p;
+
+    cout << "Enter generator (g): ";
+    cin >> g;
+
+    cout << "Alice's private key (a): ";
+    cin >> a;
+
+    cout << "Bob's private key (b): ";
+    cin >> b;
+
+    ll A = mod_pow(g, a, p); // Alice's public value
+    ll B = mod_pow(g, b, p); // Bob's public value
+
+    cout << "\nAlice sends: A = g^a mod p = " << A << "\n";
+    cout << "Bob sends:   B = g^b mod p = " << B << "\n";
+
+    ll key_alice = mod_pow(B, a, p);
+    ll key_bob = mod_pow(A, b, p);
+
+    cout << "\nAlice computes: B^a mod p = " << key_alice << "\n";
+    cout << "Bob computes:   A^b mod p = " << key_bob << "\n";
+
+    if (key_alice == key_bob)
+    {
+        cout << "\nShared secret key: " << key_alice << "\n";
+    }
+    else
+    {
+        cout << "\nError: keys do not match!\n";
+    }
+
+    return 0;
+}
