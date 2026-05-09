@@ -1,52 +1,141 @@
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
 
+using ll = long long;
 
-# Sigmoid
-def sigmoid(z):
-    return 1 / (1 + np.exp(-z))
+// Modular exponentiation
+ll mod_pow(ll base, ll exp, ll mod) {
+    ll result = 1;
+    base %= mod;
 
+    while (exp > 0) {
+        if (exp & 1)
+            result = result * base % mod;
 
-# Logistic Regression
-def train(X, y, lr=0.001, iters=200):
-    w = np.zeros(X.shape[1])
-    for _ in range(iters):
-        w -= lr * (X.T @ (sigmoid(X @ w) - y)) / len(y)
-    return w
+        base = base * base % mod;
+        exp >>= 1;
+    }
 
+    return result;
+}
 
-if __name__ == '__main__':
-    # Load data
-    iris = load_iris()
-    X = iris.data[:, :2]    
-    y = (iris.target != 0).astype(int)
+// GCD
+ll gcd(ll a, ll b) {
+    if (b == 0)
+        return a;
+    return gcd(b, a % b);
+}
 
-    # Split & scale
-    Xtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.4, random_state=9)
-    sc = StandardScaler()
-    Xtr = sc.fit_transform(Xtr)
-    Xte = sc.transform(Xte)
+// Modular inverse (Extended Euclidean)
+ll mod_inverse(ll e, ll phi) {
+    ll t = 0, new_t = 1;
+    ll r = phi, new_r = e;
 
-    # Train
-    w = train(Xtr, ytr)
+    while (new_r != 0) {
+        ll q = r / new_r;
 
-    # Accuracy
-    pred = sigmoid(Xte @ w) > 0.5
-    print("Accuracy:", np.mean(pred == yte))
+        ll temp = new_t;
+        new_t = t - q * new_t;
+        t = temp;
 
-    # Plot decision boundary
-    xx, yy = np.meshgrid(
-        np.arange(Xtr[:,0].min()-1, Xtr[:,0].max()+1, 0.1),
-        np.arange(Xtr[:,1].min()-1, Xtr[:,1].max()+1, 0.1)
-    )
+        temp = new_r;
+        new_r = r - q * new_r;
+        r = temp;
+    }
 
-    Z = sigmoid(np.c_[xx.ravel(), yy.ravel()] @ w) > 0.5
-    plt.contourf(xx, yy, Z.reshape(xx.shape), alpha=0.4)
-    plt.scatter(Xtr[:,0], Xtr[:,1], c=ytr)
-    plt.xlabel("Sepal length")
-    plt.ylabel("Sepal width")
-    plt.title("Logistic Regression")
-    plt.show()
+    if (t < 0)
+        t += phi;
+
+    return t;
+}
+
+// Prime check
+bool is_prime(ll n) {
+    if (n < 2)
+        return false;
+
+    for (ll i = 2; i * i <= n; i++) {
+        if (n % i == 0)
+            return false;
+    }
+
+    return true;
+}
+
+int main() {
+    ll p, q;
+
+    cout << "Enter prime p: ";
+    cin >> p;
+
+    cout << "Enter prime q: ";
+    cin >> q;
+
+    if (!is_prime(p) || !is_prime(q)) {
+        cout << "Both must be prime!\n";
+        return 1;
+    }
+
+    ll n = p * q;
+    ll phi = (p - 1) * (q - 1);
+
+    ll e;
+    cout << "Enter public exponent e (coprime to " << phi << "): ";
+    cin >> e;
+
+    if (gcd(e, phi) != 1) {
+        cout << "e must be coprime to phi!\n";
+        return 1;
+    }
+
+    ll d = mod_inverse(e, phi);
+
+    cout << "\n";
+    cout << "Public key:  (e = " << e << ", n = " << n << ")\n";
+    cout << "Private key: (d = " << d << ", n = " << n << ")\n\n";
+
+    int mode;
+    cout << "1 = Encrypt  2 = Decrypt: ";
+    cin >> mode;
+    cin.ignore();
+
+    if (mode == 1) {
+        string text;
+
+        cout << "Enter plaintext: ";
+        getline(cin, text);
+
+        cout << "Encrypted: ";
+        for (int i = 0; i < text.length(); i++) {
+            cout << mod_pow(text[i], e, n) << " ";
+        }
+        cout << "\n";
+    }
+    else {
+        string line;
+
+        cout << "Enter ciphertext (space-separated): ";
+        getline(cin, line);
+
+        cout << "Decrypted: ";
+
+        std::size_t pos = 0;
+        while (pos < line.length()) {
+            std::size_t next = line.find(' ', pos);
+            if (next == string::npos)
+                next = line.length();
+
+            ll value = stoll(line.substr(pos, next - pos));
+            char ch = char(mod_pow(value, d, n));
+
+            cout << ch;
+            pos = next + 1;
+        }
+
+        cout << "\n";
+    }
+
+    return 0;
+}

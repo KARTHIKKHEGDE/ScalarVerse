@@ -1,37 +1,48 @@
-INF = 1000
+#include <iostream>
+using namespace std;
 
-def minimax(depth, index, is_max, values, alpha, beta):
-    # Leaf node
-    if depth == 3:
-        return values[index]
+int main() {
+    int bucketSize, outputRate, bucket = 0;
 
-    # MAX player's turn
-    if is_max:
-        best = -INF
-        for child in range(2):
-            value = minimax(depth + 1, index * 2 + child,
-                            False, values, alpha, beta)
-            best = max(best, value)
-            alpha = max(alpha, best)
+    cout << "Enter output rate: ";
+    cin >> outputRate;
 
-            if beta <= alpha:   # pruning
-                break
-        return best
+    cout << "Enter bucket size: ";
+    cin >> bucketSize;
 
-    # MIN player's turn
-    else:
-        best = INF
-        for child in range(2):
-            value = minimax(depth + 1, index * 2 + child,
-                            True, values, alpha, beta)
-            best = min(best, value)
-            beta = min(beta, best)
+    while (true) {
+        int incoming;
+        cout << "\nEnter incoming packet (0 to stop): ";
+        cin >> incoming;
 
-            if beta <= alpha:   # pruning
-                break
-        return best
+        if (incoming == 0) break; // exit condition
 
+        // Overflow check
+        if (bucket + incoming > bucketSize) {
+            cout << "Overflow! Dropped: " << (bucket + incoming - bucketSize) << endl;
+            incoming = bucketSize - bucket;
+        }
 
-if __name__ == '__main__':
-    values = [3, 5, 6, 9, 1, 2, 0, -1]
-    print("Optimal value:", minimax(0, 0, True, values, -INF, INF))
+        bucket += incoming;
+        cout << "Buffer now: " << bucket << endl;
+
+        int timeGap;
+        cout << "Enter time until next packet: ";
+        cin >> timeGap;
+
+        while (timeGap > 0) {
+            if (bucket > 0) {
+                int sent = min(bucket, outputRate);
+                bucket -= sent;
+
+                cout << "Transmitted: " << sent << endl;
+                cout << "Remaining: " << bucket << endl;
+            } else {
+                cout << "No packets to transmit" << endl;
+            }
+            timeGap--;
+        }
+    }
+
+    return 0;
+}

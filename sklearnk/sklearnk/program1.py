@@ -1,62 +1,99 @@
-#include <iostream>
-#include <string>
-using namespace std;
+%{
+#include <stdio.h>
 
-string xorOp(string a, string b) {
-    string res = "";
+int lines = 1, spaces = 0, words = 0, characters = 0;
+%}
 
-    for (int i = 1; i < b.length(); i++) {
-        res += (a[i] == b[i]) ? '0' : '1';
-    }
+%%
 
-    return res;
+#              { return 0; }
+
+[ ]            { spaces++; characters++; }
+[\t]           { spaces++; characters++; }
+\n             { lines++; characters++; }
+
+[a-zA-Z]+      { words++; characters += yyleng; }
+
+.              { characters++; }
+
+%%
+
+int yywrap() {
+    return 1;
 }
-
-string crc(string data, string divisor) {
-    int n = divisor.length();
-    string temp = data.substr(0, n);
-
-    for (int i = n; i < data.length(); i++) {
-
-        if (temp[0] == '1') {
-            temp = xorOp(temp, divisor) + data[i];
-        } else {
-            temp = xorOp(temp, string(n, '0')) + data[i];
-        }
-    }
-
-    if (temp[0] == '1') {
-        temp = xorOp(temp, divisor);
-    } else {
-        temp = xorOp(temp, string(n, '0'));
-    }
-
-    return temp;
-}
-
 
 int main() {
-    string data, divisor;
+    printf("Enter a paragraph (end with #):\n");
+    yylex();
 
-    cout << "Enter data: ";
-    cin >> data;
-
-    cout << "Enter divisor: ";
-    cin >> divisor;
-
-    string padded = data + string(divisor.length() - 1, '0');
-    string remainder = crc(padded, divisor);
-    string codeword = data + remainder;
-
-    cout << "Codeword: " << codeword << endl;
-
-    string check = crc(codeword, divisor);
-
-    if (check.find('1') != string::npos) {
-        cout << "Error detected\n";
-    } else {
-        cout << "No error\n";
-    }
+    printf("\nNumber of lines = %d\n", lines);
+    printf("Number of spaces = %d\n", spaces);
+    printf("Number of words = %d\n", words);
+    printf("Number of characters = %d\n", characters);
 
     return 0;
+}
+
+
+// 1b.l
+
+%{
+#include "y.tab.h"
+%}
+
+%%
+
+a        { return 'a'; }
+b        { return 'b'; }
+c        { return 'c'; }
+
+#        { return 0; }
+
+[ \t\n]  ;
+
+.        { return yytext[0]; }
+
+%%
+
+int yywrap() {
+    return 1;
+}
+
+
+//1.b.y
+
+%{
+#include <stdio.h>
+#include <stdlib.h>
+
+int yylex(void);
+void yyerror(const char *s);
+%}
+
+%start S
+
+%%
+
+S : A B ;
+
+A : 'a' A 'b'
+  | /* empty */
+  ;
+
+B : 'b' B 'c'
+  | /* empty */
+  ;
+
+%%
+
+int main() {
+    printf("Enter string:\n");
+    yyparse();
+    printf("Valid string\n");
+    return 0;
+}
+
+void yyerror(const char *s) {
+    printf("Invalid string\n");
+    exit(0);
 }

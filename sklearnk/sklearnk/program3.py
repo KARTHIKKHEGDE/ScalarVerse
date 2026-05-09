@@ -1,148 +1,218 @@
-#include <iostream>
-#include <string>
-#include <cctype>
-using namespace std;
+%{
+#include "y.tab.h"
+%}
 
-// ---------- CAESAR CIPHER ----------
-string caesar(string text, int shift, bool encrypt) {
-    string result = "";
+%%
 
-    if (!encrypt) shift = 26 - shift;
+"for"      { return FOR; }
+"("        { return LPAREN; }
+")"        { return RPAREN; }
+"{"        { return LF; }
+"}"        { return RF; }
 
-    for (int i = 0; i < text.length(); i++) {
-        char ch = text[i];
+"=="       { return EQ; }
+"<="       { return LE; }
+">="       { return GE; }
+"+="       { return ADDEQ; }
+"-="       { return SUBEQ; }
+"++"       { return INC; }
+"--"       { return DEC; }
 
-        if (isalpha(ch)) {
-            char base;
+"="        { return '='; }
+">"        { return '>'; }
+"<"        { return '<'; }
+"+"        { return '+'; }
+"-"        { return '-'; }
+";"        { return ';'; }
 
-            if (islower(ch)) base = 'a';
-            else base = 'A';
+[a-zA-Z]+  { return ALPH; }
+[0-9]+     { return NUM; }
 
-            result += (ch - base + shift) % 26 + base;
+[ \t\n]    ;
+
+#          { return 0; }
+
+.          ;
+
+%%
+
+int yywrap(){
+    return 1;
+}
+
+//3.a.y
+%{
+#include <stdio.h>
+#include <stdlib.h>
+
+int yylex();
+void yyerror();
+
+int depth = 0;
+int maxDepth = 0;
+int count = 0;
+%}
+
+%token FOR LPAREN RPAREN LF RF ALPH NUM EQ LE GE ADDEQ SUBEQ INC DEC
+
+%%
+
+S : FORSTMT {
+        if(maxDepth >= 3){
+            printf("Valid\n");
+            printf("Number of nested FOR's are: %d\n", count);
         } else {
-            result += ch;
+            printf("Invalid\n");
         }
     }
+  ;
 
-    return result;
+FORSTMT :
+    FOR A LF {
+        depth++;
+        count++;
+        if(depth > maxDepth) maxDepth = depth;
+    }
+    BODY
+    RF {
+        depth--;
+    }
+;
+
+BODY :
+    FORSTMT BODY
+  | /* empty */
+;
+
+A : LPAREN E ';' E ';' E RPAREN ;
+
+E :
+    ALPH Z NUM
+  | ALPH Z ALPH
+  | ALPH U
+  | /* empty */
+;
+
+Z :
+    '=' | '>' | '<' | LE | GE | EQ | ADDEQ | SUBEQ
+;
+
+U :
+    INC | DEC
+;
+
+%%
+
+int main(){
+    printf("Enter code (end with #):\n");
+    yyparse();
+    return 0;
 }
 
-// ---------- PLAYFAIR CIPHER ----------
-char matrix[5][5];
-
-// Generate matrix
-void generateMatrix(string key) {
-    bool used[26] = {false};
-    used['J' - 'A'] = true;
-
-    string temp = "";
-
-    for (int i = 0; i < key.length(); i++) {
-        char ch = toupper(key[i]);
-        if (ch == 'J') ch = 'I';
-
-        if (!used[ch - 'A']) {
-            temp += ch;
-            used[ch - 'A'] = true;
-        }
-    }
-
-    for (char ch = 'A'; ch <= 'Z'; ch++) {
-        if (!used[ch - 'A']) {
-            temp += ch;
-        }
-    }
-
-    int k = 0;
-    for (int i = 0; i < 5; i++) {
-        for (int j = 0; j < 5; j++) {
-            matrix[i][j] = temp[k++];
-        }
-    }
+void yyerror(){
+    printf("Invalid\n");
+    exit(0);
 }
 
-// Find position
-void findPos(char ch, int &row, int &col) {
-    if (ch == 'J') ch = 'I';
+//3.b.l
+%{
+#include "y.tab.h"
+%}
 
-    for (int i = 0; i < 5; i++) {
-        for (int j = 0; j < 5; j++) {
-            if (matrix[i][j] == ch) {
-                row = i;
-                col = j;
-            }
-        }
-    }
+%%
+
+"int"|"void"|"char"|"float"|"double"   { return TYP; }
+"return"                               { return RETURN; }
+
+[a-zA-Z_][a-zA-Z0-9_]*                 { return ID; }
+[0-9]+                                 { return NUM; }
+
+"("                                    { return LP; }
+")"                                    { return RP; }
+"{"                                    { return LB; }
+"}"                                    { return RB; }
+
+";"                                    { return SC; }
+","                                    { return CM; }
+
+"="                                    { return EQ; }
+"+"|"-"|"*"|"/"                        { return OP; }
+
+[ \t\n]                                ;
+.                                      ;
+
+%%
+
+int yywrap(void) {
+    return 1;
 }
 
-// Playfair encryption/decryption
-string playfair(string text, bool encrypt) {
-    string result = "";
+//3.b.y
 
-    for (int i = 0; i < text.length(); i += 2) {
-        char a = toupper(text[i]);
-        char b = (i + 1 < text.length()) ? toupper(text[i + 1]) : 'X';
+%{
+#include <stdio.h>
+#include <stdlib.h>
 
-        int r1, c1, r2, c2;
-        findPos(a, r1, c1);
-        findPos(b, r2, c2);
+void yyerror(const char *s);
+int yylex(void);
+%}
 
-        if (r1 == r2) {
-            if (encrypt) {
-                result += matrix[r1][(c1 + 1) % 5];
-                result += matrix[r2][(c2 + 1) % 5];
-            } else {
-                result += matrix[r1][(c1 + 4) % 5];
-                result += matrix[r2][(c2 + 4) % 5];
-            }
-        }
-        else if (c1 == c2) {
-            if (encrypt) {
-                result += matrix[(r1 + 1) % 5][c1];
-                result += matrix[(r2 + 1) % 5][c2];
-            } else {
-                result += matrix[(r1 + 4) % 5][c1];
-                result += matrix[(r2 + 4) % 5][c2];
-            }
-        }
-        else {
-            result += matrix[r1][c2];
-            result += matrix[r2][c1];
-        }
-    }
+%token TYP ID LP RP LB RB SC CM EQ OP RETURN NUM
 
-    return result;
-}
+%left OP
+%right EQ
 
-// ---------- MAIN ----------
+%%
+
+prog : func
+     ;
+
+func : TYP ID LP params RP LB stmts RB
+      { printf("Function is syntactically correct\n"); }
+     ;
+
+params : /* empty */
+       | param_list
+       ;
+
+param_list : param
+           | param_list CM param
+           ;
+
+param : TYP ID
+      ;
+
+stmts : stmt
+      | stmts stmt
+      ;
+
+stmt : var_decl
+     | assign SC
+     | RETURN expr SC
+     ;
+
+var_decl : TYP ID SC
+         | TYP ID EQ expr SC
+         ;
+
+assign : ID EQ expr
+       ;
+
+expr : expr OP expr
+     | LP expr RP
+     | ID
+     | NUM
+     ;
+
+%%
+
 int main() {
-    int choice, mode;
-    string text, key;
+    printf("Enter function:\n");
+    yyparse();
+    return 0;
+}
 
-    cout << "1. Caesar  2. Playfair\nChoice: ";
-    cin >> choice;
-    cin.ignore();
-
-    cout << "Enter text: ";
-    getline(cin, text);
-
-    cout << "1. Encrypt  2. Decrypt: ";
-    cin >> mode;
-    cin.ignore();
-
-    if (choice == 1) {
-        int shift;
-        cout << "Enter shift: ";
-        cin >> shift;
-
-        cout << "Result: " << caesar(text, shift, mode == 1);
-    }
-    else {
-        cout << "Enter key: ";
-        getline(cin, key);
-
-        generateMatrix(key);
-
-        cout << "Result: " << playfair(text, mode == 1);
-    }
+void yyerror(const char *s) {
+    printf("Invalid function\n");
+    exit(0);
 }

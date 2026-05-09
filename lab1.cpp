@@ -1,5 +1,3 @@
-#include <iostream>
-#include <string>
 using namespace std;
 
 string xorOp(string a, string b) {

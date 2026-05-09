@@ -1,105 +1,148 @@
-import heapq
+#include <iostream>
+#include <string>
+#include <cctype>
+using namespace std;
 
-# Possible moves: up, down, left, right
-MOVES = [(-1,0), (1,0), (0,-1), (0,1)]
+// ---------- CAESAR CIPHER ----------
+string caesar(string text, int shift, bool encrypt) {
+    string result = "";
 
+    if (!encrypt) shift = 26 - shift;
 
-def print_state(state):
-    for row in state:
-        print(" ".join(map(str, row)))
-    print()
+    for (int i = 0; i < text.length(); i++) {
+        char ch = text[i];
 
+        if (isalpha(ch)) {
+            char base;
 
-def heuristic(state, goal):
-    # Misplaced tiles heuristic (ignore blank = 0)
-    count = 0
-    for i in range(3):
-        for j in range(3):
-            if state[i][j] != 0:
-                if state[i][j] != goal[i][j]:
-                    count += 1
-    return count
+            if (islower(ch)) base = 'a';
+            else base = 'A';
 
+            result += (ch - base + shift) % 26 + base;
+        } else {
+            result += ch;
+        }
+    }
 
-def find_blank(state):
-    for i in range(3):
-        for j in range(3):
-            if state[i][j] == 0:
-                return i, j
+    return result;
+}
 
+// ---------- PLAYFAIR CIPHER ----------
+char matrix[5][5];
 
-def get_neighbors(state):
-    x, y = find_blank(state)
-    neighbors = []
+// Generate matrix
+void generateMatrix(string key) {
+    bool used[26] = {false};
+    used['J' - 'A'] = true;
 
-    for dx, dy in MOVES:
-        nx, ny = x + dx, y + dy
-        if 0 <= nx < 3 and 0 <= ny < 3:
-            new_state = [list(row) for row in state]
-            new_state[x][y], new_state[nx][ny] = new_state[nx][ny], new_state[x][y]
-            neighbors.append(tuple(tuple(row) for row in new_state))
+    string temp = "";
 
-    return neighbors
+    for (int i = 0; i < key.length(); i++) {
+        char ch = toupper(key[i]);
+        if (ch == 'J') ch = 'I';
 
+        if (!used[ch - 'A']) {
+            temp += ch;
+            used[ch - 'A'] = true;
+        }
+    }
 
-def a_star(start, goal):
-    start = tuple(tuple(row) for row in start)
-    goal = tuple(tuple(row) for row in goal)
+    for (char ch = 'A'; ch <= 'Z'; ch++) {
+        if (!used[ch - 'A']) {
+            temp += ch;
+        }
+    }
 
-    open_list = []
-    heapq.heappush(open_list, (heuristic(start, goal), 0, start))
-    closed = set()
+    int k = 0;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            matrix[i][j] = temp[k++];
+        }
+    }
+}
 
-    parent = {start: None}
-    g_score = {start: 0}  # Track g-scores separately
+// Find position
+void findPos(char ch, int &row, int &col) {
+    if (ch == 'J') ch = 'I';
 
-    while open_list:
-        f, g, current = heapq.heappop(open_list)
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            if (matrix[i][j] == ch) {
+                row = i;
+                col = j;
+            }
+        }
+    }
+}
 
-        if current == goal:
-            # Reconstruct path
-            path = []
-            while current:
-                path.append(current)
-                current = parent[current]
-            path.reverse()
+// Playfair encryption/decryption
+string playfair(string text, bool encrypt) {
+    string result = "";
 
-            print("Solution path:\n")
-            for step in path:
-                print_state(step)
+    for (int i = 0; i < text.length(); i += 2) {
+        char a = toupper(text[i]);
+        char b = (i + 1 < text.length()) ? toupper(text[i + 1]) : 'X';
 
-            print("Total moves:", len(path) - 1)
-            return
+        int r1, c1, r2, c2;
+        findPos(a, r1, c1);
+        findPos(b, r2, c2);
 
-        closed.add(current)
+        if (r1 == r2) {
+            if (encrypt) {
+                result += matrix[r1][(c1 + 1) % 5];
+                result += matrix[r2][(c2 + 1) % 5];
+            } else {
+                result += matrix[r1][(c1 + 4) % 5];
+                result += matrix[r2][(c2 + 4) % 5];
+            }
+        }
+        else if (c1 == c2) {
+            if (encrypt) {
+                result += matrix[(r1 + 1) % 5][c1];
+                result += matrix[(r2 + 1) % 5][c2];
+            } else {
+                result += matrix[(r1 + 4) % 5][c1];
+                result += matrix[(r2 + 4) % 5][c2];
+            }
+        }
+        else {
+            result += matrix[r1][c2];
+            result += matrix[r2][c1];
+        }
+    }
 
-        for neighbor in get_neighbors(current):
-            if neighbor in closed:
-                continue
+    return result;
+}
 
-            g_new = g + 1
+// ---------- MAIN ----------
+int main() {
+    int choice, mode;
+    string text, key;
 
-            # If we found a better path to this neighbor
-            if neighbor not in g_score or g_new < g_score[neighbor]:
-                parent[neighbor] = current
-                g_score[neighbor] = g_new
-                f_new = g_new + heuristic(neighbor, goal)
-                heapq.heappush(open_list, (f_new, g_new, neighbor))
+    cout << "1. Caesar  2. Playfair\nChoice: ";
+    cin >> choice;
+    cin.ignore();
 
-    print("No solution found")
+    cout << "Enter text: ";
+    getline(cin, text);
 
+    cout << "1. Encrypt  2. Decrypt: ";
+    cin >> mode;
+    cin.ignore();
 
-if __name__ == '__main__':
-    initial_state = [
-        [1, 2, 3],
-        [8, 0, 4],
-        [7, 6, 5]
-    ]
+    if (choice == 1) {
+        int shift;
+        cout << "Enter shift: ";
+        cin >> shift;
 
-    goal_state = [
-        [2, 8, 1],
-        [0, 4, 3],
-        [7, 6, 5]
-    ]
+        cout << "Result: " << caesar(text, shift, mode == 1);
+    }
+    else {
+        cout << "Enter key: ";
+        getline(cin, key);
 
-    a_star(initial_state, goal_state)
+        generateMatrix(key);
+
+        cout << "Result: " << playfair(text, mode == 1);
+    }
+}
